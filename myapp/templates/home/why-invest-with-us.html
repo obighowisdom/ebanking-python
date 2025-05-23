@@ -1,0 +1,842 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 22px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 25px;
+        margin: 18px 0;
+        text-align: left;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .blog-content ul li {
+        font-weight: normal;
+        text-align: left;
+    }
+
+    .tableWrapper th,
+    .tableWrapper td {
+        width: 150px;
+        line-height: 35px;
+    }
+
+    .tableWrapper .fa.fa-sort-desc {
+        vertical-align: middle;
+        margin-top: -8px;
+        margin-right: 8px;
+        color: red;
+    }
+
+    .decrease {
+        color: red;
+    }
+
+    .value {
+        font-size: 24px;
+        font-weight: bold;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/couple-at-market.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Why invest with us?</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card-single-wr" style="border-top: none;">
+        <h3 style="margin-bottom: 35px">Our global network and local experts bring you what we believe are the best
+            investment opportunities from around the world</h3>
+        <div class="tkl">
+            <style>
+                .tab {
+                    overflow: hidden;
+                    border: 1px solid #ccc;
+                    background-color: #033D75;
+                }
+
+                /* Style the buttons inside the tab */
+                .tab button {
+                    background-color: inherit;
+                    float: left;
+                    border: none;
+                    outline: none;
+                    cursor: pointer;
+                    padding: 14px 16px;
+                    transition: 0.3s;
+                    font-size: 20px;
+                    color: #fff;
+                    border-radius: 0;
+                }
+
+                .tabcontent li {
+                    display: block;
+                    margin-bottom: 15px;
+                    line-height: 25px;
+                    margin-top: 15px;
+                }
+
+                .tabcontent li i {
+                    margin-right: 7px;
+                }
+
+                .tabcontent h3 {
+                    margin: 45px 0 25px;
+                }
+
+                /* Change background color of buttons on hover */
+                .tab button:hover {
+                    background-color: #EF454D;
+                }
+
+                .tabcontent h3 {
+                    margin: 32px 0 15px;
+                    font-size: 23px;
+                }
+
+                /* Create an active/current tablink class */
+                .tab button.active {
+                    background-color: #EF454D;
+                }
+
+                /* Style the tab content */
+                .tabcontent {
+                    display: none;
+                    padding: 30px 30px;
+                    border: 1px solid #ccc;
+                    border-top: none;
+                }
+
+                .tabcontent a {
+                    color: #033D75;
+                }
+            </style>
+            <div class="tab">
+                <button class="tablinks" onclick="openCity(event, 'London')" id="defaultOpen">Global expertise</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris')">Local expertise</button>
+                <button class="tablinks" onclick="openCity(event, 'Paris1')">Managing risk</button>
+            </div>
+            <div id="London" class="tabcontent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="tabContent1">
+                                <div class="row">
+                                    <div class="column column200">
+                                        <div class="contentItem">
+                                            <div class="contentStyle215">
+                                                <h4>Hand-picked specialists around the world</h4>
+                                                <p class="intro">London. New York. Tokyo. When market opens for trading,
+                                                    we've got investment experts tracking its every move</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="column column204">
+                                        <div class="contentItem">
+                                            <div class="contentStyle216">
+                                                <div class="flashWrapper">
+                                                    <div class="flashWrapperInner">
+                                                        <p class="note">The content displayed below is an accessible
+                                                            alternative. For the best experience you can view the
+                                                            interactive version by enabling JavaScript on your browser
+                                                            and installing <a target="_blank"
+                                                                title="Adobe Flash player download, link opens in a new window"
+                                                                href="http://www.adobe.com/support/flashplayer/downloads.html">Adobe
+                                                                Flash player</a>. Version 9 or above is required.</p>
+                                                        <img src="images/globemap.gif" class="fullmap" alt="world map">
+                                                        <h3>Bogotá: -5hrs GMT</h3>
+                                                        <h4>Nicolas Meleg, Portfolio Manager</h4>
+                                                        <p>Nicolas joined Nexa Banking in November 2006 with
+                                                            the acquisition of Banistmo Group by Ever green trust co
+                                                            Bank Plc. Since May 2007 he was responsible for the
+                                                            implementation of a voluntary pension fund constructed under
+                                                            a fund of funds investment scheme with different risk
+                                                            profile portfolios that invest in bond, equity and commodity
+                                                            funds. The fund was launched in September 2008, and Nicolas
+                                                            is responsible for the portfolio management.</p>
+                                                        <p>Prior to joining Nexa Banking , Nicolas was an
+                                                            Investment Analyst in Titularizadora Colombiana, a mortgage
+                                                            backed securities issuer Company, responsible for the
+                                                            proprietary portfolio management and the development of the
+                                                            MBS secondary market. Nicolas began his career in Compañia
+                                                            de Profesionales de Bolsa, a Colombian stock exchange
+                                                            member, as a fixed income trader during three years. Nicolas
+                                                            has 8 years of experience in the investment industry and has
+                                                            been with Nexa Banking for 4 years. </p>
+                                                        <p>Nicolas holds a BSc degree in Economics, a minor in Business
+                                                            Administration with focus in Finance and a graduate degree
+                                                            in Risk Economics and Finance; all degrees from Universidad
+                                                            de Los Andes, Bogota, Colombia.</p>
+                                                        <h3>Toronto: -5hrs GMT</h3>
+                                                        <h4>Lane T. Prenevost, CFA, FRM – Business Manager – Wealth,
+                                                            Multimanager and Multi-Asset</h4>
+                                                        <p>Lane was appointed in 2010 as the Business Manager for
+                                                            Multimanager, Wealth, and Multi-Asset investment
+                                                            capabilities within Nexa Banking Global Asset
+                                                            Management. He is responsible for the business aspect of
+                                                            each capability, including developing and implementing
+                                                            product strategy, promoting product innovation, as well as
+                                                            managing profitability. Lane also leads the team of regional
+                                                            product specialists that support each capability.</p>
+                                                        <p>Lane was previously Head of Multimanager, Americas, where he
+                                                            led manager research, portfolio management, and business
+                                                            development in the region. Prior to joining Ever green trust
+                                                            co Bank , Lane was Director, Portfolio Strategy at TD Asset
+                                                            Management in Toronto, where he was responsible for manager
+                                                            research and portfolio strategy for Canadian and global
+                                                            balanced portfolios. Lane has 14 years of industry
+                                                            experience and has been with Nexa Banking since
+                                                            2005. </p>
+                                                        <p>Lane has a BSc degree in Actuarial Science from the
+                                                            University of Toronto, and is a member of the CFA Institute
+                                                            and holds the Chartered Financial Analyst (CFA) designation.
+                                                            He also has the Financial Risk Manager (FRM) designation
+                                                            from the Global Associate of Risk Professionals (GARP).</p>
+                                                        <h3>New York: -5hrs GMT</h3>
+                                                        <h4>Randeep Brar, Senior Vice President, Head of Multimanager
+                                                            North America</h4>
+                                                        <p>Randeep was appointed as Head of Multimanager North America
+                                                            in September 2010. He was named Head of Research, USA in May
+                                                            2008. Randeep is responsible for managing the Multimanager
+                                                            team in New York and joined Nexa Banking Global
+                                                            Asset Management in 2007, having been working in the
+                                                            industry since 1994. Randeep's current role includes both
+                                                            research and portfolio management responsibilities, across
+                                                            broad equity and fixed income asset classes covered by the
+                                                            Multimanager team in North America.</p>
+                                                        <p>Prior to joining Nexa Banking Global Asset
+                                                            Management, Randeep led small cap portfolio management and
+                                                            research with-in the SEI Investments, manager of manager
+                                                            program, where he worked since 2001 in a variety of senior
+                                                            research positions. Previous to that, Randeep was Associate
+                                                            Director Research at Barra Rogers Casey, which he joined in
+                                                            1994 and held roles with-in investment consulting and equity
+                                                            manager research. Randeep holds a BE in Engineering and a
+                                                            graduate degree in finance. He is a Chartered Financial
+                                                            Analyst and a member of the New York Society of Security
+                                                            Analysts and the CFA Institute. In addition, Randeep also
+                                                            holds the Chartered Alternative Investment Analyst (CAIA)
+                                                            designation.</p>
+                                                        <p>Randeep has 16 years experience in the Investment Industry
+                                                            and has been with Nexa Banking for 3 years. </p>
+                                                        <h3>São Paulo: -3hrs GMT</h3>
+                                                        <h4>Alcindo Canto, Head of Multimanager </h4>
+                                                        <p>Alcindo joined Nexa Banking Global Asset
+                                                            Management in Brazil as a Senior Multimanager in August 2008
+                                                            and is responsible for managing a team of analysts and all
+                                                            aspects of portfolio management and research. He is member
+                                                            of Investment Committee and Compliance and Risk Committee.
+                                                        </p>
+                                                        <p>Prior to joining Nexa Banking , Alcindo was Head
+                                                            of Funds of Funds business in Brazil at ABN AMRO Real for
+                                                            three years. Alcindo started his career at Unibanco Asset
+                                                            Management (third largest private Nexa Banking
+                                                            in Brazil). Alcindo has 13 years experience in the
+                                                            investment industry, had joined Santander and Deutsche Ever
+                                                            green trust co Bank , and has been with Ever green trust co
+                                                            Bank for 2 year.</p>
+                                                        <p>Alcindo is Bachelor in Economics from Universidade de São
+                                                            Paulo (USP), and he holds a Master Science Economics from
+                                                            the PUC-SP. </p>
+                                                        <h3>London: GMT</h3>
+                                                        <h4>Guy Morrell BSc PhD MRICS<br>Head of Multimanager, Ever
+                                                            green trust co Bank Global Asset Management (UK) Limited
+                                                        </h4>
+                                                        <p>Guy Morrell was appointed Head of Nexa Banking ’s
+                                                            UK Multimanager team in 2008 having joined the Group in
+                                                            2004. He is the team’s investment head for global real
+                                                            estate and is Portfolio Manager of the Ever green trust co
+                                                            Bank Open Global Property Fund.</p>
+                                                        <p>Guy has over 26 years’ experience in property investment.
+                                                            Before joining Nexa Banking , he was the CIO for
+                                                            Global Property at Henderson Global Investors having held
+                                                            previous roles at AMP Asset Management, Prudential Portfolio
+                                                            Managers Limited and Healey &amp; Baker. He holds a PhD
+                                                            degree from the University of Reading, a first class honours
+                                                            BSc degree from De Montfort University and he is a chartered
+                                                            surveyor. He is a Board Member of the Investment Property
+                                                            Forum and sits on IPD Index Consultative Groups.</p>
+                                                        <h3>Paris: +1hrs GMT</h3>
+                                                        <h4>Laurent Garrigue, Analyst</h4>
+                                                        <p>Laurent joined Nexa Banking Global Asset
+                                                            Management in December 2005 as a Fund Manager and analyst
+                                                            for European Fixed Income, his responsibilities include
+                                                            being a fund analyst for European Fixed Income and Absolute
+                                                            Return Strategies. </p>
+                                                        <p>Prior to joining Nexa Banking Global Asset
+                                                            Management Laurent was a fund manager and analyst at AXA
+                                                            Investment Managers where his role included similar
+                                                            responsibilities to his role here at Ever green trust co
+                                                            Bank . Laurent started his career at Natixis Asset
+                                                            Management (formerly CDC Asset Management) as a Quantitative
+                                                            Engineer. From there he went on to IXIS Asset Management as
+                                                            a Fund Manager of fund of futures. Laurent has 13 years
+                                                            experience in the investment industry and has been with Ever
+                                                            green trust co Bank for 4 years. </p>
+                                                        <p>Laurent holds a Post Graduate degree in Stochastic processes
+                                                            applied to in France from PARIS-VII Jussieu University,
+                                                            France and a degree in Civil Engineering from Ecole
+                                                            Centrale, Paris. </p>
+                                                        <h3>Hong Kong: +8hrs GMT</h3>
+                                                        <h4>Michelle Hilliman, Head of Multimanager, Asia Pacific</h4>
+                                                        <p>Michelle Hilliman joined the Nexa Banking
+                                                            Multimanager team in November 2007 and was appointed as Head
+                                                            of Multimanager, Asia Pacific in March 2010. She is
+                                                            responsible for the Multimanager research team and the
+                                                            management of its products; and product development across
+                                                            Asia Pacific. Her prior role was Head of Research,
+                                                            Multimanager, Asia Pacific. Michelle brings over 12 years
+                                                            investment experience in manager research, portfolio
+                                                            construction and funds management. </p>
+                                                        <p>Prior to joining Nexa Banking Michelle worked for
+                                                            Northern Trust Global Advisors, the multi-manager arm of
+                                                            Northern Trust, for over 8 years in the London, UK and
+                                                            Toronto, Canada offices. She was responsible for manager
+                                                            research and program management for various asset classes
+                                                            including Asia Pacific, Emerging Markets and Global
+                                                            equities. In 2006 and 2007, Michelle conducted extensive
+                                                            manager research meetings in mainland China and was the lead
+                                                            researcher for the Chinese equity asset class. Prior to
+                                                            Northern Trust, she worked as a financial advisor for TD
+                                                            Canada Trust. She has 14 years investment experience and has
+                                                            been with Nexa Banking for over 2 years.</p>
+                                                        <p>Michelle holds a Bachelor of Science (Honors’) in
+                                                            Biochemistry from Queen’s University; is a CFA Charterholder
+                                                            and was awarded the Certified Financial Planner designation
+                                                            in 2001.</p>
+                                                        <h3>Taiwan: +8hrs GMT</h3>
+                                                        <h4>Amber Hsu, Fund Manager</h4>
+                                                        <p>Amber joined Nexa Banking Global Asset Management
+                                                            in July 2007 as quasi money market fund portfolio manager,
+                                                            Taiwan. In February 2008, she has transferred to
+                                                            Multimanager team, as fund manager for FoF portfolios. Prior
+                                                            to joining Nexa Banking Global Asset Management,
+                                                            Amber works for Uni-President Assets Management Corp. in
+                                                            Taiwan where she was a portfolio manager for bond fund and
+                                                            fund of bond funds portfolio manager in the Fixed Income
+                                                            Department. Amber has 13 years experience in the Investment
+                                                            industry and has been with Nexa Banking for 3
+                                                            years.</p>
+                                                        <p>Amber has a Bachelor of Science in Business Administration
+                                                            from the Fu Jen Catholic University in Taiwan, a Master of
+                                                            Banking and Finance from the Tam-Kang University, Taiwan.
+                                                            Amber is the Certified Securities Investment Analyst (CSIA,
+                                                            Taiwan) holder.</p>
+                                                        <h3>Shanghai: +8hrs GMT</h3>
+                                                        <h4>Michael Zheng, Analyst</h4>
+                                                        <p>Michael joined Bank Jintrust fund Management Company (a JV)
+                                                            as Head of Investment Advisory in October 2008, he is now
+                                                            responsible to conduct local fund research and FoF
+                                                            investment for Bank Jintrust and deliver the FoF investment
+                                                            advisory service to institutional clients. As a member of
+                                                            Bank Multimanager Asia team, he is also responsible to
+                                                            research and form recommendations on fund manager
+                                                            capabilities in the China for Multimanager Asia team.</p>
+                                                        <p>Prior to joining Bank Jintrust, Michael was with Allianz
+                                                            China life Insurance (a JV) as Director of Investment
+                                                            Department. Michael started his career from Allianz China
+                                                            Life Insurance as investment analyst, and advanced to head
+                                                            of fixed income investment, portfolio manager, senior
+                                                            manager and director. Michael has covered both fixed income
+                                                            and equity (Mutual fund) investment and managed over 7
+                                                            investment accounts in Allianz China Life. Michael has 10
+                                                            years of experience in the industry has been with Bank
+                                                            Jintrust for 1 year.</p>
+                                                        <p>Michael received a Bachelor degree of Engineering Project
+                                                            Management and a Master degree in Engineering Economics from
+                                                            Tongji University, Shanghai, China. Michael also holds
+                                                            professional qualification including CFA and FRM and is a
+                                                            member of both CFA Hong Kong Society and Global Association
+                                                            of Risk Professionals.</p>
+                                                        <h3>Tokyo: +9hrs GMT</h3>
+                                                        <h4>Atsuhiko Masuda, Analyst</h4>
+                                                        <p>Arts joined Bank Global Asset Management as a Senior
+                                                            Investment Manager, Tokyo in June 2007, his main
+                                                            responsibilities include being in charge of Multimanager
+                                                            funds covering Japan and are General Manager Investment
+                                                            Division of Tokyo Office. </p>
+                                                        <p>Prior to joining Bank Global Asset Management, Arts was Head
+                                                            of Active Equity for Credit Agricole covering fund
+                                                            management of Japanese Equity Products. Arts started his
+                                                            career at Morgan Grenfell as an Investment Banking officer
+                                                            mostly in charge of Mergers and Acquisitions advisory
+                                                            business for London and Tokyo. Prior to joining Credit
+                                                            Agricole Arts was a Senior Portfolio Manager for Japanese
+                                                            Equity Products (Large Cap) at Daiwa SBI. Arts has 22 years
+                                                            experience in the Investment industry and has been with Bank
+                                                            for 3 years. </p>
+                                                        <p>Arts holds an MBA from The Wharton School, University of
+                                                            Pennsylvania, USA and a BA Economics from Keio University,
+                                                            Japan, he is also a CFA Charterholder. </p>
+                                                    </div>
+                                                </div>
+                                                <script type="text/javascript" language="javascript">
+                                                    (function ($) {
+                                                        $('.flashWrapper').flash({
+                                                            src: '/flash/Interactivemap.swf',
+                                                            version: 9,
+                                                            height: 320,
+                                                            width: 707
+                                                        });
+                                                        $('.jsShow').show();
+                                                    })(jQuery);
+                                                </script>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div id="Paris" class="tabcontent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="tabContent1">
+                                <div class="row">
+                                    <div class="column column200">
+                                        <div class="contentItem">
+                                            <div class="contentStyle215">
+                                                <h4>Get advice from a financial expert</h4>
+                                                <p class="intro">Bank Premier Financial Advice is only available to UK
+                                                    residents who have £50,000 or more in savings and investments and
+                                                    who are at least 18 years old at the time of the initial
+                                                    consultation.</p>
+                                                <p class="intro">You'll also need an Bank current account or savings
+                                                    account for us to be able to deduct your fee. We can accept payment
+                                                    from a First Direct current or savings account too.</p>
+                                                <p class="intro">If you don't qualify for Bank Premier Financial Advice,
+                                                    or if you'd prefer not to pay for advice, see <a href="#"
+                                                        target="_blank">our self-directed investment options</a>.</p>
+                                                <p class="intro">If you are not a UK resident, please refer to our <a
+                                                        href="#"
+                                                        title="Bank Expat Service, this link will open in a new window"
+                                                        target="_blank">Bank Expat service</a>.</p>
+                                                <p class="intro">Our UK wide network of Premier Client Managers can make
+                                                    sure you get the advice you need when you need it. You can arrange a
+                                                    meeting with one of our advisors at your local branch - or talk to
+                                                    them over the phone.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contentStyle222 extCs222">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="contentStyle222a contentStyle222aFirst">
+                                                <ul>
+                                                    <li>
+                                                        <h5>A rigorous approach to financial planning</h5>
+                                                        <p>However simple or complex your requirements, our first step
+                                                            will be to discuss your current financial position and your
+                                                            goals in life. Then we'll look at how to achieve your
+                                                            objectives – now and in the future.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="contentStyle222a">
+                                                <ul>
+                                                    <li>
+                                                        <h5>Comprehensive training programmes</h5>
+                                                        <p>With one of the most comprehensive training programmes in the
+                                                            industry, our advisers keep their knowledge and
+                                                            qualifications up to date. We also ensure our advisers have
+                                                            access to a wide range of carefully selected financial
+                                                            products. So whatever stage in life you've reached, we'll
+                                                            recommend the best products to suit your needs.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div id="Paris1" class="tabcontent">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-sm-12">
+                            <div class="tabContent1">
+                                <div class="row">
+                                    <div class="column column200">
+                                        <div class="contentItem">
+                                            <div class="contentStyle215">
+                                                <h4>Hand-picked specialists around the world</h4>
+                                                <p class="intro">Managing your exposure to risk is a priority for us.
+                                                    That's why we go to great lengths to understand your financial goals
+                                                    – and how much risk you're prepared to take to achieve them. We also
+                                                    explain the potential outcomes of each investment we recommend, so
+                                                    you know what to expect from the outset.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="contentStyle222 extCs222">
+                                    <div class="row">
+                                        <div class="col-sm-6">
+                                            <div class="contentStyle222a contentStyle222aFirst">
+                                                <ul>
+                                                    <li>
+                                                        <h5>Balanced approach</h5>
+                                                        <p>All investments carry some degree of risk. Greater risk often
+                                                            means a potentially greater return – but it can also mean
+                                                            the potential for greater losses. However, sometimes the
+                                                            greatest risk to financial growth might be to take no risk
+                                                            at all. It's all about getting the balance right.</p>
+                                                    </li>
+                                                    <li>
+                                                        <h5>Proactive risk management</h5>
+                                                        <p>When you make an investment, it should match your risk
+                                                            profile. Because the risk ratings of funds can change, we
+                                                            proactively manage our World Selection Portfolios to keep
+                                                            them within their risk classification. When you invest in
+                                                            our World Selection Portfolios, our aim is to remain in line
+                                                            with your attitude to risk. </p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                        <div class="col-sm-6">
+                                            <div class="contentStyle222a">
+                                                <ul>
+                                                    <li>
+                                                        <h5>Careful risk calculations</h5>
+                                                        <p>At Bank we employ experts who monitor the risk and return of
+                                                            every investment we're involved in. By using modern
+                                                            portfolio techniques and in-depth analysis, we are able to
+                                                            create a range of diversified and actively risk-managed
+                                                            portfolios. These help to reduce the volatility of investing
+                                                            and attempt to maximise returns for a level of risk you are
+                                                            comfortable with.</p>
+                                                    </li>
+                                                    <li class="extNoCheckMark">
+                                                        <p>The value of investments can fall as well as rise, and you
+                                                            may get back less than originally invested. You should be
+                                                            prepared to invest your money for a minimum of 5 years.</p>
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <script>
+                function openCity(evt, cityName) {
+                    var i, tabcontent, tablinks;
+                    tabcontent = document.getElementsByClassName("tabcontent");
+                    for (i = 0; i < tabcontent.length; i++) {
+                        tabcontent[i].style.display = "none";
+                    }
+                    tablinks = document.getElementsByClassName("tablinks");
+                    for (i = 0; i < tablinks.length; i++) {
+                        tablinks[i].className = tablinks[i].className.replace(" active", "");
+                    }
+                    document.getElementById(cityName).style.display = "block";
+                    evt.currentTarget.className += " active";
+                }
+
+                // Get the element with id="defaultOpen" and click on it
+                document.getElementById("defaultOpen").click();
+            </script>
+
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="card-single-wr" style="border-top: none;padding-top: 15px;">
+            <div class="inner-card-wr">
+
+                <div class="card-single-wr">
+                    <h2>Need to speak to us?</h2>
+                    <p>Give our friendly team a call on:</p>
+                    <p><strong>+1 (000) 000-0000</strong></p>
+                    <h2 style="margin-top: 35px;"><a href="#" style="color: #033D75; text-decoration: underline;">Bank
+                            opinion, news & analysis</a></h2>
+                    <p>The latest news, reviews and Bank insights about markets and investments</p>
+                </div>
+
+                <div class="card-single-wr">
+                    <h2>For your information</h2>
+                    <div class="row">
+                        <div class="col-sm-4">
+                            <p>The value of most investments and any income they generate can go down as well as up,
+                                meaning you may not get back the full amount you invested.</p>
+                            <p>This may in part be caused by exchange rate variations where overseas investments are
+                                held. Investors are advised to consider carefully the special risks of investing in
+                                emerging market securities. Investments in emerging markets are by their nature higher
+                                risk and potentially more volatile than those in more established markets.</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>Most investments should be considered as a medium- to long-term commitment, meaning you
+                                should be prepared to hold them for at least five years.</p>
+                            <p>Some investments have a fixed term or may not be accessible until you reach your
+                                retirement age. For products with a fixed term you may get back significantly less than
+                                originally invested if you make an early withdrawal.</p>
+                            <p>The value of any tax benefits described depends on your individual circumstances. Tax
+                                rules may change in the future.</p>
+                        </div>
+                        <div class="col-sm-4">
+                            <p>* Our opening hours are Monday to Friday 8am to 9pm. Textphone: <strong>18001 0800 028
+                                    0126</strong>.</p>
+                            <p>To help us continually improve our service, and in the interests of security, we may
+                                monitor and/or record your communications with us.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

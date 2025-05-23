@@ -1,0 +1,502 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 28px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content {
+        width: 380px;
+        text-align: center;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+
+    .col-sm-12.variableper {
+        margin-top: 10px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 17px;
+        margin-top: 35px;
+        text-align: left;
+        margin-bottom: 22px;
+        min-height: auto;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .anchorlink a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .business-wr .single-bolg.hover011 img {
+        width: 190px;
+    }
+
+    .single-bolg.hover011 {
+        border: 1px solid #ccc;
+        margin: 15px 0;
+        text-align: center;
+        padding: 25px;
+        min-height: 330px;
+    }
+
+    .single-bolg.hover011 .bussiness-btn-larg {
+        color: #fff !important;
+    }
+
+    .inner-card-wr.row.pageslink .col-sm-4 {
+        margin: 10px 0 10px 0;
+    }
+
+    .inner-card-wr.quotewr {
+        background: #033D75;
+        color: #fff;
+        padding: 45px 25px 25px;
+        text-align: center;
+        margin: 45px 0 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .card-single-wr.bottomwr {
+        padding-top: 15px;
+    }
+
+    .card-single-wr.bottomwr h3 {
+        margin-bottom: 33px;
+    }
+
+    .bottomwr .business-wr .col-md-4 a {
+        display: inline-block;
+        margin: 0;
+    }
+
+    .card-single-wr.bottomwr .business-wr {
+        margin-top: 0;
+    }
+
+    .card-single-wr.bottomwr .bussiness-btn-larg {
+        color: #fff !important;
+    }
+
+    .rangewr .blog-content {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .business-wr.rangewr {
+        margin-bottom: 40px;
+    }
+
+    .card-single-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .card-single-wr li {
+        display: block;
+    }
+
+    #SIFfundsTable tr {
+        border-bottom: 1px solid #033D75;
+    }
+
+    table th {
+        padding: 16px 12px;
+        font-weight: bold;
+    }
+
+    table tr td:first-child {
+        border-left: 0;
+    }
+
+    table thead tr th {
+        background: #e3e3e5;
+        border-top: 2px solid #033D75;
+    }
+
+    td {
+        padding: 16px;
+    }
+
+    table tr th,
+    table tr td {
+        border-left: 2px solid #033D75;
+        border-right: 2px solid #033D75;
+        border-bottom: 2px solid #033D75;
+        font-size: 87.5%;
+        line-height: 135%;
+    }
+
+    table {
+        font-size: 18px;
+    }
+</style>
+
+        <!-- Preloader -->
+        <div id="fakeloader"></div>
+        
+        
+        {% include 'home/nav.html' %}
+
+
+
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/cherries.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Investment Funds</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="card-single-wr" style="border-top: none;padding-top: 0;">
+            <p style="margin-top: 35px;">An investment fund (also referred to as ‘a fund’) pools together the money from
+                many individuals enabling a fund manager to invest in a broad range of assets, such as money market
+                instruments, bonds, shares and property - exactly what the fund manager buys depends on the investment
+                objective of the fund. By pooling your money with other investors, a fund allows you to invest in a
+                broader range of assets than if you chose to invest directly in the individual assets yourself.</p>
+            <p>Our Global Investment Centre is our investments service through which you can open and invest in a Funds
+                portfolio and ISA Funds portfolio, giving you access to investment funds from Nexa Banking
+                and a wide range of other providers.</p>
+            <p>If you hold an existing Selected Investment Funds ISA, or Selected Investment Funds Plan, you can also
+                top up your existing fund or invest in an alternative SIF fund by downloading and completing the
+                appropriate application form or by calling us on <strong>+1 (000) 000-0000</strong> (textphone
+                <strong>+15193874872</strong>).</p>
+            <p><strong>These services are offered without investment advice and you will need to make your own
+                    investment decisions.</strong></p>
+            <p><strong>All investments carry some risk. The value of investments (and any income received from them) can
+                    fall as well as rise and you may not get back what you invested. For some investments this can also
+                    happen as a result of exchange rate fluctuations as shares and funds may have an exposure to
+                    overseas markets.</strong></p>
+            <p><strong>In addition to the risks mentioned above, there are other risks associated with investing in our
+                    products. These are outlined in the Key Features Document and Key Investor Information Document for
+                    each product which you should read carefully before applying.</strong></p>
+        </div>
+    </div>
+</div>
+<div class="container">
+    <div class="card-single-wr">
+        <div class="inner-card-wr">
+            <h2>Investment Funds options</h2>
+            <div class="tableWrapper">
+                <table id="SIFfundsTable">
+                    <thead>
+                        <tr>
+                            <th scope="col">Investment solution</th>
+                            <th scope="col">Investment choice</th>
+                            <th scope="col">Minimum investment</th>
+                            <th scope="col">Account charges</th>
+                            <th>&nbsp;</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <th scope="row" class="productName"><a href="#">Global Investment Centre</a></th>
+                            <td>Build and manage your own portfolio of funds including index trackers from Ever green
+                                trust co Bank and funds from other leading asset managers</td>
+                            <td><strong>£100</strong></td>
+                            <td><strong>0.39%</strong> plus fund charges</td>
+                            <td><a class="chevron" href="#"><span class="hidden">Global Investment Centre: </span>Find
+                                    out more</a></td>
+                        </tr>
+                        <tr class="odd">
+                            <th scope="row" class="productName"><a href="#">Selected Investment Funds</a></th>
+                            <td>Top up your existing Selected Investment Funds ISA or Investment Plan. Or, invest in an
+                                alternative SIF fund</td>
+                            <td>Existing customers only</td>
+                            <td><strong>0.25%</strong> plus fund charges</td>
+                            <td><a class="chevron" href="#"><span class="hidden">Selected Investment Funds: </span>Find
+                                    out more</a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div class="card-single-wr">
+        <div class="inner-card-wr">
+            <h2>Please bear in mind</h2>
+            <ul>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Investment risk</li>
+                <p>All investments carry some risk. The value of investments (and any income received from them) can
+                    fall as well as rise and you may not get back what you invested. For some investments this can also
+                    happen as a result of exchange rate fluctuations as shares and funds may have an exposure to
+                    overseas markets.</p>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Time commitment</li>
+                <p>Most investments should be considered as a medium to long-term commitment; this means you should be
+                    prepared to hold them for at least five years.</p>
+                <li><i class="fa fa-check" aria-hidden="true"></i>Tax benefits</li>
+                <p>The value of any tax benefits described depends upon your individual circumstances - tax rules may
+                    change in future.</p>
+                <p>In addition to the risks mentioned above, there are other risks associated with investing in our
+                    products. These are outlined in the Key Features Document for each product and, where applicable, in
+                    the Key Investor Information Document for the underlying fund(s), which you should read carefully
+                    before applying.</p>
+            </ul>
+        </div>
+    </div>
+    <div class="card-single-wr">
+        <div class="inner-card-wr">
+            <h2>Our top 5 FAQs</h2>
+            <ul>
+                <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>What is the difference between a cash ISA
+                        and a stocks and shares ISA?</a></li>
+                <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>Where can I get advice on my
+                        investments?</a></li>
+                <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>Do you provide advice on Ever green trust
+                        co Bank products only?</a></li>
+                <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>Do I need to have an account with 
+                        Nexa Banking to be able to invest?</a></li>
+                <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>How can I find out the current value of my
+                        pension?</a></li>
+            </ul>
+        </div>
+    </div>
+    <div class="card-single-wr">
+        <div class="inner-card-wr">
+            <h2>Need to speak to us?</h2>
+            <h3>+1 (000) 000-0000</h3>
+            <p>Our opening hours are Monday to Friday 8am to 9pm.</p>
+            <p>Textphone:+1 (000) 000-0000.</p>
+            <p>To help us continually improve our service, and in the interests of security, we may monitor and/or
+                record your communications with us.</p>
+        </div>
+    </div>
+    <div class="card-single-wr">
+        <div class="inner-card-wr">
+            <h2>Prefer to talk face-to-face?</h2>
+            <p><strong>Pop into your nearest branch for a chat.</strong></p>
+            <a href="/branch-locator" class="bussiness-btn-larg">Find a branch</a>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

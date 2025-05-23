@@ -1,0 +1,421 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+    <style>
+        .navbar-brand h2 {
+            font-size: 35px;
+            margin-top: 2px;
+        }
+    </style>
+    <!-- Preloader -->
+    <div id="fakeloader"></div>
+
+    <div class="top-menu-1x">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+          
+                </div>
+                <!--<div class="col-md-6">
+					<div class="top-menu-right">
+						<div class="footer-info-right">
+							<ul>
+								<li><a href="#"> <i class="fa fa-facebook"></i> </a></li>										
+								<li><a href="#"> <i class="fa fa-twitter"></i> </a></li>											
+								<li><a href="#"> <i class="fa fa-google"></i> </a></li>									
+								<li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>											
+							</ul>					
+						</div>					
+					</div>				
+				</div>-->
+            </div>
+        </div>
+    </div>
+
+{% include 'home/nav.html' %}
+
+    <!--NAVIGATION END-->
+    <style>
+        #userpinid,
+        #useridtextid {
+            color: #717171;
+            font-size: 1em;
+            line-height: 1.375em;
+            background: none;
+            border: none;
+            border-bottom-color: currentcolor;
+            border-bottom-style: none;
+            border-bottom-width: medium;
+            border-bottom-color: currentcolor;
+            border-bottom-style: none;
+            border-bottom-width: medium;
+            border-bottom: 1px solid #ccc;
+            padding: .313em;
+            margin: .188em 0;
+        }
+    </style>
+    <!--home content start-->
+    <div class="business-main-slider1">
+        <div class="owl-carousel1 main-slider1">
+            <div class="item1">
+                <div class="hvrbox">
+                    <img src="../../static/images/b1.jpg" alt="Mountains" class="hvrbox-layer_bottom">
+                    <div class="business-main-slider">
+                        <div class="banner-content">
+                            <div class="owl-carousel main-slider">
+                                <div class="item">
+                                    <div class="innerBannerContent row">
+                                        <div class="col-sm-7">
+                                            <h2>Discover our new 95% mortgages</h2>
+                                            <p>We are making it easier for first time buyers to get on the property
+                                                ladder. Available on property purNexa Banking .</p>
+                                            <a href="login.html">Find out more</a>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <img src="../../static/images/visa.png" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="innerBannerContent row">
+                                        <div class="col-sm-7">
+                                            <h2>Investment Banking</h2>
+                                            <p>Investment Banking provides comprehensive financial advisory, capital
+                                                raising, financing and risk management services to corporations.</p>
+                                            <a href="login.html">Find out more</a>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <img src="../../static/images/visa1.png" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="item">
+                                    <div class="innerBannerContent row">
+                                        <div class="col-sm-7">
+                                            <h2>Global Finance</h2>
+                                            <p>Our M&A team works in partnership with coverage bankers in providing
+                                                solutions, using a highly analytical approach, providing unique
+                                                insights.</p>
+                                            <a href="login.html">Find out more</a>
+                                        </div>
+                                        <div class="col-sm-5">
+                                            <img src="../../static/images/visa2.png" alt="" />
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="loginbox">
+                        <div class="innerlogin">
+
+
+
+
+
+
+                            <h3>Welcome</h3>
+
+                            <a href="/login">
+                                <button
+                                    style="font-weight: bold; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Sign
+                                    In</button>
+                            </a>
+
+
+                            <a href="/register" target="_blank">
+                                <button
+                                    style="font-weight: bold; padding: 10px 20px; background-color: #4CAF50; color: white; border: none; border-radius: 5px; text-align: center; text-decoration: none; display: inline-block; font-size: 16px; margin: 4px 2px; cursor: pointer;">Sign
+                                    Up</button>
+                            </a>
+
+
+
+
+
+
+
+
+
+
+
+
+                            <form method="POST" id="threestep" onsubmit="return false;" style="display: none;">
+                                <h3>Welcome</h3>
+
+                                <div class="row loginAdj">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+
+                                        <input type="password" name="pinnumber" id="userpinid" class="form-control"
+                                            placeholder="PIN Number">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12 col-md-12 signonBtnContainer">
+                                        <div class="col-xs-12">
+                                            <br>
+                                            <button id="secondstepbutton2" class="btn btn-default loginbtn">Validate
+                                                Pin</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+
+                        <div class="innerlogin" id="forgotpassword-form" style="display:none">
+                            <form method="POST" id="forgotpassword" onsubmit="return false;">
+                                <h3>Forgot Password</h3>
+
+                                <div class="row loginAdj">
+                                    <div class="col-md-12 col-sm-12 col-xs-12 col-lg-12">
+                                        <input type="password" name="accnumber" id="useridtextid" class="form-control"
+                                            placeholder="Online id">
+
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="form-group col-xs-12 col-md-12 signonBtnContainer">
+                                        <div class="col-xs-12">
+                                            <br>
+                                            <button id="forgotpasswordbutton2" type="submit"
+                                                class="btn btn-default loginbtn">Send Mail</button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group" style="margin-bottom: 0;line-height: 28px;">
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <a href="javascript:void(0)" onclick="login()">Login Now?<i
+                                                class="fa fa-angle-right" style="margin-left: 5px;"
+                                                aria-hidden="true"></i></a>
+                                    </div>f
+                                    <div class="col-sm-offset-2 col-sm-10">
+                                        <a href="/register">Not enrolled? Sign up now.<i
+                                                class="fa fa-angle-right" style="margin-left: 5px;"
+                                                aria-hidden="true"></i></a>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+    
+
+    <div class="business-wr">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-1.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="#">Up to USD20,000 this tax year<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>Make the most of your 2019/
+                                <script>
+                                    function myFunction() {
+                                        var d = new Date();
+                                        var n = d.getFullYear();
+                                        document.getElementById("demo").innerHTML = n;
+                                    }
+                                </script> ISA allowance with an bank Selection Stocks and Shares ISA.
+                            </span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-2.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="/login">Book an appointment<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>You can now book an appointment online. Existing customers may prefer to log on to
+                                Online Banking to make booking even simpler.</span>
+                            <div class="cols-m-12 bookingbtn">
+                                <a href="/register">Book Now<i style="margin-left: 5px;"
+                                        class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                <a href="/login">Login and book now<i style="margin-left: 5px;"
+                                        class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-3.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="#">Ring-fencing<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></a>
+                            <span>We’re changing the way bank is structured in the EU.</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="business-portfolio-1x" id="portfolio">
+        <div class="container">
+            <div class="row" style="padding: 30px 0;">
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-4.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="/insurance">Insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></a>
+                            <span>Protect your family and property.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-5.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="/login">Activate your card<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>There are several ways to easily activate your card. Choose the option that's best for
+                                you.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-6.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="#">Security centre<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>Handy tips designed to help you stay safe online.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-7.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="/contactandsupport">Helpful guides<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>A range of guides and articles from understanding APRs to saving tips.</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-12" style="height: 1px;width: 100%;background-color:#EF454D;"></div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/bl-840.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="#">Secure Key<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>Handy demos to help you activate, reset and use your Secure Key</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-9.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="#">Voice ID<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>Make your voice your password for telephone banking</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/blog-8.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="/contactandsupport">Card support<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            <span>Activate, lost or stolen, and general card support</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-3">
+                    <div class="single-bolg hover01">
+                        <figure><img src="../../static/images/couple-hiking-840.jpg" alt="slide 1" class=""></figure>
+                        <div class="blog-content">
+                            <a href="/insurance">PPI<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></a>
+                            <span>Payment Protection Insurance claim deadlines</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="padding-top-large"></div>
+
+    <div class="business-app-present-2x">
+        <div class="app-present-content-2">
+            <div class="container">
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="business-title-middle">
+                            <h2>Your news and information</h2>
+                            <span class="title-border-middle"></span>
+                        </div>
+                    </div>
+
+                    <div class="col-md-5">
+                        <div class="app-present-left-2">
+                            <img src="../../static/images/Question-mark.jpg" alt="Mountains" class="">
+                        </div>
+                    </div>
+                    <div class="col-md-6" style="background-color: rgba(3, 61, 117, .1);">
+                        <div class="app-present-right-2">
+                            <div class="single-app-present">
+                                <div class="media">
+                                    <div class="media-body">
+                                        <h2>Account questions? Just ask me.</h2>
+                                        <p>I’m just a few taps away — open your Nexa Banking ® mobile app
+                                            and say hello.</p>
+                                        <a class="bussiness-btn-larg" href="/contactandsupport">ask questions</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="padding-top-large"></div>
+
+    <div class="business-cta-1x">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-12">
+                    <div class="cta-content">
+                        <h2>Open our most popular savings account</h2>
+                        <h3>Apply for a new Savings<sup>℠</sup> account in minutes.</h3>
+                        <a href="/register" class="bussiness-btn-larg">apply Now</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- End Client Map -->
+    <!--home content end-->
+    <!-- Start Footer -->
+   
+</body>
+
+<!-- Property of evergreentrustco.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 12 Jul 2020 13:13:41 GMT -->
+
+<!-- Property of secure.evergreentrustco.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Wed, 23 Dec 2020 20:37:43 GMT -->
+
+<!-- Mirrored from www.evergreentrustco.com/ by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Aug 2024 00:39:55 GMT -->
+
+</html>
+
+
+{% endblock content %}

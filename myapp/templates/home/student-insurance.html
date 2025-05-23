@@ -1,0 +1,728 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        line-height: 30px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 2%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+        margin-left: 14px;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 19px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin: 15px 0;
+        text-align: left;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .card-single-wr .single-colorful-feature h2 {
+        font-size: 22px !important;
+        margin-left: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .card-single-wr .single-colorful-feature h2::before {
+        display: none !important;
+    }
+
+    .card-single-wr .single-colorful-feature {
+        height: 260px !important;
+    }
+
+    p strong {
+        font-size: 24px;
+        font-weight: normal;
+    }
+
+    table th {
+        color: #4d6474;
+        background: #033D75;
+        text-align: left;
+    }
+
+    table th p {
+        color: #fff !important;
+    }
+
+    table td,
+    table th {
+        padding: 20px 20px 20px 20px;
+        padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+        font-size: .875rem;
+        border: 1px solid #b6b7b6;
+    }
+
+    .accordion {
+        background-color: #033D75;
+        color: #fff;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 16px;
+        transition: 0.4s;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .inner-card-wr.accordianwr {
+        margin-bottom: 45px;
+    }
+
+    .accordion.active,
+    .accordion:hover {
+        background-color: #EF454D;
+        outline: none;
+        border: none;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #fff;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .accordion.active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .inner-card-wr.accordianwr .col-sm-8 h3 {
+        margin: 5px 0 15px 0;
+    }
+
+    .inner-card-wr.accordianwr .row {
+        padding: 0;
+        margin: 15px 0 0;
+    }
+
+    .inner-card-wr.accordianwr .panel {
+        padding: 0;
+        margin: 0;
+    }
+
+    .panel .inner-card-wr {
+        padding: 20px;
+    }
+
+    .policy li p {
+        margin-left: 0;
+    }
+
+    h3 {
+        margin-top: 0 !important;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/student-lecture.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Student insurance</h3>
+                    <p>We take care of your personal possessions while you focus on your studies</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="cardWr row">
+            <div class="col-sm-8 leftwr">
+                <div class="col-sm-12" style="margin-bottom: 15px;">
+                    <h2>Nexa Banking Student Insurance</h2>
+                    <p>While you concentrate on your studies, you can trust Nexa Banking Student Insurance
+                        to take care of your personal possessions.</p>
+                </div>
+                <div class="col-sm-12">
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">4 levels of cover</li>
+                        <p>Choose the level of cover that suits you - £2,000, £3,000, £4,000 or £5,000</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Up to £500 per item</li>
+                        <p>You can claim up to £500 for each individual item that is lost or damaged</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Accidental damage protection</li>
+                        <p>Cover included for your home entertainment equipment, mirrors and glass - up to £250 per
+                            incident</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Covers your cash</li>
+                        <p>Get up to £100 if your cash is lost or stolen</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Optional extras</li>
+                        <p>Tailor your cover to include pedal cycles, computers and more</p>
+                    </ul>
+                </div>
+                <div class="readmoreWr col-sm-12">
+                    <a href="#" class="bussiness-btn-larg">Get a quote</a>
+                </div>
+            </div>
+            <div class="col-sm-4 rightwr">
+                <p style="font-size: 25px;line-height:32px; font-weight: bold;">Start your application</p>
+                <div class="col-sm-12 variableper">
+                    <p>Nexa Banking Insurance is provided by Aviva Insurance Limited and is designed to
+                        offer you the protection you need when you move away from home for the first time.</p>
+                    <p>Please ensure you see the <a href="#" style="text-decoration: underline;color: #fff;">full
+                            eligibiltiy requirements</a> before applying. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>More details</h2>
+            <div class="inner-card-wr row">
+                <h3>4 levels of cover from £25</h3>
+                <p>You can choose cover limits between £2,000 and £5,000 and protect yourself from the financial cost of
+                    loss or damage to your contents while you are a student. Cover includes fire, storm, flood and theft
+                    following forcible and violent entry/exit from your accommodation.</p>
+                <h3>Accidental damage protection</h3>
+                <p>We’ll cover your home entertainment equipment, mirrors and glass up to £250 per incident. We’ll also
+                    cover home computers (not laptops), games consoles, receiving aerials, dishes and CCTV cameras that
+                    are fixed to the building.</p>
+                <h3>Optional extras</h3>
+
+                <ul>
+                    <p>You can also choose these optional extras:</p>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan"><strong>Personal belongings:</strong> covers items you wear or carry
+                            outside your accommodation (within the British Isles)</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan"><strong>Personal computer equipment:</strong> covers equipment in your
+                            possession in and away from your accommodation, including installed software (excluding
+                            mobile phones)</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan"><strong>Pedal cycles:</strong> covers loss or damage anywhere within the
+                            British Isles as long as your cycle is locked to an immovable object or in a locked building
+                            that only you access</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>What's covered?</h2>
+            <div class="inner-card-wr policy row">
+                <div class="col-sm-6">
+                    <h3>Standard policy features</h3>
+                    <ul>
+                        <li><strong>Individual item</strong>
+                            <p>Policy limits: £500, Policy excesses: £50</p>
+                        </li>
+                        <li><strong>Accidental damage cover</strong>
+                            <p>Policy limits: £250, Policy excesses: £50</p>
+                        </li>
+                        <li><strong>Loss or theft of cash</strong>
+                            <p>Policy limits: £100, Policy excesses: £50</p>
+                        </li>
+                        <li><strong>Personal and occupier's liability</strong>
+                            <p>Policy limits: £2million, Policy excesses: £50</p>
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Optional extras for all 4 levels of cover</h3>
+                    <ul>
+                        <li><strong>Personal belongings cover</strong>
+                            <p>Between £500 and £2,000 (£500 per individual item)</p>
+                        </li>
+                        <li><strong>Pedal cycles</strong>
+                            <p>£500</p>
+                        </li>
+                        <li><strong>Personal computer equipment</strong>
+                            <p>£2,000 (including £250 for installed software)</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>What's not covered?</h2>
+            <div class="inner-card-wr">
+                <h3>General</h3>
+                <ul>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">You will have to pay the first part of most claims - this is known as an
+                            excess. Your schedule details the excesses which apply to your policy</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Limits apply for certain covers; the limits are shown on your schedule
+                            and in your policy booklet</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Certain loss or damage (for example theft or malicious damage) caused by
+                            you or members of your household</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Damage caused by chewing, scratching, tearing or fouling by domestic
+                            animals</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Clause(s) may apply which exclude certain losses or damage. These will
+                            appear on your schedule</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">You must comply with the conditions of the policy explained in the
+                            General Conditions section of the policy booklet for cover to apply. These include your duty
+                            to take reasonable precautions to prevent accident, loss or damage and actions you must take
+                            as soon as you become aware of a possible claim under this policy. See also the General
+                            Exclusions section of the policy booklet for those exclusions that apply to all sections.
+                    </li>
+                </ul>
+
+                <h3>Student contents</h3>
+                <ul>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Motorised vehicles, aircraft, caravans, watercraft of any kind</span>
+                    </li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Loss or damage to pedal cycles in the garden (but wider cover is
+                            available under Pedal Cycles)</span></li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Accidental damage to video cameras, mobile phones, hearing aids, games
+                            consoles and portable computer equipment (but wider cover is available under the Personal
+                            computer section and Personal belongings section)</span></li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Loss or damage to your contents by any cause not listed in the policy
+                            booklet (but wider cover is available under the Personal belongings section)</span></li>
+                    </span>
+
+                    <h3>Money and credit cards</h3>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Loss or theft not reported to the police</span></li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Loss or theft of credit and debit cards not reported to the card
+                                issuing company within 24 hours of discovering the loss</span></li>
+                    </ul>
+                    <p><a href="#">Please see <a href="#">your policy document (PDF)</a> for full details of
+                            exclusions.</a></p>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>How to apply</h2>
+            <div class="inner-card-wr lowerwr">
+                <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo77">Are you eligible?</a>
+                <div id="demo77" class="collapse">
+                    <p>Please ensure you can answer YES to the following questions:</p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Are you a full-time student attending a
+                            university or college situated in the United Kingdom (or part-time if you are receiving a
+                            Disabled Student Allowance)?</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Are you applying for contents cover only?</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Can you confirm you do not possess any one
+                            item you wish to insure with this policy that exceeds £500 in value (this does not apply to
+                            the personal computer equipment option)?</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Can you confirm you do not require contents
+                            cover in excess of £5,000? For higher levels of cover please call our insurance helpline on
+                            +1 (000) 000-0000 to speak to one of our customer service representatives who will be
+                            available to provide you with a quote.</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Can you confirm you have never had any
+                            criminal convictions, police cautions or have any prosecutions pending?</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Can you confirm you have never had insurance
+                            refused, cancelled or offers with terms imposed?</li>
+                    </ul>
+                </div>
+
+                <div class="row logonwr">
+                    <div class="col-sm-6 applynow">
+                        <h3>Apply online</h3>
+                        <p>Get a quote and apply for a student insurance policy online.</p>
+                        <a class="bussiness-btn-larg" href="#">Get a quote today</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr downloadlist">
+            <h2>Things you should know</h2>
+            <p>You should check if you are covered by a university campus scheme before applying for Ever green trust co
+                Bank Student Insurance.</p>
+            <div class="inner-card-wr">
+                <ul>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Nexa Banking Student
+                            Insurance Product Information Document (PDF)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Privacy Notice (PDF)</a></li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Student insurance policy details
+                            (PDF)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Important information (PDF)</a>
+                    </li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Summary of limits and excesses
+                            (PDF)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i> Insurance Privacy Notice Overview
+                            (PDF)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>Make a claim</h2>
+            <p>Contact our helpline numbers for assistance as soon as you can, quoting your policy number if possible.
+            </p>
+            <div class="inner-card-wr row">
+                <div class="col-sm-6">
+                    <h3>Student insurance claims</h3>
+                    <p class="A-PAR16R-RW-ALL">Call us on <a href="#" class="no-link" role="presentation">+1 (000)
+                            000-0000 </a><sup>1</sup>.</p>
+                    <p class="A-PAR14R-RW-ALL"><sup>1</sup>Lines open 24 hours a day, 7 days a week.&nbsp;Calls may be
+                        monitored or recorded.</p>
+                    <p>Lines open 24 hours a day.</p>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Customer services</h3>
+                    <p>We're here to help if you have any questions or queries.</p>
+                    <p class="A-PAR16R-RW-ALL">Call us on <a href="tel:+12136309458 " class="no-link"
+                            role="presentation">+1 (000) 000-0000 </a><sup>2</sup>.</p>
+                </div>
+                <div class="col-sm-12">
+                    <h3>What you'll need to hand when making a claim</h3>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Your policy number</span></li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Your policyholder name and address</span></li>
+                    </ul>
+                </div>
+                <div class="col-sm-12">
+                    <h3>Your cancellation rights</h3>
+                    <p>You have a statutory right to cancel your policy within 14 days from the day of purchase or
+                        renewal of the policy or the day on which you receive your policy or renewal documentation,
+                        whichever is the later.</p>
+                    <p class="A-PAR16R-RW-ALL">Call us on <a href="#" class="no-link" role="presentation">+1 (000)
+                            000-0000 </a><sup>2</sup>.<sup><br>&nbsp;&nbsp;</sup></p>
+                    <p class="A-PAR14R-RW-ALL"><sup>2</sup>Lines are open from 8am to 8pm Monday to Friday and 9am to
+                        5pm on Saturday and Sunday.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2 style="margin-bottom: 42px;">Frequently Asked Questions</h2>
+            <button class="accordion">What if I have an individual item worth over £500?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>The single item limit is £500. Please call us on +1 (000) 000-0000 to see if we can still give
+                        you a quote.</p>
+                </div>
+            </div>
+
+            <button class="accordion">My TV is worth £300 so what happens if it's accidentally damaged?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>The maximum amount we pay for accidental damage is £250.</p>
+                </div>
+            </div>
+
+            <button class="accordion">Will my belongings be covered if I'm abroad on holiday?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>You will only be covered if you and/or your possessions are within the British Isles (certain
+                        standard cover items must be in your term time residence).</p>
+                </div>
+            </div>
+
+            <button class="accordion">Is my mobile phone covered?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>Mobile phones are not covered by this policy.</p>
+                </div>
+            </div>
+
+            <button class="accordion">Will pedal cycle cover protect my bike if it's kept in the hall of my shared
+                house?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>If your pedal cycle is kept in the hallway of a shared house it will need to be locked to an
+                        immovable object.</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>You might also be interested in</h2>
+            <div class="inner-card-wr">
+                <div class="business-wr">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-4">
+                                <div class="single-bolg hover01">
+                                    <a href="/home-insurance">
+                                        <figure><img src="../../static/images/travel1.jpg" alt="slide 1" class=""></figure>
+                                        <div class="blog-content">
+                                            Student Nexa Banking Account<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                    <p>Make the most of your studies with an account packed with student benefits.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="single-bolg hover01">
+                                    <a href="/student-insurance">
+                                        <figure><img src="../../static/images/travel2.jpg" alt="slide 1" class=""></figure>
+                                        <div class="blog-content">
+                                            Student Credit Card<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                    <p>Available exclusively for Nexa Banking Student Current account
+                                        holders.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-4">
+                                <div class="single-bolg hover01">
+                                    <a href="/travel-insurance">
+                                        <figure><img src="../../static/images/travel3.jpg" alt="slide 1" class=""></figure>
+                                        <div class="blog-content">
+                                            Travel insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                                aria-hidden="true"></i>
+                                        </div>
+                                    </a>
+                                    <p>Stay protected with single trip or annual multi-trip travel insurance.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

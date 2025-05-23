@@ -1,0 +1,771 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        line-height: 30px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+        margin-left: 14px;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 19px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .card-single-wr .single-colorful-feature h2 {
+        font-size: 22px !important;
+        margin-left: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .card-single-wr .single-colorful-feature h2::before {
+        display: none !important;
+    }
+
+    .card-single-wr .single-colorful-feature {
+        height: 260px !important;
+    }
+
+    p strong {
+        font-size: 24px;
+        font-weight: normal;
+    }
+
+    table th {
+        color: #4d6474;
+        background: #033D75;
+        text-align: left;
+    }
+
+    table th p {
+        color: #fff !important;
+    }
+
+    table td,
+    table th {
+        padding: 20px 20px 20px 20px;
+        padding: 1.25rem 1.25rem 1.25rem 1.25rem;
+        font-size: .875rem;
+        border: 1px solid #b6b7b6;
+    }
+
+    .accordion {
+        background-color: #033D75;
+        color: #fff;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 16px;
+        transition: 0.4s;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .inner-card-wr.accordianwr {
+        margin-bottom: 45px;
+    }
+
+    .accordion.active,
+    .accordion:hover {
+        background-color: #EF454D;
+        outline: none;
+        border: none;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #fff;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .accordion.active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .inner-card-wr.accordianwr .col-sm-8 h3 {
+        margin: 5px 0 15px 0;
+    }
+
+    .inner-card-wr.accordianwr .row {
+        padding: 0;
+        margin: 15px 0 0;
+    }
+
+    .inner-card-wr.accordianwr .panel {
+        padding: 0;
+        margin: 0;
+    }
+
+    .panel .inner-card-wr {
+        padding: 20px;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/couple-bicycles-riding-path.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Travel insurance</h3>
+                    <p>Cover to suit your every need while travelling</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="cardWr row">
+            <div class="col-sm-8 leftwr">
+                <div class="col-sm-12" style="margin-bottom: 15px;">
+                    <h2>Nexa Banking Travel Insurance</h2>
+                    <p>Nexa Banking Travel Insurance is designed to offer a choice of single trip or annual
+                        multi-trip cover.</p>
+                </div>
+                <div class="col-sm-12">
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Up to £10 million of medical cover</li>
+                        <p>For emergency medical treatment and associated expenses</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Up to £5000 cancellation cover</li>
+                        <p>Refund of non-recoverable travel and accommodation costs should you be forced to cancel or
+                            cut short your holiday</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Cover for airspace or port closures</li>
+                        <p>If you are prevented from travelling or stranded abroad for at least 24 consecutive hours due
+                            to airspace or port closures, you'll be covered</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">15% online discount</li>
+                        <p>Receive a 15% online discount when you buy your single trip or annual multi-trip policy
+                            online. Offer only available on new policies.</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Cover for major incidents</li>
+                        <p>If you need to cancel or abandon your trip due to major incident such as a terror attack,
+                            you'll be covered.</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Up to 9 people covered</li>
+                        <p>Ideal for solo travellers, couples, families and groups</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Optional extras</li>
+                        <p>To cover baggage, extended trip, scuba diving, golf and winter sports</p>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Choice of single trip or annual multi-trip policies</li>
+                        <p>With UK only, European or Worldwide cover available</p>
+                    </ul>
+                </div>
+                <div class="readmoreWr col-sm-12">
+                    <a href="#" class="bussiness-btn-larg">Get a quote</a>
+                </div>
+            </div>
+            <div class="col-sm-4 rightwr">
+                <p style="font-size: 25px;line-height:32px; font-weight: bold;">Start your application</p>
+                <div class="col-sm-12 variableper">
+                    <p>Nexa Banking Travel Insurance is provided by Aviva Insurance Limited and is designed
+                        to cover all of your travel needs.</p>
+                    <p>Please ensure you see the <a href="#" style="text-decoration: underline;color: #fff;">full
+                            eligibiltiy requirements</a> before applying. </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>More details</h2>
+            <div class="inner-card-wr row">
+                <div class="col-sm-4">
+                    <p><strong>We offer:</strong></p>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Cover for up to 9 people - ideal for individuals, couples, families
+                                and groups</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Single trip policies for trips between 2-120 days</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Annual multi-trip policies with trip limits of 31, 45, 60 or 90 days
+                        </li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <p><strong>Choose an area of travel from:</strong></p>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">UK - single trip only</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">UK & Europe</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Worldwide, excluding USA, Canada & Caribbean</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Worldwide including USA, Canada & Caribbean</li>
+                    </ul>
+                </div>
+                <div class="col-sm-4">
+                    <p><strong>Optional cover for:</strong></p>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Baggage</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Extended trip</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Scuba diving</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Golf</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">Winter sports</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>What's covered?</h2>
+            <div class="inner-card-wr">
+                <div class="business-wr">
+                    <div id="pp_main_basicTable_1" class="table-wrapper flexible-columns">
+                        <table class="desktop">
+                            <tbody>
+                                <tr>
+                                    <th scope="col" class="A-TBLLAB-RW-ALL">
+                                        <p class="A-PAR16R-RW-ALL">Standard policy features</p>
+                                    </th>
+                                    <th scope="col" class="A-TBLLAB-RW-ALL">
+                                        <p class="A-PAR16R-RW-ALL">Policy limits per person per trip</p>
+                                    </th>
+                                    <th scope="col" class="A-TBLLAB-RW-ALL">
+                                        <p class="A-PAR16R-RW-ALL">Excesses per person per incident</p>
+                                    </th>
+                                </tr>
+                                <tr>
+                                    <td>
+                                        <p class="A-PAR14R-RW-ALL">Cancellation charges<br> </p>
+                                    </td>
+                                    <td>£5000<br> </td>
+                                    <td>£50 (£20 for loss of deposit)<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Holiday disruption<br> </td>
+                                    <td>£25 for each 24 hr period (£500 maximum)<br> </td>
+                                    <td>Nil<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Delayed departure<br> </td>
+                                    <td>£25 for each 12 hr period (£250 maximum)<br> </td>
+                                    <td>£50 for abandonment after 24 hours<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Missed international departure<br> </td>
+                                    <td>£1000<br> </td>
+                                    <td>Nil<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Emergency medical and associated expenses<br> </td>
+                                    <td>£10,000,000<br> </td>
+                                    <td>£50<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Hospital benefit<br> </td>
+                                    <td>£25 for each 24 hour period (£1,000 maximum)<br> </td>
+                                    <td>Nil<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Personal accident<br> </td>
+                                    <td>£50,000<br> </td>
+                                    <td>Nil<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Personal liability<br> </td>
+                                    <td>£2,000,000<br> </td>
+                                    <td>£50 for incidents arising from the occupation of temporary holiday
+                                        accommodation<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Legal expenses<br> </td>
+                                    <td>£50,000<br> </td>
+                                    <td>Nil<br> </td>
+                                </tr>
+                                <tr>
+                                    <td colspan="3" height="20" width="216"><strong>Optional extras</strong><br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Baggage cover<br> </td>
+                                    <td>£1,500<br> </td>
+                                    <td>£50<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Winter sports cover<br> </td>
+                                    <td>£500 (own equipment)<br> </td>
+                                    <td>£50<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Golfing cover<br> </td>
+                                    <td>£1,500 (own equipment)<br> </td>
+                                    <td>£50<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Scuba diving cover<br> </td>
+                                    <td>Refer to policy booklet<br> </td>
+                                    <td>Refer to policy booklet<br> </td>
+                                </tr>
+                                <tr>
+                                    <td>Business trip cover<br> </td>
+                                    <td>Refer to policy booklet<br> </td>
+                                    <td>Refer to policy booklet<br> </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>What's covered?</h2>
+            <div class="inner-card-wr">
+                <ul>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Pre-existing medical conditions of any travellers named on the policy and
+                            anyone whose health may affect your decision to take or continue your trip unless accepted
+                            in writing by us</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Leisure activities not listed in the policy document</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Missed international departure due to strike if the date of strike is
+                            known at the time of booking</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Winter sports above the 31 days maximum stated on annual policies</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Business trips which involve manual work or dealing with the public</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Claims for your death, injury, illness or disability are not covered if
+                            they result from you misusing alcohol or drugs.</li>
+                </ul>
+                <p>Please note, all trips must begin and end in the UK, Channel Islands or Isle of Man. Holidays in the
+                    UK, Channel Islands or Isle of Man must include a minimum of 2 consecutive nights stay in pre booked
+                    accommodation.</p>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>Make a claim</h2>
+            <p>Contact the relevant helpline number for assistance as soon as you can, quoting your policy number if
+                possible.</p>
+            <div class="inner-card-wr row">
+                <div class="col-sm-6">
+                    <h3>Claims for emergency medical treatment</h3>
+                    <p>Medical emergency Line</p>
+                    <p><strong>+1 (000) 000-0000 </strong></p>
+                    <p>Lines open 24 hours a day.</p>
+                </div>
+                <div class="col-sm-6">
+                    <h3>Other claims</h3>
+                    <p><strong>+1 (000) 000-0000 </strong></p>
+                    <p>Lines open: 8am - 8pm every day except Christmas Day, Boxing Day and New Year's Day.</p>
+                    <p>Initial notification can be made 24 hours a day, 365 days a year.</p>
+                </div>
+                <p>For security, quality and training purposes calls may be monitored and recorded.</p>
+                <h3>Documents you may need when making a travel insurance claim</h3>
+                <ul>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Original receipts, bills, cash withdrawal slips, flight and luggage
+                            tickets, guarantees, instruction manuals, accident reports, any photographs of your
+                            belongings and medical certificates or reports</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">A written police report made as soon as reasonably possible for any theft
+                            or loss</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">A "Property Irregularity Report" for baggage lost or damaged by an
+                            airline</li>
+                    <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                            class="secondspan">Written confirmation from your tour operator or carrier to validate any
+                            delays</li>
+                </ul>
+                <p>Please note, this is not a complete list as each claim is different. Please read your policy document
+                    for full details.</p>
+                <h3>Your cancellation rights</h3>
+                <p>You have a statutory right to cancel your policy within 14 days from the day of purchase or renewal
+                    of the policy or the day on which you receive your policy or renewal documentation, whichever is the
+                    later.</p>
+                <p>Please call +1 (000) 000-0000 </p>
+                <p>Lines open 8am to 8pm Monday to Thursday and 8am to 7pm Friday, 9am to 5pm Saturday and 10am to 2pm
+                    Sunday except Christmas Day, Boxing Day & New Year's Day.</p>
+            </div>
+        </div>
+
+        <div class="card-single-wr" style="border-top: none;padding-top: 25px;">
+            <h2>How to apply for Nexa Banking Travel Insurance</h2>
+            <p>If you meet the eligibility criteria below, you can get a quote online or by contacting us:</p>
+            <div class="inner-card-wr lowerwr">
+                <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo77">Are you eligible?</a>
+                <div id="demo77" class="collapse">
+                    <p>Please ensure you can answer YES to the following questions:</p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Are you aged between 16 and 79 for a Single
+                            Trip policy or aged between 16 and 74 for an Annual Multi-trip policy?</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Have you been resident in the UK, Channel
+                            Islands or Isle of Man for the last six months?</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Are you liable to pay tax in the UK, Channel
+                            Islands or Isle of Man and are you registered with a local doctor?</li>
+                    </ul>
+                    <p>To ensure you avoid having duplicate cover, please check whether you or any traveller who would
+                        be covered by this policy have any other products that currently provide travel insurance.</p>
+                    <p>Before applying, please also take the time to read <a href="#">important information on the
+                            policy.</a></p>
+                </div>
+
+                <div class="row logonwr">
+                    <div class="col-sm-6 applynow">
+                        <h3>Apply online</h3>
+                        <p><strong>Get a quote and save 15% when you apply online.</strong></p>
+                        <p>Offer only available on new policies.</p>
+                        <a class="bussiness-btn-larg" href="#">Get a quote today</a>
+                    </div>
+                    <div class="col-sm-6 logon">
+                        <h3>Apply by phone</h3>
+                        <p>Call us for immediate cover</p>
+                        <p>+1 (000) 000-0000 </p>
+                        <p>Lines are open from 8am – 8pm Monday – Thursday, 8am – 7pm Friday, 9am – 5pm Saturday and
+                            10am – 2pm Sunday. (except for Christmas Day, Boxing Day and New Year's Day)</p>
+                        <p>Please answer all questions accurately, any incorrect information may invalidate your
+                            insurance should you take out a policy.</p>
+                    </div>
+                    <div class="col-sm-6 logon" style="margin-top: 35px;">
+                        <p>Retrieve a saved quote.</p>
+                        <p>Return to a previous quote you obtained in the last 30 days.</p>
+                        <a href="#" class="bussiness-btn-larg">Retrieve quote</a>
+                    </div>
+                    <div class="col-sm-6 logon" style="margin-top: 35px;">
+                        <p>For details on how we will use your personal information, please see our <a href="#">Privacy
+                                Notice (PDF)</a>. Nexa Banking Travel Insurance is provided by Aviva
+                            Insurance Limited. Please read Aviva’s Privacy Notice shown within the application</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-single-wr downloadlist">
+            <h2>Things you should know</h2>
+            <p>Please take the time to read the following:</p>
+            <div class="inner-card-wr">
+                <ul>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Nexa Banking Travel
+                            Insurance Product Information Document (PDF)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Privacy Notice (PDF)</a></li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Important Information (PDF)</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Nexa Banking Travel
+                            Insurance Policy Booklet (PDF)</a></li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Summary of limits and excesses
+                            (PDF)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Insurance Privacy Notice Overview
+                            (PDF)</a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2 style="margin-bottom: 42px;">Frequently Asked Questions</h2>
+            <button class="accordion">What happens if I need to cancel my holiday?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>You will be covered for your unused travel and accommodation costs if you have to cancel your
+                        trip provided it is for one of the reasons shown in your policy booklet.</p>
+                </div>
+            </div>
+
+            <button class="accordion">Can my children travel independently on our annual policy?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>No. Insured persons under 16 years of age will only be covered when they are travelling with an
+                        adult named on your policy schedule.</p>
+                </div>
+            </div>
+
+            <button class="accordion">What is the maximum trip duration?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>For single trip policies the maximum trip length is 120 days. If you have an annual policy the
+                        standard trip length is 31 days but it is possible to extend this before you travel to either
+                        45, 60 or 90 days. You must not spend longer than 183 days outside the UK in any consecutive 12
+                        month period.</p>
+                </div>
+            </div>
+
+            <button class="accordion">Will I be covered if I miss my flight?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>For single trip policies the maximum trip length is 120 days. If you have an annual policy the
+                        standard trip length is 31 days but it is possible to extend this before you travel to either
+                        45, 60 or 90 days. You must not spend longer than 183 days outside the UK in any consecutive 12
+                        month period.</p>
+                </div>
+            </div>
+
+            <button class="accordion">Will I be covered if I miss my flight?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>If you miss your flight, ship or train at your point of international departure due to a failure
+                        of public transport or because the vehicle you are travelling in breaks down you will be
+                        covered. You will not be covered for any connecting or onward travel. If you think you are at
+                        risk of missing your transport you should call the Travel Assistant helpline on +15193874872 /
+                        +1 (000) 000-0000 .</p>
+                </div>
+            </div>
+
+            <button class="accordion">Are holidays in the UK covered on my annual policy?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <p>Yes, holidays in the UK, including the Channel Islands and the Isle of Man, are covered provided
+                        they include 2 or more consecutive nights' stay in pre-booked holiday accommodation.</p>
+                </div>
+            </div>
+        </div>
+        <p><a href="#">Additional FAQs about our travel insurance policies <i style="margin-left: 10px;"
+                    class="fa fa-angle-right" aria-hidden="true"></i></a></p>
+    </div>
+</div>
+
+
+
+{% endblock content %}

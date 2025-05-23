@@ -1,0 +1,316 @@
+{% include 'home/contact.html' %}
+
+<footer class="bussiness-footer-1x">
+    <div class="bussiness-footer-content ">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-3">
+                    <h5> Help & support </h5>
+                    <a href="/contactandsupport">Got a question? We are here to help you </a>
+                </div>
+                <div class="col-md-3">
+                    <h5> Find a branch </h5>
+                    <a href="/branch-locator">Find your nearest Nexa Banking Banking location</a>
+                </div>
+                <div class="col-md-3">
+                    <h5> Our performance </h5>
+                    <a href="/why-invest-with-us">View our service dashboard to see how we're doing</a>
+                </div>
+
+                <div class="col-md-3">
+                    <h5> About Nexa Banking </h5>
+                    <a href="/why-invest-with-us">Careers, media, investor and corporate information</a>
+                </div>
+
+                <div class="container">
+                    <div class="">
+                        <div class="col-md-12 footer-info">
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <div class="footer-info-left">
+                                        <!--<p><a href="#">Nexa Banking  Banking Group</a></p>-->
+                                        <img style="max-width:125px;" src="../../static/logofooter.png"
+                                            class="d-inline-block align-top" alt="">
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <div class="footer-info-right">
+                                        <ul>
+                                            <li><a href="#"> <i class="fa fa-facebook"></i> </a></li>
+                                            <li><a href="#"> <i class="fa fa-twitter"></i> </a></li>
+                                            <li><a href="#"> <i class="fa fa-google"></i> </a></li>
+                                            <li><a href="#"> <i class="fa fa-linkedin"></i> </a></li>
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</footer>
+<!-- End Footer --> <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+<script src="../../static/1.12.4/jquery.min.js"></script>
+<script src="../../static/cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.html"
+    integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+    crossorigin="anonymous"></script>
+<!-- Include all compiled plugins (below), or include individual files as needed -->
+<script src="../../static/js/bootstrap.min.js"></script>
+
+<!-- Wow Script -->
+<script src="../../static/js/wow.min.js"></script>
+<!-- Counter Script -->
+<script src="../../static/js/waypoints.min.js"></script>
+<script src="../../static/js/jquery.counterup.min.js"></script>
+<!-- Masonry Portfolio Script -->
+<script src="../../static/js/jquery.filterizr.min.js"></script>
+<script src="../../static/js/filterizer-controls.js"></script>
+<!-- OWL Carousel js-->
+<script src="../../static/js/owl.carousel.min.js"></script>
+<!-- Lightbox js -->
+<script src="../../static/inc/lightbox/js/jquery.fancybox.pack.js"></script>
+<script src="../../static/inc/lightbox/js/lightbox.js"></script>
+<!-- Google map js -->
+<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCa6w23do1qZsmF1Xo3atuFzzMYadTuTu0"></script>
+<script src="../../static/js/map.js"></script>
+<!-- loader js-->
+<script src="../../static/js/fakeLoader.min.js"></script>
+<!-- Scroll bottom to top -->
+<script src="../../static/js/scrolltopcontrol.js"></script>
+<!-- menu -->
+<script src="../../static/js/bootstrap-4-navbar.js"></script>
+<!-- Stiky menu -->
+<script src="../../static/js/jquery.sticky.js"></script>
+<!-- youtube popup video -->
+<script src="../../static/js/jquery.magnific-popup.min.js"></script>
+<!-- Color switcher js -->
+<script src="../../static/js/color-switcher.js"></script>
+<!-- Color-switcher-active -->
+<script src="../../static/js/color-switcher-active.js"></script>
+<!-- Custom script -->
+<script src="../../static/js/custom.js"></script>
+<script src="../../static/js/jquery.bxslider.min.js"></script>
+
+<!-- for calucator---->
+<script type="text/javascript" src="../../static/etc/clientlib-all.min.2f2dbb3959c1dcdb1f3b1f52f1375b62.js"></script>
+
+<script type="text/javascript" src="../../static/etc/clientlib.min.b3ec3a2325eaa4cbc74a2e2f0b755b0f.js"></script>
+
+
+
+<!--//---->
+<!-- new script->
+
+<!-- / script -->
+
+<script src="../../static/ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script src="../../static/js/jquery.bxslider.min.js"></script>
+
+<script type="text/javascript">
+    $(document).ready(function () {
+        if (($(window).width() > 769)) {
+            $('.bxsliderwr').bxSlider({
+                minSlides: 5,
+                maxSlides: 5,
+                slideWidth: 230,
+                pager: true,
+                slideMargin: 50,
+                moveSlides: 1,
+                auto: true,
+                infiniteLoop: true,
+                mode: 'horizontal',
+            });
+        }
+        else if (($(window).width() < 769) && ($(window).width() > 481)) {
+            $('.bxsliderwr').bxSlider({
+                minSlides: 3,
+                maxSlides: 3,
+                slideWidth: 230,
+                pager: true,
+                slideMargin: 50,
+                moveSlides: 1,
+                auto: true,
+                infiniteLoop: true,
+                mode: 'horizontal',
+            });
+        }
+        else {
+            $('.bxsliderwr').bxSlider({
+                minSlides: 3,
+                maxSlides: 3,
+                slideWidth: 230,
+                pager: false,
+                slideMargin: 50,
+                moveSlides: 1,
+                auto: true,
+                infiniteLoop: true,
+                mode: 'horizontal',
+            });
+        }
+    }); 
+</script>
+<!-- <script type="text/javascript">
+	var user_id="";
+	 	$(document).ready(function(){
+	 	    
+	 	//	alert('hii');
+	 		$("#firststepbutton2").click(
+		     function(e)
+			   {
+	 		var password_user=$("#pwd").val();
+				 var user_id=$("#usrnm").val();
+				  if(user_id=="")
+					    {
+						  alert("Please Enter User ID..");
+						  return false;	
+						}
+				     if(password_user=="")
+					   {
+						 alert("Please Enter Password..");
+						 return false;   
+					   }
+					   else
+					   {
+						   
+						   $.post("account/", { q:"step_login", password_user:password_user, user_id :user_id  }, function(data)
+						    {
+								if(data=="empty" || data=="wrongpassword")
+								{
+								 if(data=="empty")
+								  {
+								    
+								    alert("Please Enter Password..");  
+								  }
+								  if(data=="wrongpassword")
+								  {
+									
+									alert("UserId does not match with password..");  
+								  }
+								}
+								else if(data=="threestep")
+								{
+								    user_id=data;
+								    
+									$('#threestep').show();
+									$('#firststep').hide();
+
+								}
+								else
+								{
+									window.location.href='account/';
+									
+								  
+								}
+							}
+						   );
+					   }
+					});
+			
+
+			
+	 		$("#secondstepbutton2").click(
+		     function(e)
+			   {
+	 		
+				 var pin=$('#userpinid').val();
+				  if(pin=="")
+					    {
+						  alert("Please Enter User ID..");
+						  return false;	
+						}
+					   else
+					   {
+					      	var password_user=$("#pwd").val();
+				                var user_id=$("#usrnm").val();
+						   
+						   $.post("account/", { q:"step_third_login", pin_user:pin ,password_user:password_user, user_id :user_id  }, function(data)
+						    {
+								if(data=="empty" || data=="invalid")
+								{
+								 if(data=="empty")
+								  {
+								    
+								    alert("Please Enter Pin..");  
+								  }
+								  if(data=="invalid")
+								  {
+									
+									alert("Invalid Pin");  
+								  }
+								}
+								else
+								{
+									window.location.href='account/';
+									
+								  
+								}
+							}
+						   );
+					   }
+					});
+					
+					
+					
+					
+					
+						$("#forgotpasswordbutton2").click(
+		     function(e)
+			   {
+	 		
+				 var pin=$('#useridtextid').val();
+				  if(pin=="")
+					    {
+						  alert("Please Enter Online ID..");
+						  return false;	
+						}
+					   else
+					   {
+					     
+						   
+						   $.post("account/", { q:"forgot_passwordorpin", accnumber:pin   }, function(data)
+						    {
+								 if(data==0)
+                            	   {
+                            		alert("Please Fill Account Number..");   
+                            	   }
+                            	   if(data==1)
+                            	   {
+                            		   alert("Invalid Account Number..");
+                            	   }
+                            	   if(data==2)
+                            	   {
+                            		   alert("Password/PIN sent to your email please check your inbox..");
+                            		  // window.location.href='https://secure.evergreentrustco.com/users/form/';
+                            	   }
+	
+							}
+						   );
+					   }
+					});
+			
+    });
+	
+	</script> -->
+<script type="text/javascript">
+    var acc = document.getElementsByClassName("accordion");
+    var i;
+
+    for (i = 0; i < acc.length; i++) {
+        acc[i].addEventListener("click", function () {
+            this.classList.toggle("active");
+            var panel = this.nextElementSibling;
+            if (panel.style.maxHeight) {
+                panel.style.maxHeight = null;
+            } else {
+                panel.style.maxHeight = panel.scrollHeight + "px";
+            }
+        });
+    }
+</script>
+
+
+<script type="text/javascript" src='../../static/js/amcharts.html'></script>
+<script type="text/javascript" src='../../static/js/overpaymentscalc-min.html'></script>
+<script src="../code.tidio.co_443/vdagpswsldne1oaahfkskm8kjtadw6mp.js" async></script>

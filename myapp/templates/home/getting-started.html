@@ -1,0 +1,506 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 22%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 24px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 22px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin: 20px 0 15px;
+        text-align: left;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: normal;
+        color: #033D75;
+    }
+
+    .inner-addon {
+        margin: 15px 0;
+    }
+
+    .searchbtn {
+        width: 20%;
+        display: inline-block !important;
+        vertical-align: top;
+        height: 45px;
+        background: #EF454D !important;
+        color: #fff !important;
+        border: none !important;
+        padding: 10px 20px 12px !important;
+        display: inline-block !important;
+        margin-top: 0 !important;
+        font-size: 15px !important;
+    }
+
+    .searchbox {
+        width: 79%;
+        display: inline-block;
+    }
+
+    .banner-content .innerBanner h3 {
+        margin-bottom: 15px !important;
+    }
+</style>
+
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/D846_why_invest-1040_03.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Why invest with us?</h3>
+                    <p style="margin-bottom: 20px;">With our strong global investment platform, a consistent investment
+                        philosophy and a team of professionals, we work in diverse geographic locations to take
+                        advantage of opportunities in the financial markets across the globe.</p>
+                    <a href="#" class="bussiness-btn-larg">Find out more</a>
+                </div>
+            </div>
+        </div>
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/D846-news-1040_03.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Nexa Banking opinion, news & analysis</h3>
+                    <p style="margin-bottom: 20px;">We’ve brought our unique insights and investment analysis together
+                        in one place. Discover all the latest economic, company and market news and analysis from our
+                        investment professionals to help you stay informed.</p>
+                    <a href="#" class="bussiness-btn-larg">Find out more</a>
+                </div>
+            </div>
+        </div>
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/D846_planning-1040_03.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Planning your finances</h3>
+                    <p style="margin-bottom: 20px;">Prioritising and understanding your goals and objectives are the
+                        first steps in planning your financial future. At Nexa Banking , we have lots of
+                        information to help you get started, and professionals on hand to help you throughout your
+                        financial life.</p>
+                    <a href="#" class="bussiness-btn-larg">Find out more</a>
+                </div>
+            </div>
+        </div>
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/D846_retirement-1040_03.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Future of retirement tool</h3>
+                    <p style="margin-bottom: 10px;">Our latest report, 'Choices for later life', is the eleventh in the
+                        Future of Retirement series. In this report we asked 2,000 people in the UK to tell us about how
+                        they hope to live in later life.</p>
+                    <p style="margin-bottom: 10px;">Compare your answers with our survey tool.</p>
+                    <a href="#" class="bussiness-btn-larg">use this tool</a>
+                </div>
+            </div>
+        </div>
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/D846_grow_health-1040_03.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Grow your wealth tool</h3>
+                    <p style="margin-bottom: 10px;">Whatever your age or financial situation, your approach to saving,
+                        spending and investing can have a direct effect on how you grow your money over time. Our
+                        planning tool can help you think about what paths you could take to achieve your investment
+                        goals and grow your wealth.</p>
+                    <a href="#" class="bussiness-btn-larg">use this tool</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="row card-single-wr" style="border-top: none;">
+            <div class="col-sm-6">
+                <h2>How can Nexa Banking help you make more of your money?</h2>
+                <p>Whether your dream is to retire in style, put your children through university or safeguard your
+                    future, we have a range of products and services to help meet your needs.</p>
+                <p>You can choose to make your own investment decision and invest directly or to seek advice from a
+                    financial adviser.</p>
+            </div>
+
+            <div class="col-sm-6">
+                <h2>Investments jargon buster</h2>
+                <div class="inner-card-wr">
+                    <h3>Commercial paper</h3>
+                    <p>An unsecured, short-term debt instrument issued by a corporation, typically for the financing..
+                    </p>
+                    <a href="#" style="text-decoration: underline;">full definition<i style="margin-left: 10px;"
+                            class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    <div class="inner-addon right-addon">
+                        <p>Search the Jargon Buster for explanations of key industry terms and abbreviations:</p>
+                        <i class="glyphicon glyphicon-search"></i>
+                        <input type="text" class="form-control searchbox" placeholder="Search">
+                        <input type="submit" value="search" class="form-control searchbtn">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-single-wr">
+            <h2>Ways to invest</h2>
+            <div class="inner-card-wr">
+                <div class="business-wr">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-md-6">
+                                <h3 style="margin-top: 0;">Make your own investment decision</h3>
+                                <p>These services are offered without investment advice and you will need to make your
+                                    own investment decisions.*</p>
+                                <ul>
+                                    <li>
+                                        <a href="#">World Selection ISA<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Global Investment Centre<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">InvestDirect/InvestDirect Plus<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Existing customers only<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Selected Investment Funds<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </li>
+                                    <li>
+                                        <a href="#">Child Trust Fund<i style="margin-left: 10px;"
+                                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </li>
+                                    <p style="margin-left: 0;margin-top: 12px;">* If you choose to make your own
+                                        investment decision, the protection offered by the Financial Conduct Authority’s
+                                        rules on assessing suitability will not apply. If you have any doubts about
+                                        whether these services are suitable for your needs, you should seek advice from
+                                        a Financial Adviser (you may be charged for any advice you receive).</p>
+                                </ul>
+                            </div>
+                            <div class="col-md-6">
+                                <h3 style="margin-top: 0;">Invest through a financial adviser</h3>
+                                <p>If you have £50,000 or more in savings and investments, you may benefit from our
+                                    advice service. Nexa Banking Premier Financial Advice Service can help
+                                    you start to build the future you’ve imagined (fees apply).</p>
+                                <ul>
+                                    <li>
+                                        <a href="#">Nexa Banking Premier Financial Advice Service<i
+                                                style="margin-left: 10px;" class="fa fa-angle-right"
+                                                aria-hidden="true"></i></a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-single-wr">
+            <h2>Please bear in mind</h2>
+            <div class="row inner-card-wr">
+                <div class="col-sm-4">
+                    <h3 style="margin-top: 0;">Investment risk</h3>
+                    <p>All investments carry some risk. The value of investments (and any income received from them) can
+                        fall as well as rise and you may not get back what you invested. For some investments this can
+                        also happen as a result of exchange rate fluctuations as shares and funds may have an exposure
+                        to overseas markets.</p>
+                </div>
+
+                <div class="col-sm-4">
+                    <h3 style="margin-top: 0;">Time commitment</h3>
+                    <p>Most investments should be considered medium to long-term commitment; this means you should be
+                        prepared to hold them for at least five years.</p>
+                </div>
+
+                <div class="col-sm-4">
+                    <h3 style="margin-top: 0;">Tax benefits</h3>
+                    <p>The value of any tax benefits described depends on your individual circumstances. Tax rules may
+                        change in the future.</p>
+                </div>
+            </div>
+        </div>
+        <div class="card-single-wr">
+            <div class="inner-card-wr">
+                <h2>Our top 5 FAQs</h2>
+                <ul>
+                    <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>What is the difference between a cash
+                            ISA and a stocks and shares ISA?</a></li>
+                    <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>Where can I get advice on my
+                            investments?</a></li>
+                    <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>Do you provide advice on Ever green
+                            trust co Bank products only?</a></li>
+                    <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>Do I need to have an account with Ever
+                            green trust co Bank to be able to invest?</a></li>
+                    <li><a href="#"><i class="fa fa-check" aria-hidden="true"></i>How can I find out the current value
+                            of my pension?</a></li>
+                </ul>
+            </div>
+        </div>
+        <div class="card-single-wr">
+            <div class="inner-card-wr">
+                <h2>Need to speak to us?</h2>
+                <h3></h3>
+                <p>Our opening hours are Monday to Friday 8am to 9pm.</p>
+                <p>Textphone: +1 (000) 000-0000.</p>
+                <p>To help us continually improve our service, and in the interests of security, we may monitor and/or
+                    record your communications with us.</p>
+            </div>
+        </div>
+        <div class="card-single-wr">
+            <div class="inner-card-wr">
+                <h2>Prefer to talk face-to-face?</h2>
+                <p><strong>Pop into your nearest branch for a chat.</strong></p>
+                <a href="#" class="bussiness-btn-larg">Find a branch</a>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!--content end-->
+
+
+
+{% endblock content %}

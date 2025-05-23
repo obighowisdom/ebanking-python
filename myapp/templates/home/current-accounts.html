@@ -1,0 +1,613 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+<body>
+    <style>
+        .navbar-brand h2 {
+            font-size: 35px;
+            margin-top: 2px;
+        }
+    </style>
+    <!-- Preloader -->
+    <div id="fakeloader"></div>
+
+
+            {% include 'home/nav.html' %}
+
+   
+    <!--NAVIGATION END--> <!-- content start-->
+    <style type="text/css">
+        .item.creditbanner {
+            position: relative;
+        }
+
+        .banner-content {
+            position: absolute;
+            top: 45%;
+            left: 9%;
+            background-color: #fff;
+            padding: 30px 50px 30px 10px;
+            box-shadow: 0 0 23px -5px #000;
+        }
+
+        .banner-content h3 {
+            color: #033D75;
+            font-size: 30px;
+            text-transform: uppercase;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .banner-content p {
+            color: #333;
+            font-size: 20px;
+            margin-bottom: 0;
+        }
+
+        .cardWr.row {
+            box-shadow: 0 0 15px -3px #000;
+            margin: 60px 0;
+            border-radius: 0;
+        }
+
+        .single-bolg.hover01 a:hover .blog-content {
+            color: #EF454D;
+            transition: all .5s ease 0s;
+        }
+
+        .cardWr .col-sm-8 {
+            padding: 30px;
+        }
+
+        .cardWr .col-sm-4 {
+            padding: 40px 30px 30px;
+        }
+
+        .cardWr .col-sm-4 {
+            background-color: #033D75;
+            color: #fff;
+        }
+
+        .cardWr .col-sm-4 .col-sm-12 {
+            padding: 0;
+        }
+
+        .cardWr .col-sm-12 p {
+            margin: 8px 0 15px;
+            font-size: 18px;
+        }
+
+        .cardWr .col-sm-12 h2 {
+            font-size: 22px;
+            font-weight: bold;
+            color: #033D75;
+            margin-bottom: 17px;
+            margin-top: 15px;
+            text-transform: uppercase;
+        }
+
+        .inner-card-wr .fa.fa-check {
+            margin-right: 10px;
+        }
+
+        .cardWr .col-sm-12 ul,
+        .inner-card-wr ul {
+            padding-left: 0;
+        }
+
+        .inner-card-wr li {
+            font-weight: bold;
+        }
+
+        .inner-card-wr ul p {
+            margin-left: 29px;
+            margin-bottom: 18px;
+        }
+
+        .card-single-wr h2 {
+            font-size: 30px;
+            position: relative;
+            margin-left: 20px;
+            margin-bottom: 30px;
+            color: #033D75;
+        }
+
+        .card-single-wr h2::before {
+            position: absolute;
+            left: -25px;
+            top: 0;
+            width: 5px;
+            height: 32px;
+            background-color: #EF454D;
+            content: '';
+        }
+
+        .inner-card-wr h3 {
+            margin-bottom: 23px;
+            font-size: 24px;
+            margin-top: 40px;
+            font-weight: bold;
+            color: #EF454D;
+        }
+
+        .cardWr .col-sm-12 li,
+        .inner-card-wr li {
+            display: block;
+            margin-bottom: 14px;
+        }
+
+        .card-single-wr {
+            border-top: 1px solid #033D75;
+            padding: 45px 0 22px;
+        }
+
+        .inner-card-wr p a {
+            color: #033d75;
+            text-decoration: underline;
+        }
+
+        .firstspan {
+            width: 4%;
+            display: inline-block;
+            vertical-align: top;
+        }
+
+        .secondspan {
+            display: inline-block;
+            width: 90%;
+            vertical-align: top;
+        }
+
+        .rightwr .col-sm-12 p {
+            font-size: 22px;
+            line-height: 27px;
+            margin-bottom: 20px;
+        }
+
+        p span {
+            display: block;
+            font-size: 16px;
+        }
+
+        .readmoreWr {
+            text-align: left;
+            margin: 20px 0 20px;
+            padding-left: 15px;
+        }
+
+        .fa.fa-info-circle {
+            margin-right: 10px;
+        }
+
+        i.fa.fa-check {
+            color: #033D75;
+            font-size: 19px;
+        }
+
+        .inner-card-wr.lowerwr ul {
+            margin: 5px 0;
+        }
+
+        i.fa.fa-download {
+            margin-right: 10px;
+            color: #033D75;
+        }
+
+        .inner-card-wr.lowerwr li {
+            font-weight: normal;
+        }
+
+        .inner-card-wr.lowerwr li a {
+            color: #033D75;
+        }
+
+        .inner-card-wr.lowerwr li a:hover {
+            color: #EF454D;
+        }
+
+        .toggleclass {
+            color: #333;
+            font-size: 18px;
+            font-weight: bold;
+            text-decoration: underline;
+            margin-bottom: 25px;
+            display: inline-block;
+        }
+
+        .toggleclass:hover {
+            text-decoration: underline;
+        }
+
+        .logonwr {
+            margin-bottom: 35px;
+        }
+
+        .collapse h3 a {
+            color: #033D75;
+        }
+
+        .business-wr {
+            padding: 0;
+            margin-top: 40px;
+        }
+
+        .blog-content {
+            font-size: 22px;
+            margin: 15px 0;
+            text-align: left;
+        }
+
+        .single-bolg.hover01 {
+            margin-top: 0;
+        }
+
+        #demo1 .col-sm-6 h3 {
+            margin-top: 0;
+        }
+
+        .col-sm-12 li {
+            font-weight: bold;
+        }
+
+        .accordion {
+            background-color: #033D75;
+            color: #fff;
+            cursor: pointer;
+            padding: 18px;
+            width: 100%;
+            border: none;
+            text-align: left;
+            outline: none;
+            font-size: 16px;
+            transition: 0.4s;
+            margin-bottom: 2px;
+            font-weight: bold;
+        }
+
+        .inner-card-wr.accordianwr {
+            margin-bottom: 45px;
+        }
+
+        .accordion.active,
+        .accordion:hover {
+            background-color: #EF454D;
+            outline: none;
+            border: none;
+        }
+
+        .accordion:after {
+            content: '\002B';
+            color: #fff;
+            font-weight: bold;
+            float: right;
+            margin-left: 5px;
+        }
+
+        .accordion.active:after {
+            content: "\2212";
+        }
+
+        .panel {
+            padding: 0 18px;
+            background-color: white;
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.2s ease-out;
+        }
+
+        .inner-card-wr.accordianwr .col-sm-8 h3 {
+            margin: 5px 0 15px 0;
+        }
+
+        .inner-card-wr.accordianwr .row {
+            padding: 0;
+            margin: 15px 0 0;
+        }
+
+        .inner-card-wr.accordianwr .panel {
+            padding: 0;
+            margin: 0;
+        }
+
+        .panel .inner-card-wr {
+            padding: 20px;
+        }
+
+        .panel li {
+            font-weight: normal;
+        }
+    </style>
+    <div class="business-main-slider">
+        <div class="owl-carousel main-slider">
+            <div class="item creditbanner">
+                <div class="hvrbox">
+                    <img src="../../static/images/couple-travel-morocco.jpg" alt="credit" class="hvrbox-layer_bottom">
+                </div>
+                <div class="banner-content">
+                    <div class="innerBanner container">
+                        <h3>Bank Currency Account</h3>
+                        <p>Easily manage your foreign currency</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card-detail-wr">
+        <div class="container">
+            <div class="cardWr row">
+                <div class="col-sm-8 leftwr">
+                    <div class="col-sm-12" style="margin-bottom: 15px;">
+                        <h2>Managing your foreign currency</h2>
+                        <p>The Bank Currency Account is an easy-to-manage currency holding account, with no monthly
+                            account fee. With accounts available in 14 major currencies, it allows you to make payments
+                            into and out of your accounts.</p>
+                        <p>Designed to support your international lifestyle, with easy access to your account via online
+                            banking, you can manage your finances wherever you are in the world.</p>
+                    </div>
+                    <div class="col-sm-12">
+                        <h4 style="margin-top: 25px;margin-bottom: 15px;">Account features:</h4>
+                        <ul>
+                            <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                    class="secondspan">No account fee</span></li>
+                            <p>There's no monthly fee for the account and no payment fee when sending money to another
+                                Bank account anywhere in the world. You can also make payments to non Bank accounts
+                                overseas fees may apply.</p>
+
+                            <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                    class="secondspan">Live exchange rates</span></li>
+                            <p>With live rates updated by the second during market hours, we'll provide you with our
+                                most up-to-date foreign exchange rate available when making payments.</p>
+
+                            <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                    class="secondspan">Online access</span></li>
+                            <p>You can easily make transfers between your Bank accounts or send money to an account
+                                abroad via online banking.</p>
+
+                            <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                    class="secondspan">Managing your payments</span></li>
+                            <p>You can create immediate international payments or set these up online up to a year in
+                                advance or on a recurring basis.</p>
+
+                            <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                    class="secondspan">Bank in the currency of your choice</span></li>
+                            <p>Choose to hold your account in one of 14 major currencies including Euro, US Dollar and
+                                Chinese Renminbi.</p>
+                        </ul>
+                        <strong><i class="fa fa-info-circle" aria-hidden="true"></i>Credit is subject to status,
+                            affordability and applicable terms and conditions.</strong>
+                    </div>
+                    <div class="readmoreWr col-sm-12">
+                        <a href="/getting-started" class="bussiness-btn-larg">Check eligibility and how to apply</a>
+                    </div>
+                </div>
+                <div class="col-sm-4 rightwr">
+                    <p style="font-size: 28px;font-weight: bold;line-height: 32px;">Bank Currency Account</p>
+                    <div class="col-sm-12 variableper">
+                        <p>Find out how to apply for a Bank Currency Account today</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card-single-wr">
+                <h2>How to apply for a Bank Currency Account</h2>
+                <div class="inner-card-wr lowerwr">
+                    <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo">Are you eligible?</a>
+                    <div id="demo" class="collapse">
+                        <p>To apply for an Bank Currency Account you need to:</p>
+                        <ul>
+                            <li><i class="fa fa-check" aria-hidden="true"></i>hold an active Bank current account
+                                (excluding Basic Bank Account)</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i>be a resident of the UK</li>
+                            <li><i class="fa fa-check" aria-hidden="true"></i>be 18 years of age or over</li>
+                        </ul>
+                        <p>If you're not yet an Bank customer, find out more about our current accounts.</p>
+                    </div>
+                    <h2 style="margin-top: 40px;">Additional information</h2>
+                    <ul style="margin-bottom: 33px;">
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Financial Services Compensation Scheme
+                                Information Sheet (PDF)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Personal Banking Terms and
+                                Conditions(PDF)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Charges and Additional Product
+                                Terms(PDF)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Privacy notice (PDF)
+                            </a>
+                        </li>
+                    </ul>
+
+                    <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo1">Apply by phone or in
+                        branch</a>
+                    <div id="demo1" class="collapse">
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <h3>Apply by phone</h3>
+                                <p>Bank Premier customers: +1 (000) 000-0000</p>
+                                <p style="font-size: 12px;">†Our lines are open 24 hours a day for Bank Premier and
+                                    Advance customers *Our lines are open from 8am to 10pm every day (excluding
+                                    Christmas Day, Boxing Day and New Year's Day)</p>
+                            </div>
+                            <div class="col-sm-6">
+                                <h3>Apply in branch</h3>
+                                <p>If you're an Bank Premier customer you can visit one of our branches to apply.</p>
+                                <p>Call us today on +1 (000) 000-0000 to book an appointment. You'll need to bring
+                                    identification and proof of your address to the appointment with you.</p>
+                                <a href="branch-locator.html" class="bussiness-btn-larg">Find a branch</a>
+                            </div>
+                            <div class="col-sm-6" style="margin-top: 20px;">
+                                <h3><a href="#">Textphone numbers</a></h3>
+                            </div>
+                            <div class="col-sm-6" style="margin-top: 20px;">
+                                <h3>Apply online</h3>
+                                <p>If you're registered for online banking you can apply online.</p>
+                                <a href="users/form/index.html" class="bussiness-btn-larg">Apply</a>
+                                <p>Or you can <a href="users/form/reg.html">register for online banking</a>.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-single-wr">
+                <button class="accordion">How can I pay into the account?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <p>You can credit your Bank Currency Account by making a transfer from your Bank sterling
+                            account online, in branch or via the telephone. You can also pay into your account from
+                            another bank account - account details can be found on your welcome letter or on your
+                            statement. Please note: Cash deposits are not available with this account.</p>
+                        <p>When accessing your account via online banking note that between 10pm Saturday until 8am
+                            Sunday (UK time) we will undertake system maintenance and can only provide limited access to
+                            your Bank Currency Account(s).</p>
+                        <p>During this maintenance period, you will be able to view your account though the balances and
+                            transactions may not be up to date and it is not possible to make transfers to or from your
+                            Bank Currency Account(s) or to make payments from it.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">How do I make a withdrawal from my account?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <p>You can withdraw money from your Bank Currency Account by making a transfer to your Bank
+                            sterling account either online, in branch or via the telephone. You can also arrange for a
+                            payment to be made out of the account using our International Payments service or cash
+                            withdrawal by visiting any of our Bank UK Branches. Please note: Cash deposits are not
+                            available with this account. We also do not offer overdraft facilities on this account,
+                            therefore please ensure you have sufficient funds in your account prior to making a payment
+                            or withdrawal.</p>
+                        <p>When accessing your account via online banking note that between 10pm Saturday until 8am
+                            Sunday (UK time) we will undertake system maintenance and can only provide limited access to
+                            your Bank Currency Account(s).</p>
+                        <p>During this maintenance period, you will be able to view your account though the balances and
+                            transactions may not be up to date and it is not possible to make transfers to or from your
+                            Bank Currency Account(s) or to make payments from it.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Which exchange rate is used?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <p>The exchange rate applied to your instruction will be the Bank Exchange Rate applicable at
+                            the time your payment is made. This is a live rate which is updated by the second during
+                            market hours. We will notify you each time you make a payment from your account and where a
+                            currency exchange has been involved, we will confirm the Bank Exchange Rate that has been
+                            applied.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">Is interest applied to the Bank Currency Account?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <p>There is no interest payable on the Bank Currency Account.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">How much can I send?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <div id="content_main_richtext_14" data-zone="America/New_York">
+                            <p class="A-PAR16R-RW-ALL"><strong>International payments:</strong><br>
+                            </p>
+                            <ul class="A-LSTU-RW-ALL">
+                                <li>Online: up to £50,000 (or currency equivalent)</li>
+                                <li>Branch: unlimited</li>
+                                <li>Telephone: unlimited for Premier, and up to £10,000 (or currency equivalent) for
+                                    Non-Premier</li>
+                            </ul>
+                            <p class="A-PAR16R-RW-ALL">&nbsp;</p>
+                            <p class="A-PAR16R-RW-ALL"><strong>Transfers:</strong></p>
+                            <p class="A-PAR16R-RW-ALL">Transfers between your own Bank accounts are unlimited.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <button class="accordion">How do I cancel a payment?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <p>It is not possible to cancel an immediate payment or transfer you have instructed us to make.
+                            If you need to cancel a payment that is due to be made on a future or recurring date, then
+                            you have until 23:59 (UK time) the day before the payment is due, to cancel it. This can
+                            only be done via online banking.</p>
+                    </div>
+                </div>
+
+                <button class="accordion">How long will it take?</button>
+                <div class="panel">
+                    <div class="inner-card-wr">
+                        <p>Payments to accounts in the EEA in euro and sterling will normally be credited the next
+                            working day*. All other payments will normally take up to four working days* (but may take
+                            longer depending on the country the money is being sent to).</p>
+                        <p style="font-size: 12px;">* subject to currency cut-off time and further checks, as from time
+                            to time we may need to conduct additional security checks to validate the payment.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-single-wr">
+                <h2>You might also be interested in</h2>
+                <div class="inner-card-wr">
+                    <div class="business-wr">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="single-bolg hover01">
+                                        <a href="#">
+                                            <figure><img src="../../static/images/bl.jpg" alt="slide 1" class=""></figure>
+                                            <div class="blog-content">
+                                                Travel Money<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                                    aria-hidden="true"></i>
+                                            </div>
+                                        </a>
+                                        <p>We deliver direct to your door or to your nearest branch. Until 10 December
+                                            2018 all orders will be delivered fee free. Minimum order £100.</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single-bolg hover01">
+                                        <a href="#">
+                                            <figure><img src="../../static/images/bl1.jpg" alt="slide 1" class=""></figure>
+                                            <div class="blog-content">
+                                                International Payments<i style="margin-left: 10px;"
+                                                    class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </div>
+                                        </a>
+                                        <p>Send money quickly and securely using our International Payments service.
+                                            Fees may apply</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="single-bolg hover01">
+                                        <a href="#">
+                                            <figure><img src="../../static/images/bl2.jpg" alt="slide 1" class=""></figure>
+                                            <div class="blog-content">
+                                                Thinking Internationally?<i style="margin-left: 10px;"
+                                                    class="fa fa-angle-right" aria-hidden="true"></i>
+                                            </div>
+                                        </a>
+                                        <p>Explore our international services to see how Bank could help you on your
+                                            international adventures.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!--content end-->
+
+    <!-- Start Footer -->
+{% endblock content %}

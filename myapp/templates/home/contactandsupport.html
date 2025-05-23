@@ -1,0 +1,523 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 22px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin: 20px 0 16px;
+        text-align: left;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .accordion {
+        background-color: #033D75;
+        color: #fff;
+        cursor: pointer;
+        padding: 18px;
+        width: 100%;
+        border: none;
+        text-align: left;
+        outline: none;
+        font-size: 16px;
+        transition: 0.4s;
+        margin-bottom: 2px;
+        font-weight: bold;
+    }
+
+    .inner-card-wr.accordianwr {
+        margin-bottom: 45px;
+    }
+
+    .accordion.active,
+    .accordion:hover {
+        background-color: #EF454D;
+        outline: none;
+        border: none;
+    }
+
+    .accordion:after {
+        content: '\002B';
+        color: #fff;
+        font-weight: bold;
+        float: right;
+        margin-left: 5px;
+    }
+
+    .accordion.active:after {
+        content: "\2212";
+    }
+
+    .panel {
+        padding: 0 18px;
+        background-color: white;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.2s ease-out;
+    }
+
+    .inner-card-wr.accordianwr .col-sm-8 h3 {
+        margin: 5px 0 15px 0;
+    }
+
+    .inner-card-wr.accordianwr .row {
+        padding: 0;
+        margin: 15px 0 0;
+    }
+
+    .inner-card-wr.accordianwr .panel {
+        padding: 0;
+        margin: 0;
+    }
+
+    .panel .inner-card-wr {
+        padding: 20px;
+    }
+
+    .card-single-wr li {
+        display: block;
+        line-height: 32px;
+    }
+
+    .single-bolg.hover01 p a {
+        font-size: 22px;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/banner_contact_and_support_1040x330.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>How can we help?</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="card-single-wr" style="border-top: none;">
+            <h2>What other people are asking</h2>
+            <button class="accordion">What should I do if my card has been lost or stolen?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <div class="cnsFaqShowHideAnswer" style="display: block;" aria-hidden="false">
+                        <p>Contact us as soon as you realise that your cards have been lost, stolen or may be misused.
+                            The sooner you tell us, the sooner we can protect your account.</p>
+                        <h4>Let us know via Online Banking</h4>
+                        <p>If your card(s) has been lost or stolen please <a class="" href="users/form/index.html"
+                                target="_blank" title="Log on">Log on</a> to Online Banking with your Secure Key and
+                            select the "Report lost or stolen card" menu option.</p>
+                        <p>Firstly you will be asked to place a temporary block on your card(s). This will mean that
+                            your card is secure and no-one will be able to use it. Once you have placed the temporary
+                            block on your card, return to "Report lost or stolen card" within Online Banking to either
+                            unblock your card should you find it, or report it lost or stolen and request a replacement.
+                        </p>
+                        <p>You can only place a temporary block on your card, or remove the temporary block in Online
+                            Banking at the moment. You can't apply or remove a temporary block in the Mobile Banking
+                            App, by telephone banking or by visiting a branch.</p>
+                        <h4>Phone our emergency line</h4>
+                        <p>If you are not registered for Online Banking please phone our emergency line on <strong>+1
+                                (000) 000-0000</strong> if you are overseas.</p>
+                        <p>Lines are open 24 hours a day, 7 days a week.</p>
+                        <h4>What happens next?</h4>
+                        <p>If you place a temporary block on your card, the card will remain blocked until you remove
+                            the block via Online Banking. If you report your card lost or stolen, we will cancel your
+                            card(s) immediately and issue you with replacement(s). You will receive a new card within 7
+                            working days in the UK by post and within 10 working days overseas.</p>
+                        <p>*Charges may be incurred if calling from overseas.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accordion">How do I get a replacement for a cracked or damaged debit or credit card?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <div class="cnsFaqShowHideAnswer"  aria-hidden="false">
+                        <p>If your card is damaged and you can no longer use it, please <a class=""
+                                href="users/form/index.html" target="_blank" title="Log on">Log on</a> to Online Banking
+                            and select "Order replacement card".</p>
+                        <p>If you aren't registered for Online Banking, you can also visit your <a
+                                href="/branch-locator" title="local branch">local branch</a> or <a
+                                href="/contactandsupport" title="contact us">contact us</a>.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accordion">How do I activate my card?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <div class="cnsFaqShowHideAnswer" aria-hidden="false">
+                        <h4>Debit Card</h4>
+                        <p>Sign the back of your debit card and choose one of these activation options:</p>
+                        <h5>By Online banking</h5>
+                        <ol>
+                            <li>Log on to Online banking.</li>
+                            <li>Select the account you want to activate the card for.</li>
+                            <li>Select Manage, then Activate card, and follow the instructions.</li>
+                        </ol>
+                        <h5>By phone</h5>
+                        <p>Call +1 (000) 000-0000.</p>
+                        <h5>At a cash machine</h5>
+                        <p>Just make a transaction, such as a cash withdrawal, balance enquiry or mobile top-up and your
+                            new card will be automatically activated without any on-screen notification.</p>
+                        <p>Please note you can't choose this option if it's your first debit card from Bank.</p>
+                        <p>Please also note, if you are a joint account holder and have more than one card on the
+                            account, you'll need to activate each card individually.</p>
+                        <h4>Credit Card</h4>
+                        <p>As soon as you receive your new credit card, sign the back and choose one of two easy ways to
+                            activate it:</p>
+                        <h5>By Online banking</h5>
+                        <ol>
+                            <li>Log on to Online banking.</li>
+                            <li>Select the account you want to activate the card for.</li>
+                            <li>Select Manage, then Activate card, and follow the instructions.</li>
+                        </ol>
+                        <p>Please note, if you have additional cardholders on your account then all cards will be
+                            activated at the same time.</p>
+                        <h5>By phone</h5>
+                        <p>Call +1 (000) 000-0000 and speak to a member of our Customer Services team. Lines open 8am to
+                            10pm every day. Please note, if you have additional cardholders on your account then all
+                            cards will be activated at the same time.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accordion">Where can I find my BIC and IBAN number?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <div class="cnsFaqShowHideAnswer"  aria-hidden="false">
+                        <p>To receive an overseas payment into your Bank UK account, you may need to provide the payee
+                            with the BIC (Branch Identifier Code) and/or IBAN (International Bank Account Number).</p>
+                        <p>Both can be found at the top of a previous bank account statement. If you have Online
+                            Banking, log on and navigate to 'Statements' within the 'Manage' menu. Select to view a
+                            recent statement and the BIC and IBAN will be listed just below your sort code and account
+                            number.</p>
+                        <p>If you do not have Online Banking access, you can check a recent paper statement or visit
+                            your local branch.</p>
+                    </div>
+                </div>
+            </div>
+
+            <button class="accordion">My card is blocked, can I still get some money?</button>
+            <div class="panel">
+                <div class="inner-card-wr">
+                    <div class="cnsFaqShowHideAnswer" aria-hidden="false">
+                        <p>If your card is blocked, and you have not placed this block on your card via Online Banking,
+                            please go to your local branch with proof of ID so that you can withdraw money and also
+                            discuss how to remove the block.</p>
+                        <p>If you have found a card that you temporarily blocked via Online Banking, <a class=""
+                                href="#" target="_blank" title="Log on">Log on</a> now to remove this block and withdraw
+                            money as before.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>Search our help topics</h2>
+            <div class="row">
+                <div class="col-md-4">
+                    <div class="single-bolg hover01">
+                        <a href="#">
+                            <figure><img src="../../static/images/more_res_banking_made_easy_300x140.jpg" alt="slide 1" class="">
+                            </figure>
+                            <div class="blog-content">
+                                Mobile & Online Banking<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                        </a>
+                        <p style="margin-top: 25px;"><a href="#">Lost and Stolen cards<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></p>
+                        <p><a href="#">Moving abroad<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                        <p><a href="#">Bereavement<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                        <p><a href="#">UK Ring Fencing<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-bolg hover01">
+                        <a href="#">
+                            <figure><img src="../../static/images/more_res_security_centre_300x140.jpg" alt="slide 1" class="">
+                            </figure>
+                            <div class="blog-content">
+                                Security centre<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                        </a>
+                        <p style="margin-top: 25px;"><a href="#">Settling in the UK<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></p>
+                        <p><a href="#">Card support<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                        <p><a href="#">Closing an account<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="single-bolg hover01">
+                        <a href="#">
+                            <figure><img src="../../static/images/more_res_find_a_branch_300x140.jpg" alt="slide 1" class="">
+                            </figure>
+                            <div class="blog-content">
+                                Find a branch<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                        </a>
+                        <p style="margin-top: 25px;"><a href="#">Money worries<i style="margin-left: 10px;"
+                                    class="fa fa-angle-right" aria-hidden="true"></i></p>
+                        <p><a href="#">Complaints and Feedback<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                        <p><a href="#">Inactive accounts<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-single-wr">
+            <h2>Haven't found what you're looking for?</h2>
+            <ul>
+                <li><a href="#" style="font-size: 18px;">Tweet us @Bank_UK<i style="margin-left: 10px;"
+                            class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                <li><a href="#" style="font-size: 18px;">Contact us<i style="margin-left: 10px;"
+                            class="fa fa-angle-right" aria-hidden="true"></i></a></li>
+                <li>See how our services are performing.<a style="margin-left: 15px;" href="#"
+                        style="font-size: 18px;">Find out more<i style="margin-left: 10px;" class="fa fa-angle-right"
+                            aria-hidden="true"></i></a></li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

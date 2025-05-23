@@ -1,0 +1,492 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 38%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 22px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .card-detail-wr .feature-color-1 {
+        background: linear-gradient(rgba(3, 61, 117, 0.9), rgba(3, 61, 117, 0.9)), url(images/img8.jpg);
+        background-size: cover;
+    }
+
+    .card-detail-wr .feature-color-2 {
+        background: linear-gradient(rgba(239, 69, 77, 0.9), rgba(239, 69, 77, 0.9)), url(images/img9.jpg);
+        background-size: cover;
+    }
+
+    .card-detail-wr .feature-color-3 {
+        background: linear-gradient(rgba(3, 61, 117, 0.9), rgba(3, 61, 117, 0.9)), url(images/img10.jpg);
+        background-size: cover;
+    }
+
+    .card-detail-wr .feature-color-4 {
+        background: linear-gradient(rgba(239, 69, 77, 0.9), rgba(239, 69, 77, 0.9)), url(images/img11.jpg);
+        background-size: cover;
+    }
+
+    .business-features-3x {
+        margin-top: 0 !important;
+    }
+
+    .single-colorful-feature h2 {
+        font-size: 21px !important;
+    }
+
+    .single-colorful-feature {
+        height: 340px !important;
+    }
+
+    .card-detail-wr .single-colorful-feature li a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .card-detail-wr .single-colorful-feature li {
+        line-height: 34px;
+        display: block;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/family.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Nexa Banking Account</h3>
+                    <p>Embrace your full life - When your life becomes about more than just you</p>
+                    <a href="#" class="bussiness-btn-larg" style="margin-top: 17px;">Find out more</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="card-single-wr" style="border-top: none;">
+            <h2>When your life becomes about more than just you</h2>
+            <p>In today’s world, your life is full of more responsibilities and more choices to make, as well as more
+                opportunities and more dreams to fulfil. From helping you manage the unexpected surprises life can throw
+                your way to nurturing the prosperity of your family and planning for the future, Ever green trust co
+                Bank Premier is designed to help you thrive, all for no monthly fee. <a href="#">Eligibility criteria
+                    apply</a></p>
+        </div>
+    </div>
+    <div class="business-features-3x" style="margin-top: 60px;">
+        <div class="colourful-features-content">
+            <div class="row">
+                <div class="col-md-3 no-padding">
+                    <div class="single-colorful-feature feature-color-1">
+                        <h2><a href="#">Your day-to-day banking<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </h2>
+                        <p>Enjoy access to products designed for you.</p>
+                        <ul>
+                            <li><a href="#">Premier Nexa Banking Account <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">Premier Credit Cards <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">Regular Savings Account <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 no-padding">
+                    <div class="single-colorful-feature feature-color-2">
+                        <h2><a href="#">Guidance for today and tomorrow<i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></a></h2>
+                        <p>Financial expertise for you and your family.</p>
+                        <ul>
+                            <li><a href="#">Relationship Management <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">Premier Financial Advice <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">World Selection ISA <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 no-padding">
+                    <div class="single-colorful-feature feature-color-3">
+                        <h2><a href="#">Your home and family<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                        </h2>
+                        <p>Enjoy benefits that extend to your family and home.</p>
+                        <ul>
+                            <li><a href="#">Premier Mortgages Service <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">Premier Children's Accounts <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">Nexa Banking Global Safety Net <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="col-md-3 no-padding">
+                    <div class="single-colorful-feature feature-color-4">
+                        <h2><a href="#">Travelling and banking worldwide<i class="fa fa-angle-right"
+                                    aria-hidden="true"></i></a></h2>
+                        <p>Helping you thrive around the world.</p>
+                        <ul>
+                            <li><a href="#">Worldwide Travel Insurance <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                            <li><a href="#">Moving Overseas <i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                            </li>
+                            <li><a href="#">Global View and Transfers <i class="fa fa-angle-right"
+                                        aria-hidden="true"></i></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+        <div class="card-single-wr" style="border-top: none;">
+            <h2>Eligibility criteria</h2>
+            <div class="inner-card-wr">
+                <p>Nexa Banking Premier is available to you, if you pay your annual income into your Ever
+                    green trust co Bank Premier Nexa Banking Account and have either:</p>
+                <ul>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> savings or investments of at least £50,000 with
+                        Nexa Banking in the UK; or</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i> an individual annual income of at least £75,000
+                        and one of the following products with Nexa Banking in the UK: a mortgage,
+                        investment, life insurance or protection product.</li>
+                </ul>
+                <p>Or if you’ve already qualified for Nexa Banking Premier in another country.</p>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <div class="inner-card-wr lowerwr">
+                <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo">Please review our complete
+                    eligibility criteria before applying</a>
+                <div id="demo" class="collapse">
+                    <h3 style="margin-top: 0;">Nexa Banking Premier Nexa Banking Account
+                        eligibility criteria </h3>
+                    <p>If you'd like to open an Nexa Banking Premier Account, please ensure you fulfil all
+                        the following criteria:</p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>you are 18 years or older</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>your residential address is within the EU, or,
+                            if you live outside the EU, you can still apply for a Nexa Banking Premier
+                            account subject to local rules and regulations and meeting the UK proof of address</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>you can provide us with certified proof of
+                            your identity and address and one month's Nexa Banking statements from your
+                            current Nexa Banking (translated into English if appropriate)</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>if you are resident in the UK, you are happy
+                            for us to undertake a credit register search</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>in order to qualify for lending, savings and
+                            travel insurance benefits and preferential rates you will need to be a UK resident. This is
+                            subject to status and meeting Bank's proof of UK address requirement</li>
+                    </ul>
+                    <p>For eligibility purposes, please note Nexa Banking in the UK excludes M&S Bank, first
+                        direct and Nexa Banking Expat. For the second criteria listed above (‘an individual
+                        annual income of at least £75,000 and one of the following products with Ever green trust co
+                        Bank in the UK’), in the case of a joint account, at least one of the parties must have an
+                        individual annual income of at least £75,000. The investment, life insurance or protection
+                        products also include those purchased through one of Bank's advisers.</p>
+                    <h3>Nexa Banking Premier Travel Insurance eligibility criteria </h3>
+                    <p>Are you under 70 years of age when your trip starts? Note: When you reach 70, you will no longer
+                        be covered by Nexa Banking Premier Travel Insurance.</p>
+                    <p>Are you a resident of the UK, Channel Islands or Isle of Man?</p>
+                    <p>Are you registered with a doctor in the UK, Channel Islands or Isle of Man and liable to pay
+                        local taxes?</p>
+                    <p>Are you going to start and finish your trip in the UK, Channel Islands or Isle of Man?</p>
+                    <p>Are there any dependent children aged under 18 at the start of the trip or under 23 if they are
+                        in full-time education and live with you outside term time? (Children will only be covered when
+                        travelling with the account holder or their domestic partner, or whilst travelling abroad on
+                        their own to visit and stay with close relatives for the duration of the trip.)</p>
+                    <p>You will need to call the Nexa Banking Medical Risk Assessment Helpline on +1 (000)
+                        000-0000 before booking your trip if you or any insured person in the last 12 months has been
+                        prescribed medication, have received or are awaiting medical treatment, tests or investigations,
+                        been referred to a specialist or admitted to hospital for any condition not listed on the
+                        accepted conditions list in the Your Health section in the policy booklet. You should also tell
+                        us before you travel if there has been any changes to your health or you have been referred to a
+                        consultant/specialist or admitted to hospital.</p>
+                    <p>There is no cover for undiagnosed symptoms or any claim where you knew at the time of opening
+                        your Nexa Banking Premier Nexa Banking Account or booking your trip
+                        (whichever is later) that you or your travelling companion may be unable to travel or may need
+                        to come home early e.g. illness of a close relative or travel companion.</p>
+                    <p>Pre-existing conditions are not covered at any time under the policy unless listed within the
+                        accepted conditions list or have been disclosed to and accepted in writing by the Ever green
+                        trust co Bank Medical Risk Assessment Helpline.</p>
+                    <p>You must also declare any serious illness, injury or disease suffered by anyone whose health may
+                        cause you to cancel or abandon your travel plans, such as a close relative or travelling
+                        companion.</p>
+                    <p>Pre-existing medical conditions are not covered at any time under the policy unless they have
+                        been disclosed to and accepted in writing by the Nexa Banking Medical Risk
+                        Assessment Helpline.</p>
+                </div>
+            </div>
+        </div>
+        <div class="inner-card-wr">
+            <div class="card-single-wr">
+                <h2>Apply for an Nexa Banking Premier Nexa Banking Account</h2>
+                <p>If you meet the eligibility criteria above and are ready to enjoy the benefits of becoming an Ever
+                    green trust co Bank Premier customer, take the next step and contact us:</p>
+                <div class="row logonwr">
+                    <div class="col-sm-4 applynow">
+                        <h3>Apply by phone</h3>
+                        <p>Call us on +1 (000) 000-0000</p>
+                        <p>Lines are open 8am to 8pm weekdays and 10am to 3pm on Saturdays and Sundays (closed on Ever
+                            green trust co Bank Holidays).</p>
+                    </div>
+                    <div class="col-sm-4 logon">
+                        <h3>Apply in branch</h3>
+                        <p>You can apply for the Nexa Banking Premier Nexa Banking Account by
+                            visiting one of our branches. You’ll just need to bring some identification, proof of your
+                            address and a recent Nexa Banking statement.</p>
+                        <p>Existing Nexa Banking customers:</p>
+                        <a href="#" class="bussiness-btn-larg">Log on to book an appointment</a>
+                    </div>
+                    <div class="col-sm-4 logon">
+                        <h3>Existing Nexa Banking Premier customers</h3>
+                        <p>For more information or telephone banking, please call:</p>
+                        <p>In the UK: +1 (000) 000-0000</p>
+                        <p>Lines are open 24 hours a day, subject to scheduled maintenance periods.</p>
+                    </div>
+                    <div class="col-sm-4 logon">
+                        <h3>Non Nexa Banking customers:</h3>
+                        <a href="#" class="bussiness-btn-larg">Continue without logging on</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

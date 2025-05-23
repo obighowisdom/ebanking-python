@@ -1,0 +1,504 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        line-height: 30px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 19px;
+        line-height: 27px;
+        margin-bottom: 20px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .card-single-wr .single-colorful-feature h2 {
+        font-size: 22px !important;
+        margin-left: 0 !important;
+        margin-bottom: 15px !important;
+    }
+
+    .card-single-wr .single-colorful-feature h2::before {
+        display: none !important;
+    }
+
+    .card-single-wr .single-colorful-feature {
+        height: 260px !important;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/home-mother-son.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Nexa Banking Home Insurance</h3>
+                    <p>Protect the things that matter to you</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="cardWr row">
+            <div class="col-sm-8 leftwr">
+                <div class="col-sm-12" style="margin-bottom: 15px;">
+                    <h2>Get 12 months' cover for the price of 10 when you buy Nexa Banking Home Insurance*
+                    </h2>
+                </div>
+                <div class="col-sm-12">
+                    <p>We welcome new Nexa Banking Home Insurance customers with top quality cover for
+                        everything you care about most – and 12 months cover for the price of 10 for the first year. You
+                        can choose from Buildings or Contents cover, or combine the two for total peace of mind.</p>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">No additional charges if you opt to pay monthly</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">We'll aim to get a local tradesperson to you within 2 hours to secure
+                                your home (if it’s unsecure or unsafe as a result of damage)</li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></span><span
+                                class="secondspan">UK-based contact centres</li>
+                    </ul>
+                    <p>If you have contents worth over $80,000 or a buildings rebuild cost of over $500,000, please
+                        visit our <a href="#">High Value Home Insurance page</a> for more details.</p>
+                    <p>* Available to new Home Insurance customers only. <a href="#">Terms and Conditions</a> apply.</p>
+                </div>
+                <div class="readmoreWr col-sm-12">
+                    <a href="#" class="bussiness-btn-larg">Get a quote</a>
+                </div>
+            </div>
+            <div class="col-sm-4 rightwr">
+                <p style="font-size: 25px;line-height:32px; font-weight: bold;">To obtain Nexa Banking Home
+                    Insurance, you must meet certain criteria.</p>
+                <div class="col-sm-12 variableper">
+                    <p>Please ensure you see the <a href="#" style="text-decoration: underline;color:#fff;">full
+                            eligibility requirements</a> for Nexa Banking Home Insurance before applying.
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>Key details and helpful information</h2>
+            <div class="inner-card-wr">
+                <div class="business-features-3x" style="margin-top: 30px;margin-bottom: 30px;">
+                    <div class="colourful-features-content">
+                        <div class="row">
+                            <div class="col-md-3 no-padding">
+                                <div class="single-colorful-feature feature-color-1">
+                                    <h2><a href="#">Complete policy details <i class="fa fa-angle-right"
+                                                aria-hidden="true"></i></a></h2>
+                                    <p>Learn more about what’s covered in your Home Insurance policy.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding">
+                                <div class="single-colorful-feature feature-color-2">
+                                    <h2><a href="#">Make a claim<i class="fa fa-angle-right" aria-hidden="true"></i></a>
+                                    </h2>
+                                    <p>Existing customer? Here’s how to make a home insurance claim.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding">
+                                <div class="single-colorful-feature feature-color-3">
+                                    <h2><a href="#">Policy documents <i class="fa fa-angle-right"
+                                                aria-hidden="true"></i></a></h2>
+                                    <p>Access PDF versions of important insurance documents.</p>
+                                </div>
+                            </div>
+                            <div class="col-md-3 no-padding">
+                                <div class="single-colorful-feature feature-color-4">
+                                    <h2><a href="#">Help and support<i class="fa fa-angle-right"
+                                                aria-hidden="true"></i></a></h2>
+                                    <p>Find all contact numbers and access helpful articles and tips.</p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>Why choose Nexa Banking Home Insurance</h2>
+            <div class="inner-card-wr">
+                <div class="business-wr">
+                    <div class="container">
+                        <p>Nexa Banking Home Insurance has been given a 5 Star Rating by Defaqto, a
+                            financial information business. This accreditation is only offered on products with a
+                            comprehensive range of features and benefits, such as ours.</p>
+                        <p><img style="width: 215px;" src="../../static/images/defaqto-2018.png" alt=""></p>
+                        <h3>Switcher service</h3>
+                        <p>If you’d like to switch from another provider, we aim to make it as simple as possible. We’ll
+                            even refund the cost of any cancellation fee your other provider may charge you for
+                            cancelling your existing policy (subject to <a href="#">Terms and Conditions (PDF)</a></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-single-wr" style="border-top: none;padding-top: 25px;">
+            <h2>Eligibility criteria</h2>
+            <p>In order to make getting a quote as simple as possible, we base our quotations on a few assumptions.
+                Please read through these below and confirm when required that the assumptions we have made are correct
+                to the best of your knowledge and belief.</p>
+            <div class="inner-card-wr lowerwr">
+                <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo77">Are you eligible?</a>
+                <div id="demo77" class="collapse">
+                    <p>Please ensure you can answer YES to each of the following assumptions:</p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>You or your partner are not a professional
+                            entertainer, footballer, boxer, athlete or gambler, a money lender or full time student;
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>The property is not used for business purposes
+                            other than occasional clerical work;</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>The home has not suffered from subsidence,
+                            heave or landslip damage;</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>No person to be insured has ever had any
+                            criminal convictions, police cautions or have any prosecutions pending; </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>No person to be insured has ever had home
+                            insurance refused, cancelled or offered with terms imposed;</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>The home is not to be used as a holiday home
+                            or weekend home.</li>
+                    </ul>
+                    <p>Your quotation and policy will be based on you answering ‘Yes’ to all the above assumptions and
+                        any other questions that we may ask you in the process of obtaining a quotation and buying this
+                        policy. Before you continue to obtain a quotation, we advise that you read the following
+                        important information relating to our policies.</p>
+                    <p>You must take reasonable care to provide complete and accurate answers to any questions we ask.
+                        Please read any assumptions in the application journey carefully and confirm if they apply to
+                        your circumstances. If any of the information you provide changes after you purchase your policy
+                        and/or during the period for which your policy is in force, please provide us with details. </p>
+                    <p>If the information provided by you is not complete and accurate: </p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>We may cancel your policy and refuse to pay
+                            any claim; or</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>We may not pay any claim in full; or</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>We may reverse the premium and/or change any
+                            excess; or</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>The extent of the cover may be affected.</li>
+                    </ul>
+                    <p>See other <a href="#">things you should know</a> about Nexa Banking Home Insurance
+                        before you apply.</p>
+                </div>
+
+                <h2 style="margin-top: 35px;margin-bottom: 20px;">How to apply for Nexa Banking Home
+                    Insurance</h2>
+                <p>If you meet the eligibility criteria above and are ready to get a quote or complete one, take the
+                    next step and contact us:</p>
+                <div class="row logonwr">
+                    <div class="col-sm-6 applynow">
+                        <h3>Retrieving quotes</h3>
+                        <p>If you wish to return to a previous quote you obtained online in the last 90 days, you can
+                            retrieve it here.</p>
+                        <a class="bussiness-btn-larg" href="#">Retrieve a saved quote</a>
+                    </div>
+                    <div class="col-sm-6 logon">
+                        <h3>Get a quote and apply online</h3>
+                        <p>If you wish to get a quote or apply for a Home Insurance policy online, you can do so here.
+                        </p>
+                        <a href="#" class="bussiness-btn-larg">Get a quote</a>
+                    </div>
+                    <div class="col-sm-6 logon" style="margin-top: 35px;">
+                        <p>If we have contacted you regarding a pre-populated quote, you can retrieve it here using the
+                            IQU reference number in your email.</p>
+                        <a href="#" class="bussiness-btn-larg">Retrieve quote</a>
+                    </div>
+                    <div class="col-sm-6 logon" style="margin-top: 35px;">
+                        <p>If you have contents over $80,000 or a buildings rebuild cost of over $500,000, please see
+                            our <a href="#">High Value Home Insurance</a>. Nexa Banking Home Insurance is
+                            provided by Aviva Insurance Limited.</p>
+                        <p>For details on how we will use your personal information, please see our <a href="#">Privacy
+                                Notice (PDF)</a>. - Nexa Banking Home Insurance is provided by Aviva
+                            Insurance Limited. Please read Aviva’s Privacy Notice shown within the application</p>
+                    </div>
+                    <div class="col-sm-12 logon">
+                        <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo777">Apply by phone or
+                            in branch</a>
+                        <div id="demo777" class="collapse row">
+                            <div class="col-sm-6 applynow">
+                                <h3 style="margin-top: 0;">Apply by phone</h3>
+                                <p>Call us on +1 (000) 000-0000</p>
+                                <p>Please answer all questions accurately. Any incorrect information may invalidate your
+                                    insurance should you take out a policy.</p>
+                                <p>Lines are open 8am to 9pm Monday to Friday and 9am to 5pm at weekends. On public
+                                    holidays, opening hours may vary.</p>
+                                <p>In the interests of security for all parties, telephone calls may be monitored and/or
+                                    recorded.</p>
+                            </div>
+                            <div class="col-sm-6 logon">
+                                <h3>Apply in branch</h3>
+                                <p>New and existing Nexa Banking customers can book an appointment to apply
+                                    in branch by calling</p>
+                                <p>New and existing Nexa Banking customers can book an appointment to apply
+                                    in branch by calling</p>
+                                <p>Lines are open 8am to 10pm every day.</p>
+                                <p>You'll need to bring identification and proof of your address.</p>
+                                <a style="margin-bottom: 10px;" href="#" class="bussiness-btn-larg">Find a branch</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="card-single-wr downloadlist">
+            <h2>Things you should know</h2>
+            <p>Before applying, please take the time to read the following. You may also want to save these documents
+                for future reference.</p>
+            <div class="inner-card-wr">
+                <ul>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Privacy Notice (PDF, 390 KB)</a>
+                    </li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Nexa Banking Home
+                            Insurance Product Information Document (PDF, 81.5 KB)</a></li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Nexa Banking Home
+                            Insurance Important Information (PDF, 174.8 KB)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Home Insurance Policy Booklet (PDF,
+                            813.5 KB)</a></li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Nexa Banking 12 months
+                            cover for the price of 10 terms and conditions (PDF)</a></li>
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Summary of limits and excesses
+                            (PDF, 85.7 KB)</a></li>
+
+                    <li><a href="#"><i class="fa fa-download" aria-hidden="true"></i>Insurance Privacy Notice Overview
+                            (PDF)</a></li>
+                    <li><a href="#"><i style="margin-right:10px;" class="fa fa-clone" aria-hidden="true"></i>Important
+                            notes</a></li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,525 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 30px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 15px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+
+    .col-sm-12.variableper {
+        margin-top: 40px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 22px;
+        margin-top: 15px;
+        text-align: center;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .listwr li {
+        font-weight: normal;
+    }
+
+    .icon-img {
+        width: 8%;
+        display: inline-block;
+        vertical-align: top;
+        margin-top: 20px;
+    }
+
+    .icon-content {
+        display: inline-block;
+        width: 85%;
+        vertical-align: top;
+    }
+
+    .helpyou .col-sm-12 {
+        padding: 0;
+    }
+
+    .helpyou li {
+        font-weight: normal;
+    }
+
+    li a {
+        color: #033D75;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/couple-dancing-kitchen.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Nexa Banking Accounts</h3>
+                    <p>An everyday Nexa Banking account with handy extras</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="cardWr row">
+            <div class="col-sm-8 leftwr">
+                <div class="col-sm-12" style="margin-bottom: 15px;">
+                    <p>Current Accounts</p>
+                    <h2>Nexa Banking Bank Account</h2>
+                    <img src="../../static/images/visa.png" style="width: 250px; height: 170px;">
+                </div>
+                <div class="col-sm-12">
+                    <p>Get a hassle-free bank account and manage your money 24/7 online or over the phone.</p>
+                    <ul>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                class="secondspan">Simple bill payments by Direct and standing order</span></li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                class="secondspan">Cash withdrawals up to £300 per day</span></li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                class="secondspan">Available overdraft service, subject to status</span></li>
+                        <li><span class="firstspan"><i class="fa fa-check" aria-hidden="true"></i></i></span><span
+                                class="secondspan">See your accounts from different banks together in one place with
+                                our&nbsp;<a href="#">Connected Money</a>&nbsp;app<sup><a href="#terms">1</a> <a
+                                        href="#terms">2</a></sup></span></li>
+                    </ul>
+                </div>
+
+                <!-- <div class="readmoreWr col-sm-12">
+                    <a href="users/form/reg.html" class="bussiness-btn-larg">Apply now for a sole account</a>
+                    <a href="users/form/reg.html" class="bussiness-btn-larg">Apply now for a joint account</a>
+                </div> -->
+            </div>
+            <div class="col-sm-4 rightwr">
+                <div class="col-sm-12 variableper">
+                    <p>Switch your current account in a simple, reliable and stress-free way in only 7 working days.</p>
+                </div>
+
+                <div class="col-sm-12 variableper">
+                    <p><img src="../../static/images/dual-cass-moneyfacts.png" alt="" /></p>
+                </div>
+            </div>
+        </div>
+
+        <div class="inner-card-wr listwr">
+            <p>Apply for an Nexa Banking Bank Account today:</p>
+            <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo10">Are you eligible?</a>
+            <div id="demo10" class="collapse">
+                <ul>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>You need to be 18 years or older</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>Your residential address must be within the EU
+                    </li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>You must be able to provide us with <a
+                            href="#">certified proof of your identity and address</a> (translated into English if
+                        appropriate)</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>You must pay at least £500 a month (or £3,000 over
+                        6 months) into the account (does not apply if you are under 24 or over 65 years old)</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>If you are resident in the US, you are happy for
+                        us to undertake a <a href=#"">credit register search</a> (PDF)</li>
+                </ul>
+                <p><strong>Things to remember before applying:</strong></p>
+                <ul>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>If you are liable to pay tax in any country
+                        outside of the EU you must apply in branch</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>Residents in Jersey, Guernsey or the Isle of Man
+                        please visit your local branch</li>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>If applying in branch all parties will need to be
+                        present</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-single-wr helpyou">
+            <h2>How Nexa Banking Bank Account can help you</h2>
+            <div class="inner-card-wr">
+                <div class="col-sm-12">
+                    <span class="icon-content">
+                        <h3>Overdraft service</h3>
+                        <p>You can arrange an overdraft on your bank account, subject to your credit status. Use our
+                            overdraft calculator to understand how much interest you will pay when you use your
+                            overdraft. For full details of our overdraft rates and charges see <a href="#">our price
+                                list.</a></p>
+                    </span>
+                </div>
+                <div class="col-sm-12">
+                    <span class="icon-content">
+                        <h3>Lending options to suit you</h3>
+                        <p>Enjoy the freedom to do more with an Nexa Banking Credit Card or Personal Loan,
+                            subject to status.</p>
+                    </span>
+                </div>
+                <div class="col-sm-12">
+                    <span class="icon-content">
+                        <h3>Stress free switching</h3>
+                        <p>The Current Account Switch Service is simple, stress-free and supported by our dedicated
+                            switching team.</p>
+                    </span>
+                </div>
+                <div class="col-sm-12">
+                    <span class="icon-content">
+                        <h3>Nexa Banking Visa Debit card</h3>
+                        <ul>
+                            <li>Visa offers</li>
+                            <li>Contactless functionality</li>
+                            <li>Available to use in 160 countries<sup><a href="#terms">3</a></sup></li>
+                        </ul>
+                    </span>
+                </div>
+                <div class="col-sm-12">
+                    <span class="icon-content">
+                        <h3>Everyday banking</h3>
+                        <p class="A-PAR16R-RW-ALL">Choose how you want to bank either by <a href="#"
+                                target="_self">online</a>, <a href="#" target="_self">mobile</a> or <a href="#"
+                                target="_self">telephone banking</a><a href="#"><sup>4</sup></a>. You can check your
+                            balance, pay bills or make payments to family and friends.</p>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-singlw-wr">
+            <p class="A-PAR16R-RW-ALL"><span
+                    style="font-size: 0.875rem; font-variant-ligatures: inherit; font-variant-caps: inherit; background-color: transparent;">1.
+                    For Nexa Banking US customers only with Online Banking &amp; iPhone, iOS 10 or
+                    above.&nbsp;</span>
+            </p>
+            <p class="A-PAR14R-RW-ALL">2. Apple and iPhone are trademarks of Apple Inc. registered in the U.S and other
+                countries.&nbsp;</p>
+            <p class="A-PAR14R-RW-ALL">3. Using your Debit Card abroad: The exchange rate that applies to any foreign
+                currency debit card payments (including cash withdrawals) is the Visa scheme exchange rate used by VISA
+                on the day the conversion is made plus a Non-sterling transaction fee, which is currently 2.75% of the
+                transaction amount (and for cash withdrawals &nbsp;a Cash Fee of 2% of the cash withdrawal (minimum:
+                £1.75, maximum: £5)). We will make the conversion and deduct the payment from your account once we
+                receive details of the payment from VISA, at the latest the next working day. Details of the current
+                Visa scheme exchange rates are available at&nbsp;<a
+                    href="http://www.visaeurope.com/">www.visaeurope.com</a>.<br>
+            </p>
+            <p class="A-PAR14R-RW-ALL">4. Our telephone, online and mobile banking services are open 24 hours a day
+                subject to scheduled maintenance periods. During busy periods calls may be transferred outside the US.
+                Textphone is not available in the Channel Islands and Isle of Man. To help us continually improve our
+                service, and in the interests of security, we may monitor and/or record your calls with us.&nbsp;</p>
+            <p class="A-PAR16R-RW-ALL">&nbsp;</p>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>Apply for Nexa Banking Bank Account</h2>
+            <div class="inner-card-wr lowerwr">
+                <a class="toggleclass" href="#" data-toggle="collapse" data-target="#demo9">Are you eligible?</a>
+                <div id="demo9" class="collapse">
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>You need to be 18 years or older</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Your residential address must be within the EU
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>You must be able to provide us with <a
+                                href="#">certified proof of your identity and address</a> (translated into English if
+                            appropriate)</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>You must pay at least £500 a month (or £3,000
+                            over 6 months) into the account (does not apply if you are under 24 or over 65 years old)
+                        </li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>If you are resident in the US, you are happy
+                            for us to undertake a <a href="#">credit register search</a> (PDF)</a></li>
+                    </ul>
+                    <p><strong>Things to remember before applying:</strong></p>
+                    <ul>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>If you are liable to pay tax in any country
+                            outside of the EU you must apply in branch</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>Residents in Jersey, Guernsey or the Isle of
+                            Man please visit your local branch</li>
+                        <li><i class="fa fa-check" aria-hidden="true"></i>If applying in branch all parties will need to
+                            be present</li>
+                    </ul>
+                </div>
+                <div class="row logonwr">
+                    <div class="col-sm-6 applynow">
+                        <h3>Existing customers</h3>
+                        <p>Nexa Banking Current Account customers can book an appointment to apply in branch
+                            by calling +1 (000) 000-0000.</p>
+                        <p>From outside the US +15129914435.</p>
+                        <p>You'll need to bring identification and proof of your address.</p>
+                        <a href="#" class="bussiness-btn-larg">Find your nearest branch</a>
+                    </div>
+                    <div class="col-sm-6 logon">
+                        <h3>New to Bank</h3>
+                        <p>It only takes a few minutes to apply online for a sole or joint Nexa Banking
+                            Account.</p>
+                        <p>EU residents living outside the US must apply in branch and all parties will need to be
+                            present.</p>
+                        <!-- <a href="users/form/reg.html" class="bussiness-btn-larg">Apply for a sole account</a>
+                        <a href="users/form/reg.html" class="bussiness-btn-larg">Apply for a joint account</a> -->
+
+                    </div>
+                </div>
+
+                <div class="card-single-wr">
+                    <h2>Things you should know</h2>
+                    <ul>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i> Privacy Notice (PDF, 390KB)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i> US FSCS Information Sheet and
+                                Exclusions List (PDF, 577KB)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Personal Banking Terms and Conditions
+                                (PDF, 564KB)
+
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Charges and Additional Product Terms
+                                (PDF, 402KB)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Banking made easy (PDF, 218KB)
+                            </a>
+                        </li>
+                        <li>
+                            <a href="#">
+                                <i class="fa fa-download" aria-hidden="true"></i>Getting started (the Ever green trust
+                                co Bank Account welcome brochure) (PDF, 1.8MB)
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

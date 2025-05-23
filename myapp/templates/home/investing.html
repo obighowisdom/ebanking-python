@@ -1,0 +1,481 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<body>
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 28px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content {
+        width: 360px;
+        text-align: center;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+
+    .col-sm-12.variableper {
+        margin-top: 10px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 17px;
+        margin-top: 35px;
+        text-align: left;
+        margin-bottom: 22px;
+        min-height: auto;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .anchorlink a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .business-wr .single-bolg.hover011 img {
+        width: 190px;
+    }
+
+    .single-bolg.hover011 {
+        border: 1px solid #ccc;
+        margin: 15px 0;
+        text-align: center;
+        padding: 25px;
+        min-height: 330px;
+    }
+
+    .single-bolg.hover011 .bussiness-btn-larg {
+        color: #fff !important;
+    }
+
+    .inner-card-wr.row.pageslink .col-sm-4 {
+        margin: 10px 0 10px 0;
+    }
+
+    .inner-card-wr.quotewr {
+        background: #033D75;
+        color: #fff;
+        padding: 45px 25px 25px;
+        text-align: center;
+        margin: 45px 0 30px;
+        font-size: 20px;
+        font-weight: bold;
+    }
+
+    .card-single-wr.bottomwr {
+        padding-top: 15px;
+    }
+
+    .card-single-wr.bottomwr h3 {
+        margin-bottom: 33px;
+    }
+
+    .bottomwr .business-wr .col-md-4 a {
+        display: inline-block;
+        margin: 0;
+    }
+
+    .card-single-wr.bottomwr .business-wr {
+        margin-top: 0;
+    }
+
+    .card-single-wr.bottomwr .bussiness-btn-larg {
+        color: #fff !important;
+    }
+
+    .rangewr .blog-content {
+        text-align: center;
+        font-size: 22px;
+    }
+
+    .business-wr.rangewr {
+        margin-bottom: 40px;
+    }
+
+    .card-single-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .card-single-wr li {
+        display: block;
+        font-weight: bold;
+    }
+</style>
+
+
+
+        <!-- Preloader -->
+        <div id="fakeloader"></div>
+        
+        
+        {% include 'home/nav.html' %}
+
+
+
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/desktop-mortgages.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Investing</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="card-single-wr" style="border-top: none;padding-top: 0;">
+            <div class="business-wr rangewr">
+                <div class="row">
+                    <div class="col-md-3">
+                        <div class="single-bolg hover011">
+                            <figure><img src="../../static/images/isa_190x130.jpg" alt="slide 1" class=""></figure>
+                            <div class="blog-content">
+                                Stocks & Shares ISAs<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                            <p>Make the most of your ISA allowance. Choose a ready-made World Selection portfolio, or
+                                build and manage your own portfolio of funds or securities.</p>
+                            <a href="#" class="bussiness-btn-larg">Find Out more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single-bolg hover011">
+                            <figure><img src="../../static/images/investmentfunds_190x130.jpg" alt="slide 1" class=""></figure>
+                            <div class="blog-content">
+                                Investment funds<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                            <p>Research, buy, and track investment funds online via our Global Investment Centre, or top
+                                up / add on to your existing Selected investment funds.</p>
+                            <a href="#" class="bussiness-btn-larg">Find Out more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single-bolg hover011">
+                            <figure><img src="../../static/images/sharedealing_190x130.jpg" alt="slide 1" class=""></figure>
+                            <div class="blog-content">
+                                Sharedealing<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                            <p>Make your own investment decisions with our sharedealing accounts. Build a portfolio of
+                                shares with InvestDirect or InvestDirectPlus.</p>
+                            <a href="#" class="bussiness-btn-larg">Find Out more</a>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="single-bolg hover011">
+                            <figure><img src="../../static/images/premier_190x130.jpg" alt="slide 1" class=""></figure>
+                            <div class="blog-content">
+                                Premier advice<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                    aria-hidden="true"></i>
+                            </div>
+                            <p>Build the future you've imagined with the Nexa Banking Premier advice
+                                service.</p>
+                            <a href="#" class="bussiness-btn-larg">Find Out more</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="card-single-wr">
+                <h2>Quick Links</h2>
+                <div class="inner-card-wr row pageslink">
+                    <div class="col-sm-4">
+                        <a href="#">New to investing?<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#">Financial news and analysis<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#">Nexa Banking Insights<i style="margin-left: 10px;"
+                                class="fa fa-angle-right" aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#">Economic News<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#">Planning tools<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i></a>
+                    </div>
+                    <div class="col-sm-4">
+                        <a href="#">Jargon Buster<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i></a>
+                    </div>
+                </div>
+            </div>
+            <div class="card-single-wr">
+                <h2>Support</h2>
+                <div class="inner-card-wr row pageslink">
+                    <div class="col-sm-4">
+                        <p><strong>Selected Investment Fund customers</strong></p>
+                        <p>Lines are open 8am to 6pm Monday to Friday (excluding Public holidays)</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><strong>Global Investment Centre Funds Platform</strong></p>
+                        <p><strong>+1 (000) 000-0000</strong></p>
+                        <p>Lines are open from 8am to 9pm Monday to Friday and Saturday 9:30am to 7pm (excluding Public
+                            holidays)</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><strong>Premier customers</strong></p>
+                        <p><strong></strong></p>
+                        <p>Lines are open from 8am to 10pm every day (except Christmas Day, Boxing Day and New Year's
+                            Day)</p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p><strong>InvestDirect (Sharedealing)</strong></p>
+                        <p><strong>Nexa Banking </strong></p>
+                        <p>Lines are open Monday to Friday 7:30am to 9:30pm and 10am to 4pm on Saturday (excluding bank
+                            holidays)</p>
+                    </div>
+                </div>
+            </div>
+            <div class="card-single-wr">
+                <h2>Please bear in mind</h2>
+                <ul>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>Investment risk</li>
+                    <p>All investments carry some risk. The value of investments (and any income received from them) can
+                        fall as well as rise and you may not get back what you invested. For some investments this can
+                        also happen as a result of exchange rate fluctuations as shares and funds may have an exposure
+                        to overseas markets.</p>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>Time commitment</li>
+                    <p>Most investments should be considered as a medium to long-term commitment; this means you should
+                        be prepared to hold them for at least five years.</p>
+                    <li><i class="fa fa-check" aria-hidden="true"></i>Tax benefits</li>
+                    <p>The value of any tax benefits described depends upon your individual circumstances - tax rules
+                        may change in future.</p>
+                    <p>In addition to the risks mentioned above, there are other risks associated with investing in our
+                        products. These are outlined in the Key Features Document for each product and, where
+                        applicable, in the Key Investor Information Document for the underlying fund(s), which you
+                        should read carefully before applying.</p>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}

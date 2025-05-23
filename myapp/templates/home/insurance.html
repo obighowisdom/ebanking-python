@@ -1,0 +1,452 @@
+{% extends 'home/base.html' %}
+{% load static %}
+{% block content %}
+
+<style type="text/css">
+    .item.creditbanner {
+        position: relative;
+    }
+
+    .banner-content {
+        position: absolute;
+        top: 45%;
+        left: 9%;
+        background-color: #fff;
+        padding: 30px 50px 30px 10px;
+        box-shadow: 0 0 23px -5px #000;
+    }
+
+    .banner-content h3 {
+        color: #033D75;
+        font-size: 28px;
+        text-transform: uppercase;
+        margin-bottom: 15px;
+        font-weight: bold;
+    }
+
+    .banner-content p {
+        color: #333;
+        font-size: 20px;
+        margin-bottom: 0;
+    }
+
+    .cardWr.row {
+        box-shadow: 0 0 15px -3px #000;
+        margin: 60px 0;
+        border-radius: 0;
+    }
+
+    .single-bolg.hover01 a:hover .blog-content {
+        color: #EF454D;
+        transition: all .5s ease 0s;
+    }
+
+    .cardWr .col-sm-8 {
+        padding: 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        padding: 40px 30px 30px;
+    }
+
+    .cardWr .col-sm-4 {
+        background-color: #033D75;
+        color: #fff;
+    }
+
+    .cardWr .col-sm-4 .col-sm-12 {
+        padding: 0;
+    }
+
+    .cardWr .col-sm-12 p {
+        margin: 8px 0 15px;
+        font-size: 18px;
+    }
+
+    .cardWr .col-sm-12 h2 {
+        font-size: 22px;
+        font-weight: bold;
+        color: #033D75;
+        margin-bottom: 17px;
+        margin-top: 15px;
+        text-transform: uppercase;
+    }
+
+    .inner-card-wr .fa.fa-check {
+        margin-right: 10px;
+    }
+
+    .cardWr .col-sm-12 ul,
+    .inner-card-wr ul {
+        padding-left: 0;
+    }
+
+    .inner-card-wr li {
+        font-weight: bold;
+    }
+
+    .inner-card-wr ul p {
+        margin-left: 29px;
+        margin-bottom: 18px;
+    }
+
+    .card-single-wr h2 {
+        font-size: 30px;
+        position: relative;
+        margin-left: 20px;
+        margin-bottom: 30px;
+        color: #033D75;
+    }
+
+    .card-single-wr h2::before {
+        position: absolute;
+        left: -25px;
+        top: 0;
+        width: 5px;
+        height: 32px;
+        background-color: #EF454D;
+        content: '';
+    }
+
+    .inner-card-wr h3 {
+        margin-bottom: 23px;
+        font-size: 24px;
+        margin-top: 40px;
+        font-weight: bold;
+        color: #EF454D;
+    }
+
+    .cardWr .col-sm-12 li,
+    .inner-card-wr li {
+        display: block;
+        margin-bottom: 14px;
+    }
+
+    .card-single-wr {
+        border-top: 1px solid #033D75;
+        padding: 45px 0 22px;
+    }
+
+    .inner-card-wr p a {
+        color: #033d75;
+        text-decoration: underline;
+    }
+
+    .firstspan {
+        width: 4%;
+        display: inline-block;
+        vertical-align: top;
+    }
+
+    .secondspan {
+        display: inline-block;
+        width: 90%;
+        vertical-align: top;
+    }
+
+    .rightwr .col-sm-12 p {
+        font-size: 20px;
+        line-height: 30px;
+        margin-bottom: 20px;
+    }
+
+    .col-sm-12.variableper {
+        margin-top: 10px;
+    }
+
+    p span {
+        display: block;
+        font-size: 16px;
+    }
+
+    .readmoreWr {
+        text-align: left;
+        margin: 20px 0 20px;
+        padding-left: 15px;
+    }
+
+    .fa.fa-info-circle {
+        margin-right: 10px;
+    }
+
+    i.fa.fa-check {
+        color: #033D75;
+        font-size: 19px;
+    }
+
+    .inner-card-wr.lowerwr ul {
+        margin: 5px 0;
+    }
+
+    i.fa.fa-download {
+        margin-right: 10px;
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li {
+        font-weight: normal;
+    }
+
+    .inner-card-wr.lowerwr li a {
+        color: #033D75;
+    }
+
+    .inner-card-wr.lowerwr li a:hover {
+        color: #EF454D;
+    }
+
+    .toggleclass {
+        color: #333;
+        font-size: 18px;
+        font-weight: bold;
+        text-decoration: underline;
+        margin-bottom: 25px;
+        display: inline-block;
+    }
+
+    .toggleclass:hover {
+        text-decoration: underline;
+    }
+
+    .logonwr {
+        margin-bottom: 35px;
+    }
+
+    .collapse h3 a {
+        color: #033D75;
+    }
+
+    .business-wr {
+        padding: 0;
+        margin-top: 40px;
+    }
+
+    .blog-content {
+        font-size: 25px;
+        margin-top: 15px;
+        text-align: left;
+        margin-bottom: 22px;
+        min-height: auto;
+    }
+
+    .single-bolg.hover01 {
+        margin-top: 0;
+    }
+
+    #demo1 .col-sm-6 h3 {
+        margin-top: 0;
+    }
+
+    .anchorlink a {
+        color: #fff;
+        text-decoration: underline;
+    }
+
+    .card-single-wr1 {
+        margin-bottom: 30px;
+    }
+</style>
+
+<!-- Preloader -->
+<div id="fakeloader"></div>
+
+
+{% include 'home/nav.html' %}
+
+<div class="business-main-slider">
+    <div class="owl-carousel main-slider">
+        <div class="item creditbanner">
+            <div class="hvrbox">
+                <img src="../../static/images/family-walking-on-the-beach.jpg" alt="credit" class="hvrbox-layer_bottom">
+            </div>
+            <div class="banner-content">
+                <div class="innerBanner container">
+                    <h3>Insurance</h3>
+                    <p>Protect what matters to you</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="card-detail-wr">
+    <div class="container">
+        <div class="card-single-wr1">
+            <div class="business-wr">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/ins1.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        Home insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>Nexa Banking Home Insurance gives you a choice of different levels of
+                                    protection for your home and contents.</p>
+                                <p>Get 12 months cover for the price of 10 when you buy home insurance (available to new
+                                    Nexa Banking Home Insurance customers).</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/ins2.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        Life insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>Nexa Banking Life Insurance helps ensure your loved ones are financially
+                                    protected if the unexpected happens.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/ins3.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        Travel insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>Nexa Banking Travel Insurance is designed to offer a choice of single
+                                    trip or annual multi-trip cover. Get 15% off when you buy Nexa Banking
+                                    Travel Insurance (available to new Nexa Banking Travel Insurance
+                                    customers).</p>
+                            </div>
+                        </div>
+
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/ins4.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        Student insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>While you concentrate on your studies, you can trust Nexa Banking Student
+                                    Insurance to take care of your personal possessions.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/ins5.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        High value home insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>Protect your home and belongings with our Distinct product, covering high value homes
+                                    with contents worth over £80,000.</p>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/ins6.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        Pet insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>Get 15% off when you buy Pet Insurance*. Provided by M&S Nexa Banking who
+                                    are part of the Nexa Banking Group.</p>
+                                <p>*Available to new customers and excludes renewals or amendments to existing policies.
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="inner-card-wr lowerwr">
+            <div class="card-single-wr">
+                <h2>Useful links</h2>
+                <ul style="padding-left: 22px;">
+                    <li>
+                        <a href="#">
+                            Premier travel insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Premier Protection stand alone protection advice<i style="margin-left: 10px;"
+                                class="fa fa-angle-right" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Telephone protection advice<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Home Insurance Claims <i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Travel Insurance FAQs<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+            <div class="card-single-wr">
+                <h2>Premier Customers</h2>
+                <ul style="padding-left: 22px;">
+                    <li>
+                        <a href="#">
+                            Premier Travel <i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">High value home insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#">
+                            Protection standalone advice<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="card-single-wr">
+            <h2>You might also be interested in</h2>
+            <div class="business-wr">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-md-4">
+                            <div class="single-bolg hover01">
+                                <a href="#">
+                                    <figure><img src="../../static/images/business-insu.jpg" alt="slide 1" class=""></figure>
+                                    <div class="blog-content">
+                                        Business Insurance<i style="margin-left: 10px;" class="fa fa-angle-right"
+                                            aria-hidden="true"></i>
+                                    </div>
+                                </a>
+                                <p>Policies designed to offer dedicated protection for your type of business</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <p><strong>For existing policyholders only; this product is no longer offered on sale</strong></p>
+        </div>
+    </div>
+</div>
+
+{% endblock content %}
