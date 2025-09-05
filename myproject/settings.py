@@ -84,7 +84,11 @@ DATABASES = {
     }
 }
 
-
+CSRF_TRUSTED_ORIGINS = [
+    'https://ebanking-python-ox7h.onrender.com',
+    'https://pocketxperts.com'
+   
+]
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators
 
