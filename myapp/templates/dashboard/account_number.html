@@ -1,0 +1,77 @@
+<!-- Breadcrumb -->
+<li class="breadcrumb-item text-sm">
+    {% if request.user.bankaccount.account_number %}
+        <span class="text-success fw-bold">
+            Account Number: {{ request.user.bankaccount.account_number }}
+        </span>
+    {% else %}
+        <a id="generate-account-btn" class="opacity-5 text-white" href="javascript:void(0)">
+            Generate Account Number
+        </a>
+    {% endif %}
+</li>
+
+<!-- Profile Incomplete Modal -->
+<div class="modal fade" id="updateProfileModal" tabindex="-1" aria-labelledby="updateProfileLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-danger text-white">
+        <h5 class="modal-title" id="updateProfileLabel">Profile Incomplete</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+        Please update your profile before generating an account number.
+      </div>
+      <div class="modal-footer">
+        <a href="/profile" class="btn btn-primary">Update Profile</a>
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- Success Modal -->
+<div class="modal fade" id="successModal" tabindex="-1" aria-labelledby="successLabel" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header bg-success text-white">
+        <h5 class="modal-title" id="successLabel">Account Generated</h5>
+        <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body text-center">
+        <h5>Your Account Number:</h5>
+        <h3 id="generated-account-number" class="text-success fw-bold"></h3>
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+const btn = document.getElementById("generate-account-btn");
+if (btn) {
+    btn.addEventListener("click", function() {
+        fetch("{% url 'myappurl:generate_account_number' %}")
+        .then(response => response.json())
+        .then(data => {
+            if (data.status === "error") {
+                // Show profile update modal
+                var profileModal = new bootstrap.Modal(document.getElementById("updateProfileModal"));
+                profileModal.show();
+            } else if (data.status === "exists" || data.status === "success") {
+                // Show success modal
+                document.getElementById("generated-account-number").textContent = data.account_number;
+                var successModal = new bootstrap.Modal(document.getElementById("successModal"));
+                successModal.show();
+
+                // Update the breadcrumb text
+                btn.textContent = "Account Number: " + data.account_number;
+                btn.classList.add("fw-bold", "text-success");
+                btn.removeAttribute("href");
+            }
+        });
+    });
+}
+</script>

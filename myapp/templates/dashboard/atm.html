@@ -1,0 +1,109 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<style>
+  /* Style only the form section */
+  .atm-form-section {
+    max-width: 600px;
+    margin: 40px auto;
+    background: #fff;
+    padding: 25px;
+    border-radius: 12px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+
+  .atm-form-section h3 {
+    font-weight: bold;
+    color: #0d6efd;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .required::after {
+    content: " *";
+    color: red;
+  }
+</style>
+
+<div style="display: flex; justify-content: center;">
+    {% include 'dashboard/topNav.html' %}
+</div>
+
+<div class="atm-form-section" style="z-index: 1000; position: absolute; right: 0; left: 0; width: 100%;">
+
+  <h3>💳 ATM Card Application</h3>
+
+  {% if messages %}
+    {% for message in messages %}
+      <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+    {% endfor %}
+  {% endif %}
+
+  {% if not existing_application %}
+    <!-- Show form only if user hasn't applied -->
+    <form method="POST" enctype="multipart/form-data">
+      {% csrf_token %}
+
+      <!-- Account Number -->
+      <div class="mb-3">
+        <label class="form-label required">Account Number</label>
+        <input type="text" name="account_number" class="form-control" placeholder="Enter your account number" required>
+      </div>
+
+      <!-- Account Name -->
+      <div class="mb-3">
+        <label class="form-label required">Account Name</label>
+        <input type="text" name="account_name" class="form-control" placeholder="Enter your account name" required>
+      </div>
+
+      <!-- Card Type -->
+      <div class="mb-3">
+        <label class="form-label required">Card Type</label>
+        <select name="card_type" class="form-select" required>
+          <option value="">-- Select Card Type --</option>
+          <option value="debit">Debit Card</option>
+          <option value="credit">Credit Card</option>
+          <option value="prepaid">Prepaid Card</option>
+        </select>
+      </div>
+
+      <!-- Delivery Method -->
+      <div class="mb-3">
+        <label class="form-label required">Card Delivery Method</label>
+        <select name="delivery_method" class="form-select" required>
+          <option value="">-- Select Delivery Method --</option>
+          <option value="pickup">Pick Up at Branch</option>
+          <option value="home_delivery">Home Delivery</option>
+        </select>
+      </div>
+
+      <!-- Upload ID -->
+      <div class="mb-3">
+        <label class="form-label required">Upload Valid ID</label>
+        <input type="file" name="id_proof" class="form-control" accept="image/*,.pdf" required>
+        <div class="form-text">Accepted formats: JPG, PNG, PDF (Max size: 5MB)</div>
+      </div>
+
+      <!-- Submit Button -->
+      <button type="submit" class="btn btn-primary w-100">
+        <i class="bi bi-credit-card"></i> Apply for ATM Card
+      </button>
+    </form>
+  {% else %}
+    <!-- Show status if already applied -->
+    <div class="alert alert-info text-center mt-3">
+      You have already applied for an ATM card. <br>
+      <strong>Status:</strong>
+      {% if existing_application.status == 'pending' %}
+        <span class="badge bg-warning text-dark">Pending</span>
+      {% elif existing_application.status == 'approved' %}
+        <span class="badge bg-success">Approved</span>
+      {% else %}
+        <span class="badge bg-danger">Rejected</span>
+      {% endif %}
+    </div>
+  {% endif %}
+</div>
+
+{% endblock content %}

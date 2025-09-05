@@ -1,0 +1,58 @@
+<div class="container mt-4">
+    <h4 class="mb-3">Transaction History</h4>
+
+    <div class="table-responsive">
+       <table class="table table-hover table-striped">
+    <thead class="table-dark">
+        <tr>
+            <th>#</th>
+            <th>Type</th>
+            <th>Bank</th>
+            <th>Amount</th>
+            <th>Status</th>
+            <th>Date</th>
+            <th>More</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% if transactions %}
+            {% for tx in transactions %}
+                <tr>
+                    <td>{{ forloop.counter }}</td>
+                    <td>{{ tx.get_transaction_type_display }}</td>
+                    <td>{{ tx.bank_name }}</td>
+                    <td>${{ tx.amount|floatformat:2 }}</td>
+                    <td>
+                        {% if tx.status == "approved" %}
+                            <span class="badge bg-success">Approved</span>
+                        {% elif tx.status == "pending" %}
+                            <span class="badge bg-warning text-dark">Pending</span>
+                        {% else %}
+                            <span class="badge bg-danger">Rejected</span>
+                        {% endif %}
+                    </td>
+                    <td>{{ tx.created_at|date:"M d, Y H:i" }}</td>
+                    <td>
+                        <a href="{% url 'myappurl:transaction_detail' tx.id %}" class="btn btn-primary btn-sm">
+                            More
+                        </a>
+                    </td>
+                </tr>
+            {% endfor %}
+        {% else %}
+            <tr>
+                <td colspan="7" class="text-center text-muted">No transactions yet.</td>
+            </tr>
+        {% endif %}
+    </tbody>
+</table>
+
+    </div>
+
+    {% if transactions|length >= 10 %}
+        <div class="text-center mt-3">
+            <a href="#" class="btn btn-outline-primary btn-sm">Load More</a>
+        </div>
+    {% endif %}
+</div>
+

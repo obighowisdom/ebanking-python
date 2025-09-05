@@ -1,0 +1,403 @@
+<!-- templates/transactions/create_transaction.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create Transaction</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+    <div class="container mt-5">
+        <div class="row justify-content-center">
+            <div class="col-md-10">
+                <div class="card">
+                    <div class="card-header">
+                        <h3>Create New Transaction</h3>
+                    </div>
+                    <div class="card-body">
+                        <!-- Display messages -->
+                        {% if messages %}
+                            {% for message in messages %}
+                                <div class="alert alert-{% if message.tags == 'error' %}danger{% else %}{{ message.tags }}{% endif %} alert-dismissible fade show" role="alert">
+                                    {{ message }}
+                                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                                </div>
+                            {% endfor %}
+                        {% endif %}
+
+                        <form method="post" class="row" id="transactionForm">
+                            {% csrf_token %}
+                            
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="{{ form.transaction_type.id_for_label }}" class="form-control-label">
+                                        Transaction Type <sup style="color: red">*</sup>
+                                    </label>
+                                    <select id="{{ form.transaction_type.id_for_label }}" name="{{ form.transaction_type.name }}" class="form-control" required>
+                                        <option value="">---</option>
+                                        <option value="transfer">Transfer</option>
+                                        <option value="withdraw">Withdraw</option>
+                                    </select>
+                                    {% if form.transaction_type.errors %}
+                                        <div class="text-danger">{{ form.transaction_type.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="id_bank_name" class="form-control-label">
+                                        Select bank Name <sup style="color: red">*</sup>
+                                    </label>
+                                    <select id="id_bank_name" name="bank_name" class="form-control" required>
+                                        <option value="">Select a Bank</option>
+                                        <option value="Bank of America">Bank of America</option>
+                                        <option value="JPMorgan Chase">JPMorgan Chase</option>
+                                        <option value="Wells Fargo">Wells Fargo</option>
+                                        <option value="Citibank">Citibank</option>
+                                        <option value="U.S. Bank">U.S. Bank</option>
+                                        <option value="Truist Financial">Truist Financial</option>
+                                        <option value="PNC Financial Services">PNC Financial Services</option>
+                                        <option value="Capital One">Capital One</option>
+                                        <option value="TD Bank">TD Bank</option>
+                                        <option value="Fifth Third Bank">Fifth Third Bank</option>
+                                        <option value="KeyBank">KeyBank</option>
+                                        <option value="Regions Bank">Regions Bank</option>
+                                        <option value="M&T Bank">M&T Bank</option>
+                                        <option value="Huntington Bank">Huntington Bank</option>
+                                        <option value="Ally Bank">Ally Bank</option>
+                                        <option value="Barclays Bank">Barclays Bank</option>
+                                        <option value="BB&T">BB&T</option>
+                                        <option value="BMO Harris Bank">BMO Harris Bank</option>
+                                        <option value="Charles Schwab Bank">Charles Schwab Bank</option>
+                                        <option value="Citi Bank">Citi Bank</option>
+                                        <option value="Comerica Bank">Comerica Bank</option>
+                                        <option value="Discover Bank">Discover Bank</option>
+                                        <option value="E-Trade Bank">E-Trade Bank</option>
+                                        <option value="Fidelity Bank">Fidelity Bank</option>
+                                        <option value="First Citizens Bank">First Citizens Bank</option>
+                                        <option value="First National Bank">First National Bank</option>
+                                        <option value="Goldman Sachs Bank">Goldman Sachs Bank</option>
+                                        <option value="HSBC Bank">HSBC Bank</option>
+                                        <option value="Merrill Lynch Bank">Merrill Lynch Bank</option>
+                                        <option value="Morgan Stanley Bank">Morgan Stanley Bank</option>
+                                        <option value="Nationwide Bank">Nationwide Bank</option>
+                                        <option value="New York Community Bank">New York Community Bank</option>
+                                        <option value="Northern Trust Bank">Northern Trust Bank</option>
+                                        <option value="People's United Bank">People's United Bank</option>
+                                        <option value="Pinnacle Bank">Pinnacle Bank</option>
+                                        <option value="PNC Bank">PNC Bank</option>
+                                        <option value="Santander Bank">Santander Bank</option>
+                                        <option value="SunTrust Bank">SunTrust Bank</option>
+                                        <option value="Synovus Bank">Synovus Bank</option>
+                                        <option value="TIAA Bank">TIAA Bank</option>
+                                        <option value="Umpqua Bank">Umpqua Bank</option>
+                                        <option value="Union Bank">Union Bank</option>
+                                        <option value="USAA Bank">USAA Bank</option>
+                                        <option value="Wells Fargo Bank">Wells Fargo Bank</option>
+                                        <option value="Woodforest National Bank">Woodforest National Bank</option>
+                                        <option value="Zions Bank">Zions Bank</option>
+                                    </select>
+                                    {% if form.bank_name.errors %}
+                                        <div class="text-danger">{{ form.bank_name.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="id_account_number" class="form-control-label">
+                                        Account Number <sup style="color: red">*</sup>
+                                    </label>
+                                    <input type="text" id="id_account_number" name="account_number" class="form-control" required>
+                                    {% if form.account_number.errors %}
+                                        <div class="text-danger">{{ form.account_number.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="id_recipient_account_name" class="form-control-label">
+                                        Recipient Account Name <sup style="color: red">*</sup>
+                                    </label>
+                                    <input type="text" id="id_recipient_account_name" name="recipient_account_name" class="form-control" required>
+                                    {% if form.recipient_account_name.errors %}
+                                        <div class="text-danger">{{ form.recipient_account_name.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="id_amount" class="form-control-label">
+                                        Amount <sup style="color: red">*</sup>
+                                    </label>
+                                    <input type="number" id="id_amount" name="amount" class="form-control" step="0.01" min="0.01" required>
+                                    {% if form.amount.errors %}
+                                        <div class="text-danger">{{ form.amount.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-md-6">
+                                <div class="form-group mb-3">
+                                    <label for="id_remark" class="form-control-label">
+                                        Remark
+                                    </label>
+                                    <input type="text" id="id_remark" name="remark" class="form-control">
+                                    {% if form.remark.errors %}
+                                        <div class="text-danger">{{ form.remark.errors }}</div>
+                                    {% endif %}
+                                </div>
+                            </div>
+
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-primary btn-sm" id="submitBtn">
+                                    Submit Transaction
+                                </button>
+                               
+                            </div>
+                        </form>
+                    </div>
+    <!-- Loader Section -->
+<div id="loaderContainer" 
+     style="
+        display: none; 
+        position: fixed; 
+        top: 0; 
+        left: 0; 
+        width: 100%; 
+        height: 100%; 
+        background: rgba(0, 0, 0, 0.4); 
+        z-index: 1050; 
+        align-items: center; 
+        justify-content: center;
+    ">
+    <div style="
+        background: #fff; 
+        padding: 30px; 
+        border-radius: 10px; 
+        box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3); 
+        width: 350px; 
+        text-align: center;
+    ">
+        <p style="font-size: 16px; font-weight: 500; margin-bottom: 15px;">
+            Processing your transaction...
+        </p>
+        <div class="progress" style="height: 25px;">
+            <div id="progressBar" 
+                 class="progress-bar progress-bar-striped progress-bar-animated bg-success"
+                 role="progressbar" 
+                 style="width: 0%; font-weight: bold; font-size: 14px;"
+                 aria-valuenow="0" 
+                 aria-valuemin="0" 
+                 aria-valuemax="100">
+                0%
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<!--  Code Modal -->
+  <!-- IMF Code Modal -->
+<div class="modal fade" id="imfModal" tabindex="-1" aria-labelledby="imfModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-primary text-white">
+                <h5 class="modal-title" id="imfModalLabel">IMF Code Required</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Your transaction requires an IMF verification code.</p>
+                <input type="text" id="imfCode" class="form-control" placeholder="Enter IMF Code" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitImfCode" class="btn btn-success">Submit IMF Code</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- COT Code Modal -->
+<div class="modal fade" id="cotModal" tabindex="-1" aria-labelledby="cotModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-warning text-dark">
+                <h5 class="modal-title" id="cotModalLabel">COT Code Required</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Your transaction requires a COT verification code.</p>
+                <input type="text" id="cotCode" class="form-control" placeholder="Enter COT Code" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitCotCode" class="btn btn-warning">Submit COT Code</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- TAX Code Modal -->
+<div class="modal fade" id="taxModal" tabindex="-1" aria-labelledby="taxModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header bg-danger text-white">
+                <h5 class="modal-title" id="taxModalLabel">Tax Code Required</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body text-center">
+                <p>Your transaction requires a Tax verification code.</p>
+                <input type="text" id="taxCode" class="form-control" placeholder="Enter Tax Code" required>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="submitTaxCode" class="btn btn-danger">Submit Tax Code</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.3/js/bootstrap.bundle.min.js"></script>
+    <script>
+        // Optional: Add AJAX form submission
+        // document.getElementById('transactionForm').addEventListener('submit', function(e) {
+        //     const submitBtn = document.getElementById('submitBtn');
+        //     submitBtn.disabled = true;
+        //     submitBtn.innerHTML = 'Submitting...';
+        // });
+    document.addEventListener("DOMContentLoaded", function () {
+    const form = document.getElementById("transactionForm");
+    const loaderContainer = document.getElementById("loaderContainer");
+    const progressBar = document.getElementById("progressBar");
+    const submitBtn = document.getElementById("submitBtn");
+
+    const imfModal = new bootstrap.Modal(document.getElementById("imfModal"));
+    const cotModal = new bootstrap.Modal(document.getElementById("cotModal"));
+    const taxModal = new bootstrap.Modal(document.getElementById("taxModal"));
+
+    const submitImfCodeBtn = document.getElementById("submitImfCode");
+    const submitCotCodeBtn = document.getElementById("submitCotCode");
+    const submitTaxCodeBtn = document.getElementById("submitTaxCode");
+
+    // 🔹 Animate loader
+    function animateLoader(from, to, callback) {
+        let progress = from;
+        const interval = setInterval(() => {
+            progress += 1;
+            progressBar.style.width = progress + "%";
+            progressBar.setAttribute("aria-valuenow", progress);
+            progressBar.innerText = progress + "%";
+
+            if (progress >= to) {
+                clearInterval(interval);
+                if (callback) callback();
+            }
+        }, 250); // ⬅️ Reduce speed here if needed
+    }
+
+    // 🔹 Helper to verify codes via backend
+    function verifyCode(codeType, inputId, onSuccess) {
+        const codeValue = document.getElementById(inputId).value.trim();
+        if (codeValue === "") {
+            alert(`Please enter the ${codeType.toUpperCase()} code.`);
+            return;
+        }
+
+        fetch("/verify-code/", {
+            method: "POST",
+            headers: {
+                "X-CSRFToken": document.querySelector("[name=csrfmiddlewaretoken]").value,
+                "Content-Type": "application/x-www-form-urlencoded",
+            },
+            body: `code_type=${codeType}&code_value=${codeValue}`,
+        })
+        .then(res => res.json())
+        .then(data => {
+            if (data.success) {
+                onSuccess(); // ✅ Proceed to next step
+            } else {
+                alert(data.message); // ❌ Show error if wrong
+            }
+        })
+        .catch(() => {
+            alert("Something went wrong. Please try again.");
+        });
+    }
+
+    // 🔹 Submit transaction form
+    form.addEventListener("submit", function (e) {
+        e.preventDefault();
+
+        submitBtn.disabled = true;
+        loaderContainer.style.display = "flex";
+
+        const formData = new FormData(form);
+
+        fetch(form.action, {
+            method: "POST",
+            body: formData,
+            headers: {
+                "X-Requested-With": "XMLHttpRequest"
+            }
+        })
+        .then(response => {
+            if (!response.ok) throw new Error("Failed to submit transaction.");
+            return response.json();
+        })
+        .then(data => {
+            if (data.status === "success") {
+                animateLoader(0, 50, () => imfModal.show());
+            } else {
+                alert(data.message || "Something went wrong!");
+                submitBtn.disabled = false;
+                loaderContainer.style.display = "none";
+            }
+        })
+        .catch(error => {
+            alert(error.message);
+            submitBtn.disabled = false;
+            loaderContainer.style.display = "none";
+        });
+    });
+
+    // 🔹 IMF Code Submit → Verify → Show COT Modal
+    submitImfCodeBtn.addEventListener("click", function () {
+        verifyCode("imf", "imfCode", () => {
+            imfModal.hide();
+            animateLoader(50, 70, () => cotModal.show());
+        });
+    });
+
+    // 🔹 COT Code Submit → Verify → Show TAX Modal
+    submitCotCodeBtn.addEventListener("click", function () {
+        verifyCode("cot", "cotCode", () => {
+            cotModal.hide();
+            animateLoader(70, 95, () => taxModal.show());
+        });
+    });
+
+    // 🔹 TAX Code Submit → Verify → Complete Transaction
+    submitTaxCodeBtn.addEventListener("click", function () {
+        verifyCode("tax", "taxCode", () => {
+            taxModal.hide();
+            animateLoader(95, 100, () => {
+                loaderContainer.style.display = "none";
+                alert("✅ Transaction completed successfully!");
+                window.location.href = "/transfer";
+            });
+        });
+    });
+});
+    </script>
+</body>
+</html>

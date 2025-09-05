@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Transaction Receipt</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body style="background-color: #f8f9fa; font-family: Arial, sans-serif;">
+
+<div class="container" style="max-width: 650px; margin-top: 30px; background: #fff; box-shadow: 0 0 15px rgba(0,0,0,0.1); border-radius: 12px; padding: 25px;">
+    
+    <!-- Bank Logo -->
+    <div class="text-center mb-3">
+         <a class="navbar-brand m-0" href=" /dashboard" target="_blank">
+        <img src="../../static/images/nexa.png" width="26px" height="26px" class="navbar-brand-img h-100" alt="main_logo">
+        <span class="ms-1 font-weight-bold">Nexa Banking</span>
+      </a>
+    </div>
+
+    <h4 class="text-center" style="color: #02022fff; font-weight: bold;">Receipt</h4>
+    <hr style="border: 1px solid #ff6600;">
+
+    <!-- Transaction Info Table -->
+    <table class="table table-borderless" style="font-size: 15px;">
+        <tbody>
+            <tr>
+                <td style="font-weight: bold;">Transaction ID:</td>
+                <td>{{ transaction.transaction_id }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Date & Time:</td>
+                <td>{{ transaction.created_at|date:"d M Y, h:i A" }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Transaction Type:</td>
+                <td>{{ transaction.get_transaction_type_display }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Sender:</td>
+                <td>{{ transaction.user.get_full_name }} ({{ transaction.user.username }})</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Recipient:</td>
+                <td>{{ transaction.recipient_account_name }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Bank:</td>
+                <td>{{ transaction.bank_name }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Account Number:</td>
+                <td>{{ transaction.account_number }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Amount:</td>
+                <td style="color: #28a745; font-weight: bold;">₦{{ transaction.amount|floatformat:2 }}</td>
+            </tr>
+            <tr>
+                <td style="font-weight: bold;">Transaction Status:</td>
+                <td>
+                    {% if transaction.status == "approved" %}
+                        <span class="badge bg-success">APPROVED</span>
+                    {% elif transaction.status == "pending" %}
+                        <span class="badge bg-warning text-dark">PENDING</span>
+                    {% else %}
+                        <span class="badge bg-danger">REJECTED</span>
+                    {% endif %}
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <hr style="border: 1px solid #ddd;">
+
+    <!-- Disclaimer -->
+    <p style="font-size: 13px; color: #666; text-align: center;">
+        This is a system-generated receipt and does not require any signature.<br>
+        For inquiries, contact <span style="color:#ff6600;">NexaBank Customer</span>.
+    </p>
+
+    <!-- Download Button -->
+    <div class="text-center">
+        <a href="{% url 'myappurl:download_receipt' transaction.id %}" class="btn btn-primary" 
+           style="background-color: #00aaff; border: none; font-weight: bold; padding: 10px 20px; border-radius: 8px;">
+            Download Receipt (PDF)
+        </a>
+    </div>
+</div>
+
+</body>
+</html>

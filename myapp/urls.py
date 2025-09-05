@@ -37,13 +37,23 @@ urlpatterns = [
     # auth
     path('register/', views.register, name = 'register'),
     path('login/', auth_view.LoginView.as_view(template_name='auth/login.html'), name = 'login'),
+    path('logout/', views.custom_logout, name='logout'),
 
     path('privacy/', views.privacy, name = 'privacy'),
 
     # dashboard
 
     path('dashboard/', views.dashboard, name = 'dashboard'),
-    path('transfer/', views.transfer, name = 'transfer'),
+    path('transfer/', views.create_transaction, name='create_transaction'),
+    path('transactions/', views.transaction_history, name='transaction_history'),
+    path('transactions/<int:pk>/', views.transaction_detail, name='transaction_detail'),
+    path("transactions/<int:pk>/download/", views.download_receipt, name="download_receipt"),
+    path('verify-code/', views.verify_code, name='verify_code'),
+    path('profile/', views.profile, name = 'profile'),
+    path('kyc/', views.kyc, name = 'kyc'),
+    path('atm/', views.atm, name = 'atm'),
+    path('deposit/', views.deposit, name = 'deposit'),
+    path("generate-account-number/", views.generate_account_number, name="generate_account_number"),
 
 
 

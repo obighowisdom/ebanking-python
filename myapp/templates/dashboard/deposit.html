@@ -1,0 +1,64 @@
+{% extends 'dashboard/base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="main-content position-relative max-height-vh-100 h-100">
+  {% include 'dashboard/topNav.html' %}
+
+  <div class="container-fluid py-4">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header pb-0">
+            <div class="d-flex align-items-center">
+              <p class="mb-0">Make a Deposit</p>
+            </div>
+          </div>
+          <div class="card-body">
+            <p class="text-uppercase text-sm">Enter Details</p>
+            <hr class="horizontal dark" />
+            <p class="text-uppercase text-sm">Make a Deposit</p>
+
+            {% if messages %}
+              {% for message in messages %}
+                <div class="alert alert-{{ message.tags }}">{{ message }}</div>
+              {% endfor %}
+            {% endif %}
+
+            {% if existing_deposit %}
+              <div class="alert alert-info">
+                <strong>Last Deposit:</strong> ₦{{ existing_deposit.amount }}  
+                <br><strong>Status:</strong> {{ existing_deposit.status|title }}
+              </div>
+            {% endif %}
+
+            <form method="POST" class="row">
+              {% csrf_token %}
+              <div class="col-md-12">
+                <div class="form-group">
+                  <label class="form-control-label">Amount to be deposited</label><sup style="color: red">*</sup>
+                  {{ form.amount }}
+                </div>
+              </div>
+
+              <div class="col-md-12 mt-3">
+                <div class="form-group">
+                  <label class="form-control-label">Method</label>
+                  <input class="form-control" type="text" value="Bank Transfer" disabled />
+                </div>
+              </div>
+
+              <div class="mt-3">
+                <button class="btn btn-primary btn-sm ms-auto" style="width: fit-content">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+{% endblock content %}

@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Banking Dashboard Cards</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+    <style>
+        .dashboard-section {
+            padding: 2rem 0;
+        }
+        
+        .banking-card {
+            background: #ffffff;
+            border: 1px solid #e3e6f0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            height: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .banking-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.15);
+            border-color: #007bff;
+            text-decoration: none;
+            color: inherit;
+        }
+        
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+        
+        .card-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 0.5rem;
+            color: #2c3e50;
+        }
+        
+        .card-description {
+            font-size: 0.9rem;
+            color: #6c757d;
+            margin: 0;
+        }
+        
+        /* Icon colors */
+        .icon-deposit { color: #28a745; }
+        .icon-transfer { color: #007bff; }
+        .icon-withdraw { color: #dc3545; }
+        .icon-statement { color: #6610f2; }
+        .icon-upgrade { color: #fd7e14; }
+        .icon-loan { color: #20c997; }
+        .icon-contact { color: #17a2b8; }
+        .icon-inquiry { color: #ffc107; }
+        .icon-settings { color: #6c757d; }
+        .icon-history { color: #e83e8c; }
+        .icon-cards { color: #343a40; }
+        .icon-investment { color: #795548; }
+        
+        .section-title {
+            color: #2c3e50;
+            font-weight: 700;
+            margin-bottom: 2rem;
+            text-align: center;
+        }
+        
+        @media (max-width: 576px) {
+            .banking-card {
+                margin-bottom: 1rem;
+            }
+            
+            .card-icon {
+                font-size: 2rem;
+            }
+            
+            .card-title {
+                font-size: 1rem;
+            }
+            
+            .card-description {
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <section class="dashboard-section">
+        <div class="container">
+        
+            <div class="row g-3">
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="" class="banking-card d-block">
+                        <i class="fas fa-plus-circle card-icon icon-deposit"></i>
+                        <h5 class="card-title">Deposit</h5>
+                        <p class="card-description">Contact customer service to make a deposit</p>
+                    </a>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="/transfer" class="banking-card d-block">
+                        <i class="fas fa-exchange-alt card-icon icon-transfer"></i>
+                        <h5 class="card-title">Transfer</h5>
+                        <p class="card-description">Send money instantly</p>
+                    </a>
+                </div>
+                                            
+                               
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="banking-card d-block">
+                        <i class="fas fa-hand-holding-usd card-icon icon-loan"></i>
+                        <h5 class="card-title">Apply for Loan</h5>
+                        <p class="card-description">Contact our customer services to apply for a loan</p>
+                    </a>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="/contactandsupport" class="banking-card d-block">
+                        <i class="fas fa-headset card-icon icon-contact"></i>
+                        <h5 class="card-title">Contact Us</h5>
+                        <p class="card-description">24/7 customer support</p>
+                    </a>
+                </div>
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="/contactandsupport" class="banking-card d-block">
+                        <i class="fas fa-question-circle card-icon icon-inquiry"></i>
+                        <h5 class="card-title">Inquiry</h5>
+                        <p class="card-description">Account inquiries</p>
+                    </a>
+                </div>
+                
+                
+              
+                
+                
+                <div class="col-6 col-md-4 col-lg-3">
+                    <a href="#" class="banking-card d-block">
+                        <i class="fas fa-chart-line card-icon icon-investment"></i>
+                        <h5 class="card-title">Investments</h5>
+                        <p class="card-description">contact our customer services to invest</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+</body>
+</html>
