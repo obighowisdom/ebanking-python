@@ -40,8 +40,12 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    "cities_light",
     'myapp',
 ]
+
+CITIES_LIGHT_TRANSLATION_LANGUAGES = ['en']
+
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
@@ -85,9 +89,9 @@ DATABASES = {
 }
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://ebanking-python-ox7h.onrender.com',
-    'https://pocketxperts.com'
-   
+    "https://www.nexxabanking.com",
+    "https://nexxabanking.com",
+    "https://your-app-name.onrender.com",
 ]
 # Password validation
 # https://docs.djangoproject.com/en/5.1/ref/settings/#auth-password-validators

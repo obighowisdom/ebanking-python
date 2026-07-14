@@ -18,6 +18,10 @@ from .models import ATMCardApplication
 from .models import BankAccount
 from .forms import DepositForm
 from .models import Deposit
+from django.contrib.auth.hashers import make_password
+from .models import CustomerProfile
+from django.http import JsonResponse
+
 
 
 from .models import user_wallet
@@ -117,20 +121,84 @@ def contactandsupport(request):
    
     return render(request, 'home/contactandsupport.html')
 
+# def register(request):
+#     if request.method == "POST":
+#         form = UserRegisterForm(request.POST)
+#         if form.is_valid():
+#             form.save()
+#             username = form.cleaned_data.get('username')
+#             password = form.cleaned_data.get('password1')
+                       
+#             messages.success(request, f'Hi {username}, your account was created successfully')
+#             return redirect("index:login")
+#     else:
+#         form = UserRegisterForm()
+   
+#     return render(request, 'auth/register.html', {'form':form})
+
 def register(request):
     if request.method == "POST":
         form = UserRegisterForm(request.POST)
+
         if form.is_valid():
-            form.save()
-            username = form.cleaned_data.get('username')
-            password = form.cleaned_data.get('password1')
-                       
-            messages.success(request, f'Hi {username}, your account was created successfully')
+
+            # Save Django User
+            user = form.save(commit=False)
+
+            user.first_name = form.cleaned_data["first_name"]
+            user.last_name = form.cleaned_data["last_name"]
+            user.email = form.cleaned_data["email"]
+
+            user.save()
+
+            # Create Customer Profile
+            CustomerProfile.objects.create(
+                user=user,
+
+                first_name=form.cleaned_data["first_name"],
+                last_name=form.cleaned_data["last_name"],
+
+                phone=form.cleaned_data["phone"],
+
+                country=form.cleaned_data["country"],
+                state=form.cleaned_data["state"],
+                city=form.cleaned_data["city"],
+
+                address=form.cleaned_data["address"],
+
+                dob=form.cleaned_data["dob"],
+
+                gender=form.cleaned_data["gender"],
+
+                account_type=form.cleaned_data["account_type"],
+
+                preferred_branch=form.cleaned_data["preferred_branch"],
+
+                # Never store PIN as plain text
+                transfer_pin=make_password(
+                    form.cleaned_data["transfer_pin"]
+                ),
+            )
+
+            messages.success(
+                request,
+                f"Hi {user.first_name}, your account was created successfully."
+            )
+
             return redirect("index:login")
+
     else:
         form = UserRegisterForm()
-   
-    return render(request, 'auth/register.html', {'form':form})
+
+    return render(
+        request,
+        "auth/register.html",
+        {
+            "form": form
+        },
+    )
+
+
 
 def privacy(request):
    

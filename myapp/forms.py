@@ -6,37 +6,177 @@ from .models import KYC
 from .models import Profile
 from .models import ATMCardApplication
 from .models import Deposit
+from django_countries.widgets import CountrySelectWidget
+from django.contrib.auth.forms import AuthenticationForm
 
 
 class UserRegisterForm(UserCreationForm):
-    username = forms.CharField(widget=forms.TextInput(attrs={
-        "class": "form--control",
-        "type": "text",
-        "placeholder": " enter username", 
-    }), label="Username")
 
-    email = forms.EmailField(widget=forms.TextInput(attrs={
-        "class": "form--control",
-        "type": "email",
-        "placeholder": " enter email ", 
-    }))
-    
-    password1 = forms.CharField(widget=forms.TextInput(attrs={
-        "class": "form--control",
-        "type": "password",
-        "placeholder": " enter password ", 
-    }))
+    first_name = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class":"form--control",
+            "placeholder":"First Name"
+        })
+    )
 
-    password2 = forms.CharField(widget=forms.TextInput(attrs={
-        "class": "form--control",
-        "type": "password",
-        "placeholder": " re-enter password ", 
-    }))
+    last_name = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class":"form--control",
+            "placeholder":"Last Name"
+        })
+    )
 
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class":"form--control",
+            "placeholder":"Username"
+        })
+    )
+
+    email = forms.EmailField(
+        widget=forms.EmailInput(attrs={
+            "class":"form--control",
+            "placeholder":"Email"
+        })
+    )
+
+    phone = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class":"form--control",
+            "placeholder":"Phone Number"
+        })
+    )
+
+    country = forms.CharField(
+    widget=forms.Select(attrs={
+        "class":"form--control",
+        "id":"country"
+    })
+    )
+
+    state = forms.CharField(
+        widget=forms.Select(attrs={
+            "class":"form--control",
+            "id":"state"
+        })
+    )
+
+    city = forms.CharField(
+        widget=forms.Select(attrs={
+            "class":"form--control",
+            "id":"city"
+        })
+    )
+    address = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class":"form--control",
+            "placeholder":"Residential Address"
+        })
+    )
+
+    dob = forms.DateField(
+        widget=forms.DateInput(attrs={
+            "class":"form--control",
+            "type":"date"
+        })
+    )
+
+    gender = forms.ChoiceField(
+        choices=[
+            ("","Select Gender"),
+            ("Male","Male"),
+            ("Female","Female"),
+            ("Other","Other"),
+        ],
+        widget=forms.Select(attrs={
+            "class":"form--control"
+        })
+    )
+
+    account_type = forms.ChoiceField(
+        choices=[
+            ("","Select Account"),
+            ("Savings","Savings"),
+            ("Checking","Checking"),
+            ("Current","Current"),
+            ("Domiciliary","Domiciliary"),
+        ],
+        widget=forms.Select(attrs={
+            "class":"form--control"
+        })
+    )
+
+    preferred_branch = forms.ChoiceField(
+        choices=[
+            ("","Select Branch"),
+            ("New York","New York"),
+            ("California","California"),
+            ("Texas","Texas"),
+            ("Florida","Florida"),
+            ("Illinois","Illinois"),
+        ],
+        widget=forms.Select(attrs={
+            "class":"form--control"
+        })
+    )
+
+    transfer_pin = forms.CharField(
+        max_length=4,
+        widget=forms.PasswordInput(attrs={
+            "class":"form--control",
+            "maxlength":"4",
+            "placeholder":"4-digit Transfer PIN"
+        })
+    )
+
+    def clean_transfer_pin(self):
+        pin = self.cleaned_data.get("transfer_pin")
+
+        if not pin.isdigit():
+            raise forms.ValidationError(
+                "Transfer PIN must contain only numbers."
+        )
+
+        if len(pin) != 4:
+            raise forms.ValidationError(
+                "Transfer PIN must be exactly 4 digits."
+            )
+
+        return pin
+
+    password1 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            "class":"form--control"
+        })
+    )
+
+    password2 = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            "class":"form--control"
+        })
+    )
 
     class Meta:
         model = User
-        fields = [ 'username', 'email', 'password1', 'password2']
+
+        fields = (
+            "first_name",
+            "last_name",
+            "username",
+            "email",
+            "phone",
+            "country",
+            "state",
+            "city",
+            "address",
+            "dob",
+            "gender",
+            "account_type",
+            "preferred_branch",
+            "transfer_pin",
+            "password1",
+            "password2",
+        )
 
 
 
@@ -64,6 +204,7 @@ class TransactionForm(forms.ModelForm):
         if account_number and len(account_number) < 5:
             raise forms.ValidationError("Account number must be at least 5 characters long.")
         return account_number
+    
 
 
 class ProfileForm(forms.ModelForm):
@@ -121,3 +262,21 @@ class DepositForm(forms.ModelForm):
                 'required': 'required'
             }),
         }
+
+
+
+class UserLoginForm(AuthenticationForm):
+
+    username = forms.CharField(
+        widget=forms.TextInput(attrs={
+            "class": "form--control",
+            "placeholder": "Username"
+        })
+    )
+
+    password = forms.CharField(
+        widget=forms.PasswordInput(attrs={
+            "class": "form--control",
+            "placeholder": "Password"
+        })
+    )

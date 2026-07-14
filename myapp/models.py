@@ -6,6 +6,8 @@ from django.db import models
 from django.utils import timezone
 import random
 from django.utils.text import slugify
+from django_countries.fields import CountryField
+
 
 # Create your models here.
 class user_wallet(models.Model):
@@ -207,3 +209,66 @@ class Deposit(models.Model):
 
     def __str__(self):
         return f"{self.user.username} - {self.amount} ({self.status})"
+
+
+class CustomerProfile(models.Model):
+
+    ACCOUNT_TYPES = (
+        ("Savings", "Savings"),
+        ("Checking", "Checking"),
+        ("Current", "Current"),
+        ("Domiciliary", "Domiciliary"),
+    )
+
+    GENDERS = (
+        ("Male", "Male"),
+        ("Female", "Female"),
+        ("Other", "Other"),
+    )
+
+    BRANCHES = (
+        ("New York", "New York"),
+        ("California", "California"),
+        ("Texas", "Texas"),
+        ("Florida", "Florida"),
+        ("Illinois", "Illinois"),
+    )
+
+    user = models.OneToOneField(User, on_delete=models.CASCADE)
+
+    first_name = models.CharField(max_length=100)
+    last_name = models.CharField(max_length=100)
+
+    phone = models.CharField(max_length=20)
+
+    country = models.CharField(max_length=100)
+
+    state = models.CharField(max_length=100)
+
+    city = models.CharField(max_length=100)
+
+    address = models.CharField(max_length=300)
+
+    dob = models.DateField()
+
+    gender = models.CharField(
+        max_length=20,
+        choices=GENDERS
+    )
+
+    account_type = models.CharField(
+        max_length=30,
+        choices=ACCOUNT_TYPES
+    )
+
+    preferred_branch = models.CharField(
+        max_length=50,
+        choices=BRANCHES
+    )
+
+    transfer_pin = models.CharField(max_length=255)
+
+    created = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return self.user.username

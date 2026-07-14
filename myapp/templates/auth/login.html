@@ -146,14 +146,25 @@
              {% endif %}
 
             <form method="POST" class="verify-gcaptcha account-form">
+              {% if form.errors %}
+<div class="alert alert-danger mb-3">
+    Invalid username or password.
+</div>
+{% endif %}
               {% csrf_token %}
 
               <div class="form-group">
                 <label for="username" class="form-label"
                   >Username</label
                 >
-                <div class="form--control" style="width: 100%">
-                  {{ form.username }}
+                <div class="" style="width: 100%">
+                  <input
+    type="text"
+    name="username"
+    class="form--control"
+    placeholder="Enter Username"
+    required
+>
                 </div>
               </div>
 
@@ -161,8 +172,14 @@
                 <label for="password" class="form-label required"
                   >Password</label
                 >
-                <div class="form--control" style="width: 100%">
-                  {{ form.password }}
+                <div class="" style="width: 100%">
+                  <input
+    type="password"
+    name="password"
+    class="form--control"
+    placeholder="Enter Password"
+    required
+>
                 </div>
               </div>
 
@@ -205,20 +222,7 @@
     <script src="../../static/assets/templates/basic/js/jquery.validate.js"></script>
     <script src="../../static/assets/templates/basic/js/main.js"></script>
 
-    <script>
-      var Tawk_API = Tawk_API || {},
-        Tawk_LoadStart = new Date();
-      (function () {
-        var s1 = document.createElement("script"),
-          s0 = document.getElementsByTagName("script")[0];
-        s1.async = true;
-        s1.src =
-          "https://embed.tawk.to/4beef5f89be044ee02e9cb24adb089cdccb09ee1";
-        s1.charset = "UTF-8";
-        s1.setAttribute("crossorigin", "*");
-        s0.parentNode.insertBefore(s1, s0);
-      })();
-    </script>
+    
     <script>
       "use strict";
       (function ($) {

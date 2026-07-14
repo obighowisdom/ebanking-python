@@ -1,6 +1,8 @@
 from django.urls import path
 from . import views
 from django.contrib.auth import views as auth_view
+from .forms import UserLoginForm
+from django.contrib.auth import views as auth_view
 
 
 app_name = 'myappurl'
@@ -36,7 +38,7 @@ urlpatterns = [
 
     # auth
     path('register/', views.register, name = 'register'),
-    path('login/', auth_view.LoginView.as_view(template_name='auth/login.html'), name = 'login'),
+    # path('login/', auth_view.LoginView.as_view(template_name='auth/login.html'), name = 'login'),
     path('logout/', views.custom_logout, name='logout'),
 
     path('privacy/', views.privacy, name = 'privacy'),
@@ -54,6 +56,14 @@ urlpatterns = [
     path('atm/', views.atm, name = 'atm'),
     path('deposit/', views.deposit, name = 'deposit'),
     path("generate-account-number/", views.generate_account_number, name="generate_account_number"),
+    path(
+        "login/",
+        auth_view.LoginView.as_view(
+            template_name="auth/login.html",
+            authentication_form=UserLoginForm,
+        ),
+        name="login",
+    ),
 
 
 
