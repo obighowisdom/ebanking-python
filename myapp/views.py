@@ -21,10 +21,24 @@ from .models import Deposit
 from django.contrib.auth.hashers import make_password
 from .models import CustomerProfile
 from django.http import JsonResponse
+import random
+from django.core.mail import send_mail
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 
 
 from .models import user_wallet
+
+def generate_account_number():
+    while True:
+        account_number = str(random.randint(1000000000, 9999999999))
+
+        if not CustomerProfile.objects.filter(
+            account_number=account_number
+        ).exists():
+            return account_number
+
 
 # Create your views here.
 def index(request):
@@ -121,20 +135,8 @@ def contactandsupport(request):
    
     return render(request, 'home/contactandsupport.html')
 
-# def register(request):
-#     if request.method == "POST":
-#         form = UserRegisterForm(request.POST)
-#         if form.is_valid():
-#             form.save()
-#             username = form.cleaned_data.get('username')
-#             password = form.cleaned_data.get('password1')
-                       
-#             messages.success(request, f'Hi {username}, your account was created successfully')
-#             return redirect("index:login")
-#     else:
-#         form = UserRegisterForm()
-   
-#     return render(request, 'auth/register.html', {'form':form})
+
+
 
 def register(request):
     if request.method == "POST":
@@ -144,45 +146,159 @@ def register(request):
 
             # Save Django User
             user = form.save(commit=False)
-
             user.first_name = form.cleaned_data["first_name"]
             user.last_name = form.cleaned_data["last_name"]
             user.email = form.cleaned_data["email"]
-
             user.save()
+
+            # Generate account details
+            account_number = generate_account_number()
+            cot_code = str(random.randint(1000, 9999))
+            tax_code = str(random.randint(1000, 9999))
 
             # Create Customer Profile
             CustomerProfile.objects.create(
                 user=user,
-
                 first_name=form.cleaned_data["first_name"],
                 last_name=form.cleaned_data["last_name"],
-
                 phone=form.cleaned_data["phone"],
-
                 country=form.cleaned_data["country"],
                 state=form.cleaned_data["state"],
                 city=form.cleaned_data["city"],
-
                 address=form.cleaned_data["address"],
-
                 dob=form.cleaned_data["dob"],
-
                 gender=form.cleaned_data["gender"],
-
                 account_type=form.cleaned_data["account_type"],
-
                 preferred_branch=form.cleaned_data["preferred_branch"],
-
-                # Never store PIN as plain text
                 transfer_pin=make_password(
                     form.cleaned_data["transfer_pin"]
                 ),
+                account_number=account_number,
+                cot_code=cot_code,
+                tax_code=tax_code,
             )
+
+            # Send email
+            subject = "Account Registration Pending Review"
+
+            text_content = f"""
+            Dear {user.first_name},
+
+            Thank you for joining us.
+
+            Your account registration has been received successfully.
+
+            Account Number: {account_number}
+
+            Your account is currently pending review.
+
+            We will review your account and notify you by email once your account has been approved.
+
+            Thank you for choosing us.
+            """
+
+            html_content = f"""
+            <!DOCTYPE html>
+            <html>
+            <head>
+            <meta charset="UTF-8">
+            </head>
+            <body style="margin:0;padding:0;background:#f4f8fc;font-family:Arial,Helvetica,sans-serif;">
+
+            <table width="100%" cellpadding="0" cellspacing="0" style="background:#f4f8fc;padding:40px 0;">
+            <tr>
+            <td align="center">
+
+            <table width="600" cellpadding="0" cellspacing="0" style="background:#ffffff;border-radius:12px;overflow:hidden;box-shadow:0 5px 20px rgba(0,0,0,.08);">
+
+            <tr>
+            <td style="background:#0d6efd;padding:30px;text-align:center;">
+            <h1 style="color:#ffffff;margin:0;font-size:28px;">
+            Welcome to Your Bank
+            </h1>
+            </td>
+            </tr>
+
+            <tr>
+            <td style="padding:40px;">
+
+            <h2 style="color:#0d6efd;margin-top:0;">
+            Hello {user.first_name},
+            </h2>
+
+            <p style="color:#555;font-size:16px;line-height:1.7;">
+            Thank you for joining us.
+            </p>
+
+            <p style="color:#555;font-size:16px;line-height:1.7;">
+            Your registration has been received successfully and is currently under review.
+            </p>
+
+            <div style="
+            background:#eef5ff;
+            border-left:5px solid #0d6efd;
+            padding:20px;
+            margin:30px 0;
+            border-radius:8px;
+            ">
+
+            <p style="margin:0;color:#666;font-size:14px;">
+            Your Account Number
+            </p>
+
+            <h2 style="margin:8px 0;color:#0d6efd;letter-spacing:2px;">
+            {account_number}
+            </h2>
+
+            </div>
+
+            <p style="color:#555;font-size:16px;line-height:1.7;">
+            Our team will review your application shortly.
+            Once approved, you will receive another email confirming that your account is fully activated.
+            </p>
+
+            <p style="margin-top:40px;">
+            Thank you for choosing us.
+            </p>
+
+            <p style="font-weight:bold;color:#0d6efd;">
+            Customer Support Team
+            </p>
+
+            </td>
+            </tr>
+
+            <tr>
+            <td style="background:#0d6efd;padding:18px;text-align:center;color:#ffffff;font-size:13px;">
+            © 2026 Your Bank. All rights reserved.
+            </td>
+            </tr>
+
+            </table>
+
+            </td>
+            </tr>
+            </table>
+
+            </body>
+            </html>
+            """
+
+            email = EmailMultiAlternatives(
+                subject,
+                text_content,
+                settings.DEFAULT_FROM_EMAIL,
+                [user.email],
+            )
+
+            email.attach_alternative(html_content, "text/html")
+            email.send(fail_silently=False)
 
             messages.success(
                 request,
-                f"Hi {user.first_name}, your account was created successfully."
+                f"Pending! Your account number is {account_number}. "
+                "We will review your account and email you after the review. "
+                "Thank you for joining us."
             )
 
             return redirect("index:login")
@@ -193,36 +309,14 @@ def register(request):
     return render(
         request,
         "auth/register.html",
-        {
-            "form": form
-        },
+        {"form": form},
     )
-
 
 
 def privacy(request):
    
     return render(request, 'auth/privacy.html')
 
-# def login(request):
-#     if request.method == 'POST':
-#         username = request.POST['username']
-#         password1 = request.POST['password1']
-        
-#         user = authenticate(username=username, password=password1)
-        
-#         if user is not None:
-#             login(request, user)
-#             fname = user.first_name
-#             messages.success(request, "Logged In Sucessfully!!")
-#             return render(request, "dashboard.html", {"fname":fname})
-#         else:
-#             messages.error(request, "Bad Credentials!!")
-#             return redirect("index:login")
-   
-#     return render(request, 'auth/login.html')
-
-# user dashboard
 
 def dashboard(request):
     wallet = user_wallet.objects.all()
@@ -332,29 +426,46 @@ def download_receipt(request, pk):
 @login_required
 def verify_code(request):
     if request.method == "POST":
-        code_type = request.POST.get("code_type")  # 'imf', 'cot', or 'tax'
-        code_entered = request.POST.get("code_value")
 
-        # Get the user's profile
-        profile = get_object_or_404(UserProfile, user=request.user)
+        code_type = request.POST.get("code_type")
+        code_value = request.POST.get("code_value")
 
-        # Check based on code type
-        if code_type == "imf":
-            valid_code = profile.imf_code
-        elif code_type == "cot":
-            valid_code = profile.cot_code
-        elif code_type == "tax":
-            valid_code = profile.tax_code
-        else:
-            return JsonResponse({"success": False, "message": "Invalid code type."})
+        try:
+            profile = CustomerProfile.objects.get(user=request.user)
 
-        # Compare codes
-        if code_entered == valid_code:
-            return JsonResponse({"success": True, "message": "Code verified successfully."})
-        else:
-            return JsonResponse({"success": False, "message": "Invalid code. Please try again."})
+            if code_type == "cot":
+                if code_value == profile.cot_code:
+                    return JsonResponse({"success": True})
 
-    return JsonResponse({"success": False, "message": "Invalid request method."})
+                return JsonResponse({
+                    "success": False,
+                    "message": "Invalid COT Code."
+                })
+
+            elif code_type == "tax":
+                if code_value == profile.tax_code:
+                    return JsonResponse({"success": True})
+
+                return JsonResponse({
+                    "success": False,
+                    "message": "Invalid Tax Code."
+                })
+
+            return JsonResponse({
+                "success": False,
+                "message": "Invalid verification request."
+            })
+
+        except CustomerProfile.DoesNotExist:
+            return JsonResponse({
+                "success": False,
+                "message": "Customer profile not found."
+            })
+
+    return JsonResponse({
+        "success": False,
+        "message": "Invalid request."
+    })
 
 @login_required
 def profile(request):
@@ -450,30 +561,30 @@ def atm(request):
 
 
 @login_required
-def generate_account_number(request):
-    user = request.user
+# def generate_account_number(request):
+#     user = request.user
 
-    # Check if user already has an account number
-    account = BankAccount.objects.filter(user=user).first()
-    if account:
-        return JsonResponse({
-            "status": "exists",
-            "account_number": account.account_number,
-            "message": "You already have an account number."
-        })
+#     # Check if user already has an account number
+#     account = BankAccount.objects.filter(user=user).first()
+#     if account:
+#         return JsonResponse({
+#             "status": "exists",
+#             "account_number": account.account_number,
+#             "message": "You already have an account number."
+#         })
 
-    # Check if profile is incomplete
-    if not user.first_name or user.first_name.strip() == "":
-        return JsonResponse({"status": "error", "message": "Please update your profile first."})
+#     # Check if profile is incomplete
+#     if not user.first_name or user.first_name.strip() == "":
+#         return JsonResponse({"status": "error", "message": "Please update your profile first."})
 
-    # Create a new account number
-    account = BankAccount.objects.create(user=user)
+#     # Create a new account number
+#     account = BankAccount.objects.create(user=user)
 
-    return JsonResponse({
-        "status": "success",
-        "account_number": account.account_number,
-        "message": "Account number generated successfully!"
-    })
+#     return JsonResponse({
+#         "status": "success",
+#         "account_number": account.account_number,
+#         "message": "Account number generated successfully!"
+#     })
 
 
 @login_required

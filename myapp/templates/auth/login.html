@@ -1,7 +1,7 @@
 {% load static %}
 
 <!-- meta tags and other links -->
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en" itemscope itemtype="http://schema.org/WebPage">
   <!-- Mirrored from www.evergreentrustco.com/en/user/login by HTTrack Website Copier/3.x [XR&CO'2014], Fri, 23 Aug 2024 00:43:59 GMT -->
   <!-- Added by HTTrack -->
@@ -51,6 +51,8 @@
     <meta property="og:url" content="register.html" />
 
     <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="Nexa Banking - Register" />
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
     <link
       rel="stylesheet"
@@ -116,7 +118,7 @@
       <section
         class="account-section bg_img"
         style="
-          background-image: url('../../static/assets/images/frontend/login_bg/6110c9ec14e281628490220.jpg');
+          background-image: url(&quot;../../static/assets/images/frontend/login_bg/6110c9ec14e281628490220.jpg&quot;);
         "
       >
         <div class="account-section-left">
@@ -137,34 +139,38 @@
             </a>
           </div>
           <div class="middle">
-            {% if messages %} 
-                {% for message in messages %}
-                    <div class="alert alert-{{message.tags}}" style="color: purple">
-                    {{message}}
-                    </div>
-                {% endfor %}
-             {% endif %}
+            {% if messages %} {% for message in messages %}
+            <script>
+              Swal.fire({
+                icon: "success",
+
+                text: "{{ message|escapejs }}",
+                confirmButtonText: "OK",
+              });
+            </script>
+            {% endfor %} {% endif %}
 
             <form method="POST" class="verify-gcaptcha account-form">
               {% if form.errors %}
-<div class="alert alert-danger mb-3">
-    Invalid username or password.
-</div>
-{% endif %}
-              {% csrf_token %}
+              <div class="alert alert-danger mb-3">
+                {% for field in form %} {% for error in field.errors %}
+                <div>{{ error }}</div>
+                {% endfor %} {% endfor %} {% for error in form.non_field_errors%}
+                <div>{{ error }}</div>
+                {% endfor %}
+              </div>
+              {% endif %} {% csrf_token %}
 
               <div class="form-group">
-                <label for="username" class="form-label"
-                  >Username</label
-                >
+                <label for="username" class="form-label">Username</label>
                 <div class="" style="width: 100%">
                   <input
-    type="text"
-    name="username"
-    class="form--control"
-    placeholder="Enter Username"
-    required
->
+                    type="text"
+                    name="username"
+                    class="form--control"
+                    placeholder="Enter Username"
+                    required
+                  />
                 </div>
               </div>
 
@@ -174,12 +180,12 @@
                 >
                 <div class="" style="width: 100%">
                   <input
-    type="password"
-    name="password"
-    class="form--control"
-    placeholder="Enter Password"
-    required
->
+                    type="password"
+                    name="password"
+                    class="form--control"
+                    placeholder="Enter Password"
+                    required
+                  />
                 </div>
               </div>
 
@@ -222,7 +228,6 @@
     <script src="../../static/assets/templates/basic/js/jquery.validate.js"></script>
     <script src="../../static/assets/templates/basic/js/main.js"></script>
 
-    
     <script>
       "use strict";
       (function ($) {
@@ -240,7 +245,7 @@
             `https://www.evergreentrustco.com/en/cookie/accept`,
             function (response) {
               $(".cookies-card").addClass("d-none");
-            }
+            },
           );
         });
 
@@ -329,7 +334,7 @@
         if (!("Notification" in window)) {
           notify(
             "info",
-            "Push notifications not available in your browser. Try Chromium."
+            "Push notifications not available in your browser. Try Chromium.",
           );
         }
       }
@@ -346,7 +351,7 @@
         const messaging = firebase.messaging();
         navigator.serviceWorker
           .register(
-            "../../static/assets/global/js/firebase/firebase-messaging-sw.js"
+            "../../static/assets/global/js/firebase/firebase-messaging-sw.js",
           )
           .then((registration) => {
             messaging.useServiceWorker(registration);

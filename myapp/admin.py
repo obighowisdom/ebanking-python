@@ -8,6 +8,7 @@ from .models import UserProfile, Profile, BankAccount
 from .models import KYC
 from django.contrib import admin
 from .models import Deposit
+from .models import CustomerProfile
 
 class UserProfileAdmin(admin.ModelAdmin):
     list_display = ('user', 'imf_code', 'cot_code', 'tax_code')
@@ -19,6 +20,28 @@ admin.site.register(UserProfile, UserProfileAdmin)
 admin.site.register(user_wallet)
 admin.site.register(Profile)
 admin.site.register(BankAccount)
+
+@admin.register(CustomerProfile)
+class CustomerProfileAdmin(admin.ModelAdmin):
+    list_display = (
+        "user",
+        "account_number",
+        "status",
+        "country",
+        "account_type",
+    )
+
+    list_filter = (
+        "status",
+        "country",
+        "account_type",
+    )
+
+    search_fields = (
+        "user__username",
+        "user__email",
+        "account_number",
+    )
 
 # admin.py
 

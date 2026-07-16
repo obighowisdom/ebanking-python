@@ -7,6 +7,8 @@ from django.utils import timezone
 import random
 from django.utils.text import slugify
 from django_countries.fields import CountryField
+from django.core.mail import EmailMultiAlternatives
+from django.conf import settings
 
 
 # Create your models here.
@@ -234,6 +236,19 @@ class CustomerProfile(models.Model):
         ("Illinois", "Illinois"),
     )
 
+    STATUS_CHOICES = [
+    ("pending", "Pending"),
+    ("approved", "Approved"),
+    ("rejected", "Rejected"),
+    ]
+
+    status = models.CharField(
+        max_length=10,
+        choices=STATUS_CHOICES,
+        default="pending",
+        null=True,
+    )
+
     user = models.OneToOneField(User, on_delete=models.CASCADE)
 
     first_name = models.CharField(max_length=100)
@@ -250,6 +265,9 @@ class CustomerProfile(models.Model):
     address = models.CharField(max_length=300)
 
     dob = models.DateField()
+    account_number = models.CharField(max_length=10, null=True, unique=True)
+    cot_code = models.CharField(max_length=4, null=True)
+    tax_code = models.CharField(max_length=4, null=True)
 
     gender = models.CharField(
         max_length=20,
@@ -272,3 +290,104 @@ class CustomerProfile(models.Model):
 
     def __str__(self):
         return self.user.username
+    
+    def save(self, *args, **kwargs):
+        old_status = None
+
+        if self.pk:
+            old_status = CustomerProfile.objects.get(pk=self.pk).status
+
+        super().save(*args, **kwargs)
+
+        # Send approval email only when status changes to approved
+        if old_status != "approved" and self.status == "approved":
+
+            subject = "Account Approved"
+
+            text_content = f"""
+    Dear {self.first_name},
+
+    Congratulations!
+
+    Your account has been reviewed and approved successfully.
+
+    You can now log in using your username and password.
+
+    Thank you for choosing us.
+
+    Customer Support
+    """
+
+            html_content = f"""
+    <!DOCTYPE html>
+    <html>
+    <body style="margin:0;padding:0;background:#f4f8fc;font-family:Arial,sans-serif;">
+
+    <table width="100%" style="padding:40px;background:#f4f8fc;">
+    <tr>
+    <td align="center">
+
+    <table width="600" style="background:#ffffff;border-radius:12px;overflow:hidden;">
+
+    <tr>
+    <td style="background:#0d6efd;padding:30px;text-align:center;">
+    <h1 style="color:white;margin:0;"> Account Approved</h1>
+    </td>
+    </tr>
+
+    <tr>
+    <td style="padding:40px;">
+
+    <h2 style="color:#0d6efd;">Hello {self.first_name},</h2>
+
+    <p style="font-size:16px;color:#555;line-height:1.8;">
+    Great news!
+    </p>
+
+    <p style="font-size:16px;color:#555;line-height:1.8;">
+    Your account has been reviewed and approved.
+    You can now log in and begin using your account.
+    </p>
+
+    <div style="background:#eef5ff;border-left:5px solid #0d6efd;padding:20px;border-radius:8px;margin:30px 0;">
+
+    <b>Account Number</b><br><br>
+
+    <span style="font-size:28px;color:#0d6efd;font-weight:bold;">
+    {self.account_number}
+    </span>
+
+    </div>
+
+    <p style="font-size:16px;color:#555;">
+    Thank you for banking with us.
+    </p>
+
+    </td>
+    </tr>
+
+    <tr>
+    <td style="background:#0d6efd;color:white;text-align:center;padding:18px;">
+    © 2026 Your Bank
+    </td>
+    </tr>
+
+    </table>
+
+    </td>
+    </tr>
+    </table>
+
+    </body>
+    </html>
+    """
+
+            email = EmailMultiAlternatives(
+                subject,
+                text_content,
+                settings.DEFAULT_FROM_EMAIL,
+                [self.user.email],
+            )
+
+            email.attach_alternative(html_content, "text/html")
+            email.send(fail_silently=False)

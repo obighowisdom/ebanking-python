@@ -8,6 +8,8 @@ from .models import ATMCardApplication
 from .models import Deposit
 from django_countries.widgets import CountrySelectWidget
 from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
+from .models import CustomerProfile
 
 
 class UserRegisterForm(UserCreationForm):
@@ -265,6 +267,12 @@ class DepositForm(forms.ModelForm):
 
 
 
+from django import forms
+from django.contrib.auth.forms import AuthenticationForm
+from django.core.exceptions import ValidationError
+from .models import CustomerProfile
+
+
 class UserLoginForm(AuthenticationForm):
 
     username = forms.CharField(
@@ -280,3 +288,22 @@ class UserLoginForm(AuthenticationForm):
             "placeholder": "Password"
         })
     )
+
+    def confirm_login_allowed(self, user):
+        print("LOGIN CHECK:", user.username)
+
+        super().confirm_login_allowed(user)
+
+        profile = CustomerProfile.objects.get(user=user)
+
+        if profile.status == "pending":
+            raise ValidationError(
+                "Your account is still pending review. Please wait for approval.",
+                code="pending",
+            )
+
+        if profile.status == "rejected":
+            raise ValidationError(
+                "Your account has been rejected. Please contact customer support.",
+                code="rejected",
+            )
