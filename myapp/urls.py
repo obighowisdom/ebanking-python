@@ -44,7 +44,7 @@ urlpatterns = [
     path('privacy/', views.privacy, name = 'privacy'),
 
     # dashboard
-
+ 
     path('dashboard/', views.dashboard, name = 'dashboard'),
     path('transfer/', views.create_transaction, name='create_transaction'),
     path('transactions/', views.transaction_history, name='transaction_history'),
